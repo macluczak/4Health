@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCFFFFFF"
+    app:layoutDescription="@xml/fragment_tracks_scene"
+    tools:context=".Fragments.TracksFragment">
+
+
+
+
+
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constrainedHeight="true"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/rvTracks"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+
+
+
+    <TextView
+        android:id="@+id/helloText0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="sans-serif-medium"
+
+        android:text="Your\n\n\n"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:paddingTop="40sp"
+
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/helloText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="\n\n\n"
+        android:shadowColor="#3E3E3E"
+        android:shadowRadius="40"
+        android:shadowDy="25"
+        android:shadowDx="0"
+        android:paddingTop="40sp"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:textColor="@color/gray100"
+        app:layout_constraintTop_toTopOf="@id/helloText0"
+        app:layout_constraintLeft_toRightOf="@id/helloText0" />
+
+    <TextView
+        android:id="@+id/helloText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="\nTrack\n\n"
+        android:paddingTop="35sp"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/helloText0" />
+
+    <TextView
+        android:id="@+id/helloText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="9sp"
+        android:text="\n\n4Health.\n"
+        android:textColor="@color/green_active"
+        android:textSize="68sp"
+        android:textStyle="bold"
+
+
+        app:layout_constraintTop_toBottomOf="@id/helloText1" />
+
+
+
+<!--    </RelativeLayout>-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTracks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+
+
+        android:paddingBottom="200dp"
+        app:layout_constraintTop_toBottomOf="@id/helloText3" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
+
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.DetailFragment">
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvbg"
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
+        android:backgroundTint="@color/green_active"
+        app:cardCornerRadius="50sp"
+        android:layout_marginTop="-50sp"
+        android:elevation="8sp">
+
+        <RelativeLayout
+            android:layout_marginTop="50sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/titleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="40dp"
+                android:text="Droga 30"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/idTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="id"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <KeyFrameSet>
+            <KeyAttribute />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText0"
+                motion:framePosition="75"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText0"
+                motion:framePosition="100"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText0"
+                motion:framePosition="40"
+                android:translationX="0sp" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText0"
+                motion:framePosition="80"
+                android:translationX="100sp" />
+
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText1"
+                motion:framePosition="75"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText1"
+                motion:framePosition="100"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText1"
+                motion:framePosition="40"
+                android:translationX="0sp" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText1"
+                motion:framePosition="80"
+                android:translationX="100sp" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText2"
+                motion:framePosition="55"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText2"
+                motion:framePosition="100"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText2"
+                motion:framePosition="20"
+                android:translationX="0sp" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText2"
+                motion:framePosition="60"
+                android:translationX="100sp" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText3"
+                motion:framePosition="30"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText3"
+                motion:framePosition="100"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/helloText3"
+                motion:framePosition="40"
+                android:translationX="100sp" />
+
+        </KeyFrameSet>
+        <OnSwipe motion:touchAnchorId="@+id/rvTracks"
+            motion:dragDirection="dragUp"
+            motion:touchAnchorSide="top"/>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/helloText0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toLeftOf="@id/helloText1"
+            >
+
+
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/helloText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="@id/helloText0"
+            motion:layout_constraintLeft_toRightOf="@id/helloText0"
+           >
+
+
+        </Constraint>
+        <Constraint
+            android:id="@+id/helloText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            motion:layout_constraintTop_toTopOf="@id/helloText0">
+
+
+        </Constraint>
+        <Constraint
+            android:id="@+id/helloText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="@id/helloText2"
+            >
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/helloText0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toLeftOf="@id/helloText1"
+            >
+
+
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/helloText1"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            motion:layout_constraintLeft_toRightOf="@id/helloText0"
+            >
+        </Constraint>
+
+
+        <Constraint
+            android:id="@+id/helloText2"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            >
+
+    </Constraint>
+        <Constraint
+            android:id="@+id/helloText3"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            >
+
+</Constraint>
+    </ConstraintSet>
+</MotionScene>
