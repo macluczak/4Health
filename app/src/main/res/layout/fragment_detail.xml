@@ -28,10 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textSize="40dp"
-                android:text="Droga 30"
                 android:fontFamily="sans-serif-black"
-                android:textColor="@color/white"/>
+                android:text="Droga 30"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
 
             <TextView
                 android:id="@+id/idTxt"
