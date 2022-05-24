@@ -18,11 +18,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         binding = FragmentDetailBinding.bind(view)
 
         val id = activity?.intent?.extras?.getString("id")
-        val db = DBHelper(requireContext())
-        val trackDetail = db.getTrack(id?.toInt()?:1)
+        if(id != null) {
+            val db = DBHelper(requireContext())
+            val trackDetail = db.getTrack(id?.toInt() ?: 1)
 
-        binding.idTxt.text = trackDetail.id
-        binding.titleTxt.text = trackDetail.title
+            binding.idTxt.text = trackDetail.id
+            binding.titleTxt.text = trackDetail.title
+        }
 
     }
 

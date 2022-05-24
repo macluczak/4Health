@@ -12,10 +12,11 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2035" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/selector_checkbox.xml" value="0.131" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/unchecked_fav.xml" value="0.199" />
-        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_main.xml" value="0.12359550561797752" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_track_details.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
-        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_tracks.xml" value="0.375" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_tracks.xml" value="0.1" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/holder_tracks.xml" value="0.1" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/4Health/app/src/main/res/layout/holder_tracks.xml" value="0.32135416666666666" />
       </map>

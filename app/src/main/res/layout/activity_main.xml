@@ -10,10 +10,24 @@
 
 
 
+
     <FrameLayout
+
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        app:rippleColor="@color/GR1_2_1"
+        android:backgroundTint="@color/green_active"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="30sp"/>
+
+
 
 
 
