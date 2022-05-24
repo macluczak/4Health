@@ -25,7 +25,10 @@
         android:backgroundTint="@color/green_active"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="30sp"/>
+        android:layout_margin="30sp"
+        android:src="@drawable/edit_ic"
+        app:tint="@color/white"
+        />
 
 
 

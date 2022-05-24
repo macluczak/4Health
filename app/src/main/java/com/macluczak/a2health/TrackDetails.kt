@@ -17,12 +17,16 @@ class TrackDetails : AppCompatActivity() {
         binding = ActivityTrackDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val detailFragment = DetailFragment()
-        val flFragment = binding.flFragment
+        val id = intent?.extras?.getInt("id")
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, detailFragment)
-            commit()
+        if(id!= null) {
+            val detailFragment = DetailFragment.newTrack(id)
+            val flFragment = binding.flFragment
+
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.flFragment, detailFragment)
+                commit()
+            }
         }
     }
 

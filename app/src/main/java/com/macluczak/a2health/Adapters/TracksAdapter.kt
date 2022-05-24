@@ -7,20 +7,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.macluczak.a2health.TrackDetails
 import com.macluczak.a2health.databinding.HolderTracksBinding
 
-class TracksAdapter(val tracks: List<Track>): RecyclerView.Adapter<TracksAdapter.TracksViewHolder>(){
-    inner class TracksViewHolder(val binding: HolderTracksBinding): RecyclerView.ViewHolder(binding.root)
+class TracksAdapter(val tracks: List<Track>, private val trackInterface: TrackInterface): RecyclerView.Adapter<TracksAdapter.TracksViewHolder>(){
+    inner class TracksViewHolder(val binding: HolderTracksBinding, trackInterface: TrackInterface): RecyclerView.ViewHolder(binding.root)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TracksViewHolder {
-        return TracksViewHolder(HolderTracksBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+
+        return TracksViewHolder(HolderTracksBinding.inflate(LayoutInflater.from(parent.context), parent, false), trackInterface)
     }
 
     override fun onBindViewHolder(holder: TracksViewHolder, position: Int) {
         val track = tracks[position]
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context, TrackDetails::class.java)
-            intent.putExtra("id", track.id)
-            holder.itemView.getContext().startActivity(intent)
+            trackInterface.onClick(track.id.toInt())
+        }
+        holder.itemView.setOnLongClickListener {
+            trackInterface.onLongClick(track.id.toInt())
+            return@setOnLongClickListener true
         }
 
         holder.binding.apply {
@@ -33,6 +37,11 @@ class TracksAdapter(val tracks: List<Track>): RecyclerView.Adapter<TracksAdapter
 
     override fun getItemCount(): Int {
         return tracks.size
+    }
+
+    interface TrackInterface{
+        fun onClick(position: Int)
+        fun onLongClick(position: Int)
     }
 
 }
