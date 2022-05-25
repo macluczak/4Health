@@ -70,6 +70,27 @@
                 motion:motionTarget="@+id/helloText3"
                 motion:framePosition="40"
                 android:translationX="100sp" />
+            <KeyAttribute
+                motion:motionTarget="@+id/chartDetail"
+                motion:framePosition="30"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/chartDetail"
+                motion:framePosition="100"
+                android:alpha="0.0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/chartDetail"
+                motion:framePosition="40"
+                android:scaleX="0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/chartDetail"
+                motion:framePosition="40"
+                android:scaleY="0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/chartDetail"
+                motion:framePosition="50"
+                android:translationY="50sp" />
+
 
         </KeyFrameSet>
         <OnSwipe motion:touchAnchorId="@+id/rvTracks"
@@ -163,5 +184,12 @@
             >
 
 </Constraint>
+        <Constraint
+            android:id="@+id/chartDetail"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            motion:layout_constraintBottom_toTopOf="@id/rvTracks"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent" />
     </ConstraintSet>
 </MotionScene>

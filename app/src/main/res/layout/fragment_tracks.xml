@@ -30,7 +30,7 @@
 
         android:fontFamily="@font/abril"
 
-        android:text="Your\n\n\n"
+        android:text="Your\n\n"
         android:textSize="60sp"
         android:textStyle="bold"
         android:paddingTop="40sp"
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/abril"
         android:paddingTop="9sp"
-        android:text="\n\n4Health.\n"
+        android:text="\n\n4Health.\n\n"
         android:textColor="@color/green_active"
         android:textSize="68sp"
         android:textStyle="bold"
@@ -78,6 +78,18 @@
 
 
 <!--    </RelativeLayout>-->
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:layout_below="@id/cvbg"
+        android:id="@+id/chartDetail"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:clickable="false"
+        android:padding="20sp"
+        android:layout_marginBottom="10sp"
+        app:layout_constraintBottom_toTopOf="@id/rvTracks"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 
 

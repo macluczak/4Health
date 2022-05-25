@@ -6,7 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.TraceCompat.isEnabled
 import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.macluczak.a2health.*
 import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.databinding.FragmentDetailBinding
@@ -33,15 +39,21 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
         val db = DBHelper(requireContext())
 
         if(id != null){
+
+//            if track select
             val trackDetail = db.getTrack(id)
             binding.idTxt.text = trackDetail.id
             binding.titleTxt.text = trackDetail.title
+
+
+
+
         }
         else{
+//            if track not selected
 
             binding.idTxt.text = " "
             binding.titleTxt.text = "Choose Track"
-
 
         }
 

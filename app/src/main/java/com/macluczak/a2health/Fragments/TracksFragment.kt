@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.macluczak.a2health.R
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TracksAdapter
@@ -33,9 +36,44 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         val tracklist = db.getAllTracks()
 
 
+
         val adapter = TracksAdapter(tracklist, this)
         binding.rvTracks.adapter = adapter
         binding.rvTracks.layoutManager = LinearLayoutManager(context)
+
+
+        val labels = ArrayList<BarEntry>()
+        labels.add(BarEntry(0f, 11f))
+        labels.add(BarEntry(1f, 10f))
+        labels.add(BarEntry(2f, 12f))
+        labels.add(BarEntry(3f, 6f))
+        labels.add(BarEntry(4f, 14f))
+        labels.add(BarEntry(5f, 8f))
+
+        val barLabelSet = BarDataSet(labels, "Labels")
+
+        val data = BarData(barLabelSet)
+        binding.chartDetail?.apply {
+            axisRight.setDrawGridLines(false)
+            axisLeft.setDrawGridLines(false)
+            xAxis.setDrawGridLines(false)
+            axisRight.setDrawAxisLine(false)
+            axisLeft.setDrawAxisLine(false)
+            xAxis.setDrawAxisLine(false)
+            isClickable = false
+            isDoubleTapToZoomEnabled = false
+            isDoubleTapToZoomEnabled = false
+            legend.isEnabled = false
+            axisLeft.setDrawLabels(false)
+            axisRight.setDrawLabels(false)
+            xAxis.setDrawLabels(false)
+            description.isEnabled = false
+
+            binding.chartDetail!!.data = data
+        }
+
+
+        binding.chartDetail?.animateY(1800)
 
     }
 
