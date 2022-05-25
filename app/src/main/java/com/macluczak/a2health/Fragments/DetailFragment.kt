@@ -38,6 +38,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
         val id: Int? = arguments?.getInt(ARG_NAME)
         val db = DBHelper(requireContext())
 
+
         if(id != null){
 
 //            if track select
@@ -45,14 +46,17 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
             binding.idTxt.text = trackDetail.id
             binding.titleTxt.text = trackDetail.title
 
-            binding.mapCV.visibility = View.VISIBLE
 
-            val mapOfTrack = MapsFragment()
+            if(binding.flFragmentDetailMap != null){
+                binding.mapCV.visibility = View.VISIBLE
+                val mapOfTrack = MapsFragment()
+                activity?.supportFragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.flFragmentDetailMap, mapOfTrack)
+                    commit()
+                }
 
-            activity?.supportFragmentManager?.beginTransaction()?.apply {
-                replace(R.id.flFragmentDetailMap, mapOfTrack)
-                commit()
             }
+
 
 
 
@@ -61,9 +65,10 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
         else{
 //            if track not selected
 
+
             binding.idTxt.text = " "
-            binding.titleTxt.text = "Choose Track"
             binding.mapCV.visibility = View.GONE
+            binding.titleTxt.text = "Choose Track"
 
         }
 

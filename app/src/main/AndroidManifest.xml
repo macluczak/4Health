@@ -16,8 +16,10 @@
         android:theme="@style/Theme.2Health">
 
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCqDGlCK5_gpRdlZaPUr76v9ZGhKb09SMA" />
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="${GoogleMap_ApiKey}" />
+
+
 
         <activity
             android:name=".TrackDetails"
