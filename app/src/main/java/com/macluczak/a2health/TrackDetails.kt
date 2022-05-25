@@ -21,7 +21,7 @@ class TrackDetails : AppCompatActivity() {
 
         if(id!= null) {
             val detailFragment = DetailFragment.newTrack(id)
-            val flFragment = binding.flFragment
+//            val flFragment = binding.flFragment
 
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.flFragment, detailFragment)

@@ -22,9 +22,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
 
 
         val tracksFragment = TracksFragment()
-
-
-        val flFragment = binding.flFragment
+//        val flFragment = binding.flFragment
 
 
         supportFragmentManager.beginTransaction().apply {
