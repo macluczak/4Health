@@ -45,6 +45,15 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
             binding.idTxt.text = trackDetail.id
             binding.titleTxt.text = trackDetail.title
 
+            binding.mapCV.visibility = View.VISIBLE
+
+            val mapOfTrack = MapsFragment()
+
+            activity?.supportFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flFragmentDetailMap, mapOfTrack)
+                commit()
+            }
+
 
 
 
@@ -54,6 +63,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
             binding.idTxt.text = " "
             binding.titleTxt.text = "Choose Track"
+            binding.mapCV.visibility = View.GONE
 
         }
 

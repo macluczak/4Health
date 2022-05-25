@@ -43,11 +43,27 @@
         </RelativeLayout>
 
 
+    </androidx.cardview.widget.CardView>
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mapCV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50sp"
+        android:layout_below="@id/cvbg"
+        app:cardCornerRadius="50sp"
+        android:visibility="invisible">
+
+        <FrameLayout
+
+            android:id="@+id/flFragmentDetailMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
     </androidx.cardview.widget.CardView>
+
 
 
 
