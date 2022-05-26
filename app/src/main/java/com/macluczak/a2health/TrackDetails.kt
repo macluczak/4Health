@@ -20,8 +20,8 @@ class TrackDetails : AppCompatActivity() {
         val id = intent?.extras?.getInt("id")
 
         if(id!= null) {
+
             val detailFragment = DetailFragment.newTrack(id)
-//            val flFragment = binding.flFragment
 
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.flFragment, detailFragment)

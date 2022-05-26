@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.macluczak.a2health.Fragments.AddTrackFragment
 import com.macluczak.a2health.Fragments.DetailFragment
 import com.macluczak.a2health.Fragments.TracksFragment
 import com.macluczak.a2health.databinding.ActivityMainBinding
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val fab = binding.fab
 
 
         val tracksFragment = TracksFragment()
@@ -43,6 +46,24 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
                 setExitFadeDuration(2000)
 
             }.start()
+        }
+
+
+        fab.setOnClickListener {
+
+            if(binding.flFragmentDetail != null){
+                val addTrackFragment = AddTrackFragment()
+
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.flFragmentDetail, addTrackFragment)
+                    commit()
+                }
+            }
+            else{
+                val intent = Intent(this, AddTrackActivity::class.java)
+                this.startActivity(intent)
+            }
+
         }
 
     }

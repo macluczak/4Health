@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.macluczak.a2health.*
 import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.databinding.FragmentDetailBinding
+
 private const val ARG_NAME = "id"
 class DetailFragment() : Fragment(R.layout.fragment_detail){
     private lateinit var binding: FragmentDetailBinding
