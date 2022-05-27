@@ -16,60 +16,83 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.maps.android.PolyUtil
 import com.macluczak.a2health.BuildConfig
+import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import org.json.JSONObject
 
-
+private const val ARG_NAME = "id"
 class MapsFragment : Fragment() {
+
 
     private val callback = OnMapReadyCallback { googleMap ->
 
-        val origin = LatLng(-34.0, 151.0)
-        val destination = LatLng(-34.02, 151.0)
+        val id = DetailFragment.idMap.toInt()
 
-        val originMarker = googleMap.addMarker(MarkerOptions().position(origin).title("Start!"))
-        val destinationMarker = googleMap.addMarker(MarkerOptions().position(destination).title("End"))
 
-        val b = LatLngBounds.Builder()
-        b.apply {
-            include(origin)
-            include(destination)
-        }
-        val bounds = b.build()
-        val padding = 200
-        var cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
-        googleMap.animateCamera(cu)
+        val db = DBHelper(requireContext())
+        if(id != null) {
+            val track = db.getTrack(id)
 
-        val key = BuildConfig.GoogleMap_ApiKey
-
-        googleMap.run {
-
+            val origin = LatLng(track.start_lat.toDouble(), track.start_long.toDouble())
+            val destination = LatLng(track.stop_lat.toDouble(), track.stop_long.toDouble())
+            val waypoints = JSONObject(track.waypoints)
             val path: MutableList<List<LatLng>> = ArrayList()
-            val urlDirections =
-                "https://maps.googleapis.com/maps/api/directions/json?destination=${origin.latitude},${origin.longitude}&origin=${destination.latitude},${destination.longitude}&key=${key}"
-            val directionsRequest = object : StringRequest(Request.Method.GET,
-                urlDirections,
-                Response.Listener<String> { response ->
-                    val jsonResponse = JSONObject(response)
-                    // Get routes
-                    val routes = jsonResponse.getJSONArray("routes")
-                    val legs = routes.getJSONObject(0).getJSONArray("legs")
-                    val steps = legs.getJSONObject(0).getJSONArray("steps")
-                    for (i in 0 until steps.length()) {
-                        val points =
-                            steps.getJSONObject(i).getJSONObject("polyline").getString("points")
-                        path.add(PolyUtil.decode(points))
-                    }
-                    for (i in 0 until path.size) {
-                        googleMap.addPolyline(PolylineOptions().addAll(path[i]).color(Color.RED))
-                    }
-                },
-                Response.ErrorListener { _ ->
-                }) {}
-            val requestQueue = Volley.newRequestQueue(requireContext())
-            requestQueue.add(directionsRequest)
 
+            googleMap.addMarker(MarkerOptions().position(origin).title("Start!"))
+            googleMap.addMarker(MarkerOptions().position(destination).title("End"))
+
+
+            val steps = waypoints.getJSONArray("steps")
+            for (i in 0 until steps.length()) {
+                val points =
+                    steps.getJSONObject(i).getJSONObject("polyline").getString("points")
+                path.add(PolyUtil.decode(points))
+            }
+            for (i in 0 until path.size) {
+                googleMap.addPolyline(PolylineOptions().addAll(path[i]).color(Color.RED))
+            }
+
+            val b = LatLngBounds.Builder()
+            b.apply {
+                include(origin)
+                include(destination)
+            }
+            val bounds = b.build()
+            val padding = 100
+            var cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+            googleMap.animateCamera(cu)
         }
+
+//        val key = BuildConfig.GoogleMap_ApiKey
+//
+//        googleMap.run {
+//
+//            val path: MutableList<List<LatLng>> = ArrayList()
+//            val urlDirections =
+//                "https://maps.googleapis.com/maps/api/directions/json?destination=${origin.latitude},${origin.longitude}&origin=${destination.latitude},${destination.longitude}&key=${key}"
+//            val directionsRequest = object : StringRequest(Request.Method.GET,
+//                urlDirections,
+//                Response.Listener<String> { response ->
+//                    val jsonResponse = JSONObject(response)
+//                    // Get routes
+//                    val routes = jsonResponse.getJSONArray("routes")
+//                    val legs = routes.getJSONObject(0).getJSONArray("legs")
+//                    val steps = legs.getJSONObject(0).getJSONArray("steps")
+//                    for (i in 0 until steps.length()) {
+//                        val points =
+//                            steps.getJSONObject(i).getJSONObject("polyline").getString("points")
+//                        path.add(PolyUtil.decode(points))
+//                    }
+//                    for (i in 0 until path.size) {
+//                        googleMap.addPolyline(PolylineOptions().addAll(path[i]).color(Color.RED))
+//                    }
+//                },
+//                Response.ErrorListener { _ ->
+//                }) {}
+//            val requestQueue = Volley.newRequestQueue(requireContext())
+//            requestQueue.add(directionsRequest)
+//
+//        }
 
 
 

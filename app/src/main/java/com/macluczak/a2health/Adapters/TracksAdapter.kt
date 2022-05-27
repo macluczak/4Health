@@ -30,7 +30,7 @@ class TracksAdapter(val tracks: List<Track>, private val trackInterface: TrackIn
         holder.binding.apply {
 
             trackTitle.text = track.title
-            trackFav.isChecked = track.fav
+
 
         }
     }

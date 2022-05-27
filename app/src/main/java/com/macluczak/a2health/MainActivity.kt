@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
 
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,19 +51,20 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
 
 
         fab.setOnClickListener {
-
-            if(binding.flFragmentDetail != null){
-                val addTrackFragment = AddTrackFragment()
-
-                supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.flFragmentDetail, addTrackFragment)
-                    commit()
-                }
-            }
-            else{
-                val intent = Intent(this, AddTrackActivity::class.java)
-                this.startActivity(intent)
-            }
+//            if(binding.flFragmentDetail != null){
+//                val addTrackFragment = AddTrackFragment()
+//
+//                supportFragmentManager.beginTransaction().apply {
+//                    replace(R.id.flFragmentDetail, addTrackFragment)
+//                    commit()
+//                }
+//            }
+//            else{
+//                val intent = Intent(this, AddTrackActivity::class.java)
+//                this.startActivity(intent)
+//            }
+            val intent = Intent(this, AddTrackActivity::class.java)
+            this.startActivity(intent)
 
         }
 

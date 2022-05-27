@@ -21,7 +21,9 @@ private const val ARG_NAME = "id"
 class DetailFragment() : Fragment(R.layout.fragment_detail){
     private lateinit var binding: FragmentDetailBinding
 
+
     companion object {
+        lateinit var idMap: String
         @JvmStatic
         fun newTrack(id: Int) =
             DetailFragment().apply {
@@ -41,6 +43,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
 
         if(id != null){
+            idMap = id.toString()
 
 //            if track select
             val trackDetail = db.getTrack(id)
@@ -49,6 +52,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
 
             if(binding.flFragmentDetailMap != null){
+
                 binding.mapCV.visibility = View.VISIBLE
                 val mapOfTrack = MapsFragment()
                 activity?.supportFragmentManager?.beginTransaction()?.apply {

@@ -19,13 +19,27 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
 
     private lateinit var binding: FragmentTracksBinding
     lateinit var mainCallback:MainCallback
+    lateinit var db: DBHelper
+
+
+
+
+    override fun onResume() {
+        super.onResume()
+        db = DBHelper(requireContext())
+        val tracklist = db.getAllTracks()
+
+        val adapter = TracksAdapter(tracklist, this)
+        binding.rvTracks.adapter = adapter
+        binding.rvTracks.layoutManager = LinearLayoutManager(context)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTracksBinding.bind(view)
-        val db = DBHelper(requireContext())
         mainCallback = requireActivity() as MainCallback
 
+//        db = DBHelper(requireContext())
 //        db.dropTable()
 //        db.addTrack("Park Wildecki", "7", "Poznań")
 //        db.addTrack("Piotrowo 3", "5", "Poznań")
@@ -33,13 +47,7 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
 //        db.addTrack("Park Wilsona", "2", "Poznań")
 //        db.addTrack("Kampus UAM", "4", "Morawsko")
 
-        val tracklist = db.getAllTracks()
 
-
-
-        val adapter = TracksAdapter(tracklist, this)
-        binding.rvTracks.adapter = adapter
-        binding.rvTracks.layoutManager = LinearLayoutManager(context)
 
 
         val labels = ArrayList<BarEntry>()
