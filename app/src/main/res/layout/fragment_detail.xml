@@ -32,6 +32,53 @@
                 android:text="Droga 30"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/distanceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:text="30km"
+                android:layout_marginBottom="20sp"
+                android:layout_below="@id/titleTxt"
+                android:fontFamily="monospace"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/startAddr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/distanceTxt"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="40sp"
+                android:text="ulica"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/durationtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/startAddr"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="40sp"
+                android:text="2h 30min"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/endAddr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/distanceTxt"
+                android:layout_alignParentRight="true"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="40sp"
+                android:text="ulica"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
 
             <TextView
                 android:id="@+id/idTxt"
@@ -46,24 +93,64 @@
     </androidx.cardview.widget.CardView>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/mapCV"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="50sp"
-        android:layout_below="@id/cvbg"
-        app:cardCornerRadius="50sp"
-        android:visibility="gone">
+        android:layout_below="@id/cvbg">
 
-        <FrameLayout
-
-            android:id="@+id/flFragmentDetailMap"
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-           />
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mapCV"
+                android:layout_width="match_parent"
+                android:layout_height="360sp"
+                android:layout_row="0"
+
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+
+                android:layout_margin="50sp"
+
+                app:cardCornerRadius="50sp">
+
+                <FrameLayout
+
+                    android:id="@+id/flFragmentDetailMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/timerCV"
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                android:layout_row="1"
+
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_margin="50sp"
+
+                app:cardCornerRadius="50sp">
+
+                <FrameLayout
+                    android:id="@+id/flFragmentDetailTimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
 
-    </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+
+        </GridLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 
 

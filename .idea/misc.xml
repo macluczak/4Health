@@ -23,12 +23,14 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout-w720dp/activity_main.xml" value="0.25495495495495496" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_add_track.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_temp.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_track_details.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_add_track.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_blank.xml" value="0.32135416666666666" />
-        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_detail.xml" value="0.165" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_maps.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_new_map.xml" value="0.32135416666666666" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_timer.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_tracks.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/holder_tracks.xml" value="0.1" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/4Health/app/src/main/res/layout/holder_tracks.xml" value="0.32135416666666666" />

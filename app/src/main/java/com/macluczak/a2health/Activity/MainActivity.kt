@@ -1,15 +1,14 @@
-package com.macluczak.a2health
+package com.macluczak.a2health.Activity
 
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.macluczak.a2health.Fragments.AddTrackFragment
 import com.macluczak.a2health.Fragments.DetailFragment
 import com.macluczak.a2health.Fragments.TracksFragment
+import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.ActivityMainBinding
-import javax.security.auth.callback.Callback
+import javax.xml.transform.Templates
 
 class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
 
@@ -23,9 +22,13 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
         setContentView(binding.root)
 
         val fab = binding.fab
-
-
         val tracksFragment = TracksFragment()
+
+//
+//        val intent = Intent(this, TempActivity::class.java)
+//        this.startActivity(intent)
+
+
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flFragment, tracksFragment)
@@ -80,7 +83,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
             }
         }
         else{
-            val intent = Intent(this, TrackDetails::class.java)
+            val intent = Intent(this, DetailsActivity::class.java)
             intent.putExtra("id", position)
             this.startActivity(intent)
         }

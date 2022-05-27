@@ -1,10 +1,8 @@
 package com.macluczak.a2health.Adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.macluczak.a2health.TrackDetails
 import com.macluczak.a2health.databinding.HolderTracksBinding
 
 class TracksAdapter(val tracks: List<Track>, private val trackInterface: TrackInterface): RecyclerView.Adapter<TracksAdapter.TracksViewHolder>(){

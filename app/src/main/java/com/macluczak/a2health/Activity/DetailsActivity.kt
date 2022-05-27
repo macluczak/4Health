@@ -1,13 +1,13 @@
-package com.macluczak.a2health
+package com.macluczak.a2health.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.macluczak.a2health.Fragments.DetailFragment
-import com.macluczak.a2health.Fragments.TracksFragment
+import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.ActivityTrackDetailsBinding
 
 
-class TrackDetails : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityTrackDetailsBinding
 

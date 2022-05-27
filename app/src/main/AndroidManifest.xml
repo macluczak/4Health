@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -16,10 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.2Health">
-
-
         <activity
-            android:name=".AddTrackActivity"
+            android:name=".Activity.TempActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AddTrackActivity"
             android:exported="false" />
 
         <meta-data
@@ -27,10 +27,10 @@
             android:value="${GoogleMap_ApiKey}" />
 
         <activity
-            android:name=".TrackDetails"
+            android:name=".Activity.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -47,23 +47,29 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
 //            if track select
             val trackDetail = db.getTrack(id)
+
             binding.idTxt.text = trackDetail.id
             binding.titleTxt.text = trackDetail.title
+            binding.distanceTxt.text = trackDetail.distance
+            binding.durationtxt.text = trackDetail.duration
+            binding.startAddr.text = trackDetail.startAdress
+            binding.endAddr.text = trackDetail.stopAdress
 
 
-            if(binding.flFragmentDetailMap != null){
 
-                binding.mapCV.visibility = View.VISIBLE
-                val mapOfTrack = MapsFragment()
-                activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.flFragmentDetailMap, mapOfTrack)
-                    commit()
-                }
-
+            binding.mapCV.visibility = View.VISIBLE
+            val mapOfTrack = MapsFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flFragmentDetailMap, mapOfTrack)
+                commit()
             }
 
-
-
+            binding.timerCV?.visibility = View.VISIBLE
+            val timerFragment = TimerFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flFragmentDetailTimer, timerFragment)
+                commit()
+            }
 
 
         }
@@ -73,6 +79,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
             binding.idTxt.text = " "
             binding.mapCV.visibility = View.GONE
+            binding.timerCV?.visibility = View.GONE
             binding.titleTxt.text = "Choose Track"
 
         }
