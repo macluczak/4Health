@@ -27,12 +27,6 @@ class TimerFragment : Fragment() {
 
     private lateinit var viewModel: TimerViewModel
 
-    //    var isTimerOn by Delegates.notNull<Boolean>()
-//    var wasTimerOn by Delegates.notNull<Boolean>()
-//    lateinit var value: String
-//    var seconds by Delegates.notNull<Int>()
-//    var minutes by Delegates.notNull<Int>()
-//    var hours by Delegates.notNull<Int>()
     lateinit var handler: Handler
 
     fun updateTimer(h: Int, m: Int, s: Int): String {
@@ -103,8 +97,7 @@ class TimerFragment : Fragment() {
                         }
                     }
                     handler.postDelayed(this, 1000);
-                }
-                else{
+                } else {
                     handler.removeCallbacks(this)
                 }
 
@@ -122,10 +115,6 @@ class TimerFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
-//        savedInstanceState.putInt("seconds", seconds)
-//        savedInstanceState.putInt("minutes", minutes)
-//        savedInstanceState.putInt("hours", hours)
-//        savedInstanceState.putBoolean("isTimerOn", isTimerOn)
         viewModel.threadStop()
 
     }
@@ -145,14 +134,7 @@ class TimerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        if (savedInstanceState != null) {
-//            seconds = savedInstanceState.getInt("seconds")
-//            minutes = savedInstanceState.getInt("minutes")
-//            hours = savedInstanceState.getInt("hours")
-//            isTimerOn = savedInstanceState.getBoolean("isTimerOn")
-//            binding.Timer.text = seconds.toString()
-//
-//        }
+
 
         viewModel = ViewModelProvider(requireActivity()).get(TimerViewModel::class.java)
 
@@ -162,13 +144,6 @@ class TimerFragment : Fragment() {
             chronometerWork()
 
         }
-
-//        else{
-//            isTimerOn = false
-//            seconds = 0
-//            minutes = 0
-//            hours = 1
-//        }
 
 
         binding.timerButton.setOnClickListener {

@@ -9,14 +9,17 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
+import com.macluczak.a2health.ViewModels.AddViewModel
+import com.macluczak.a2health.ViewModels.TimerViewModel
 import com.macluczak.a2health.databinding.FragmentAddTrackBinding
-
 
 
 class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
     lateinit var binding: FragmentAddTrackBinding
+    lateinit var viewModel: AddViewModel
 
     @SuppressLint("MissingPermission")
     fun isOnline(context: Context): Boolean {
@@ -40,9 +43,16 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
         }
         return false
     }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        viewModel.setTitleName(binding.editTxt.text.toString())
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddTrackBinding.bind(view)
+        viewModel = ViewModelProvider(requireActivity()).get(AddViewModel::class.java)
 
         val newMapsFragment = NewMapFragment()
         activity?.supportFragmentManager?.beginTransaction()?.apply {
@@ -50,8 +60,16 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
             commit()
         }
 
-        binding.addButton.setOnClickListener{
-            if(isOnline(requireContext())) {
+        if(viewModel.title != "null" && viewModel.title.isNotBlank()){
+            binding.editTxt.setText(viewModel.title)
+        }
+
+
+
+
+
+        binding.addButton.setOnClickListener {
+            if (isOnline(requireContext())) {
                 if (newMapsFragment.markersList.size == 2 && binding.editTxt.text.isNotBlank()) {
                     val dbHelper = DBHelper(requireContext())
                     dbHelper.addTrack(
@@ -76,7 +94,7 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
                 } else {
                     Toast.makeText(requireContext(), "invalid data", Toast.LENGTH_SHORT).show()
                 }
-            }else{
+            } else {
                 Toast.makeText(requireContext(), "require internet!", Toast.LENGTH_SHORT).show()
             }
 
