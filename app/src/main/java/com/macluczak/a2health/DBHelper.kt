@@ -32,8 +32,12 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         private val COL_START_ADRESS = "startAdress"
         private val COL_STOP_ADRESS = "stopAdress"
 
-//        private val TABLE_WAYPOINTS = "WAYPOINTS"
-//
+        private val COL_BEST_TIME = "bestTime"
+        private val COL_BEST_DAY = "bestDay"
+
+        private val COL_LAST_TIME = "bestTime"
+        private val COL_LAST_DAY = "lastDay"
+
         private val COL_WAYPOINTS = "waypoints"
 
 
@@ -45,10 +49,10 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         val CREATE_TABLE_QUERY = ("CREATE TABLE $TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " $COL_TITLE TEXT, $COL_DISTANCE TEXT, $COL_DURATION TEXT," +
                 " $COL_START_LAT TEXT, $COL_START_LONG TEXT, $COL_STOP_LAT TEXT, $COL_STOP_LONG TEXT," +
-                "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT)")
+                "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT," +
+                " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY)
-//        val CREATE_WAIPOINTS_QUERY = ("CREATE TABLE $TABLE_WAYPOINTS ($COL_ID INTEGER PRIMARY KEY , $COL_WAYPOINTS TEXT)")
-//        db!!.execSQL(CREATE_WAIPOINTS_QUERY)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -79,6 +83,13 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(COL_STOP_LAT, stopLat)
         values.put(COL_STOP_LONG, stopLong)
         values.put(COL_WAYPOINTS, waypoints)
+
+        values.put(COL_BEST_TIME, "")
+        values.put(COL_BEST_DAY, "")
+
+        values.put(COL_LAST_TIME, "")
+        values.put(COL_LAST_DAY, "")
+
 
 
 
@@ -111,9 +122,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
     @SuppressLint("Range")
     fun getTrack(id: Int): Track {
         val selectQuery =
-            "SELECT $COL_TITLE, $COL_DISTANCE, $COL_DURATION, $COL_ID " +
-                    ", $COL_START_ADRESS, $COL_STOP_ADRESS, $COL_START_LAT, $COL_START_LONG," +
-                    " $COL_STOP_LAT, $COL_STOP_LONG, $COL_WAYPOINTS FROM $TABLE_NAME WHERE $COL_ID = ${id}"
+            "SELECT * FROM $TABLE_NAME WHERE $COL_ID = ${id}"
         val db = this.writableDatabase
         val cursor: Cursor = db.rawQuery(selectQuery, null)
         cursor.moveToFirst()
@@ -134,10 +143,13 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
             cursor.getString(cursor.getColumnIndex(COL_STOP_LAT)),
             cursor.getString(cursor.getColumnIndex(COL_STOP_LONG)),
 
-            cursor.getString(cursor.getColumnIndex(COL_WAYPOINTS))
+            cursor.getString(cursor.getColumnIndex(COL_WAYPOINTS)),
 
+            cursor.getString(cursor.getColumnIndex(COL_BEST_TIME)),
+            cursor.getString(cursor.getColumnIndex(COL_BEST_DAY)),
 
-
+            cursor.getString(cursor.getColumnIndex(COL_LAST_TIME)),
+            cursor.getString(cursor.getColumnIndex(COL_LAST_DAY))
 
         )
 
@@ -171,9 +183,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
     @SuppressLint("Range")
     fun getAllTracks(): ArrayList<Track>{
         val selectQuery =
-            "SELECT $COL_TITLE, $COL_DISTANCE, $COL_DURATION, $COL_ID " +
-                    ", $COL_START_ADRESS, $COL_STOP_ADRESS, $COL_START_LAT, $COL_START_LONG," +
-                    " $COL_STOP_LAT, $COL_STOP_LONG, $COL_WAYPOINTS FROM $TABLE_NAME"
+            "SELECT * FROM $TABLE_NAME"
         val db = this.writableDatabase
         val cursor: Cursor = db.rawQuery(selectQuery, null)
         val trackList = ArrayList<Track>()
@@ -196,7 +206,14 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
                     cursor.getString(cursor.getColumnIndex(COL_STOP_LAT)),
                     cursor.getString(cursor.getColumnIndex(COL_STOP_LONG)),
 
-                    cursor.getString(cursor.getColumnIndex(COL_WAYPOINTS))
+                    cursor.getString(cursor.getColumnIndex(COL_WAYPOINTS)),
+
+                    cursor.getString(cursor.getColumnIndex(COL_BEST_TIME)),
+                    cursor.getString(cursor.getColumnIndex(COL_BEST_DAY)),
+
+                    cursor.getString(cursor.getColumnIndex(COL_LAST_TIME)),
+                    cursor.getString(cursor.getColumnIndex(COL_LAST_DAY))
+
                 )
                 trackList.add(track)
             } while (cursor.moveToNext())
@@ -204,24 +221,44 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         db.close()
         return trackList
     }
+
+
+    fun addTrackLastTime(id: Int, time: String, day: String) {
+        val db = this.writableDatabase
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_TIME = $time WHERE $COL_ID = '${id}'")
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_DAY = $day WHERE $COL_ID = '${id}'")
+        db.close()
+    }
+
 //
 //    @SuppressLint("Range")
-//    fun isScoreGreater(score:String, username: String):Boolean{
+//    fun isTimeGreater(time:String, id: Int):Boolean{
 //        val db = this.writableDatabase
-//        val selectQuery = "SELECT $COL_SCORE FROM $TABLE_NAME WHERE $COL_USERNAME = '$username'"
+//        val selectQuery = "SELECT $COL_BEST_TIME FROM $TABLE_NAME WHERE $COL_ID = '${id}'"
 //        val cursor: Cursor = db.rawQuery(selectQuery, null)
 //        cursor.moveToFirst()
-//        val bestScore = cursor.getString(cursor.getColumnIndex(COL_SCORE))
-//        return score.toInt() > bestScore.toInt()
+//        val bestScore = cursor.getString(cursor.getColumnIndex(COL_BEST_TIME))
+//        if(bestScore == null || bestScore.isBlank() || bestScore =="null"){
+//            return true
+//        }
+//        else{
+//
+//            return true
+//        }
+//
+////        return time.toInt() > bestScore.toInt()
+//
+//
 //
 //    }
-//
-//    fun updateUserScore(username: String, score: String){
-//        if(isScoreGreater(score, username)){
-//            val db = this.writableDatabase
-//            db!!.execSQL("UPDATE $TABLE_NAME SET $COL_SCORE = $score WHERE $COL_USERNAME = '$username'")
-//            db.close()}
-//
-//    }
+
+    fun updateTrackBestTime(id: Int, time: String, day: String){
+        val db = this.writableDatabase
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_TIME = $time WHERE $COL_ID = '${id}'")
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_DAY = $day WHERE $COL_ID = '${id}'")
+        db.close()
+    }
+
+
 
 }

@@ -18,7 +18,13 @@ data class Track(
     val stop_lat: String,
     val stop_long: String,
 
-    val waypoints: String
+    val waypoints: String,
+
+    val bestTime: String,
+    val bestDay: String,
+
+    val lastTime: String,
+    val lastDay: String
 
 ){
 

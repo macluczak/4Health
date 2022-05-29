@@ -1,5 +1,6 @@
 package com.macluczak.a2health.Fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,12 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import com.macluczak.a2health.ViewModels.TimerViewModel
 import com.macluczak.a2health.databinding.FragmentTimerBinding
 import kotlinx.coroutines.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.logging.Logger.global
 import kotlin.concurrent.timer
@@ -131,12 +136,15 @@ class TimerFragment : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
 
+
         viewModel = ViewModelProvider(requireActivity()).get(TimerViewModel::class.java)
+        val dbHelper = DBHelper(requireContext())
 
         binding.Timer.text = viewModel.state
 
@@ -157,11 +165,15 @@ class TimerFragment : Fragment() {
 
                 chronometerWork()
             } else {
-
+//                val current = LocalDateTime.now()
+//                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+//                val formatted = current.format(formatter)
+//
                 viewModel.timerOff()
                 viewModel.threadStop()
                 viewModel.state = binding.Timer.text.toString()
                 binding.timerButton.text = "Start"
+
 
             }
         }
