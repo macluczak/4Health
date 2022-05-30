@@ -17,6 +17,8 @@ import com.github.mikephil.charting.data.BarEntry
 import com.macluczak.a2health.*
 import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.databinding.FragmentDetailBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 private const val ARG_NAME = "id"
 class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.DetailCallback{
@@ -84,8 +86,8 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
             binding.idTxt.text = " "
             binding.mapCV.visibility = View.GONE
-            binding.statsCV?.visibility = View.GONE
-            binding.timerCV?.visibility = View.GONE
+            binding.statsCV.visibility = View.GONE
+            binding.timerCV.visibility = View.GONE
             binding.titleTxt.text = "Choose Track"
 
         }
@@ -95,9 +97,15 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
     }
 
     override fun onTimeStop(time: String) {
-        binding.lastTime?.text = time
-        if (binding.statsCV?.isVisible == false){
-            binding.statsCV?.visibility = View.VISIBLE
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd.MM.yyyy")
+        val formatedDate = formatter.format(date)
+
+        binding.lastTime.text = time
+        binding.lastDay.text = formatedDate
+
+        if (binding.statsCV.isVisible == false){
+            binding.statsCV.visibility = View.VISIBLE
         }
 
     }
