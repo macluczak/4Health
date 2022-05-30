@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.TraceCompat.isEnabled
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -18,7 +19,7 @@ import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.databinding.FragmentDetailBinding
 
 private const val ARG_NAME = "id"
-class DetailFragment() : Fragment(R.layout.fragment_detail){
+class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.DetailCallback{
     private lateinit var binding: FragmentDetailBinding
 
 
@@ -55,6 +56,10 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
             binding.startAddr.text = trackDetail.startAdress
             binding.endAddr.text = trackDetail.stopAdress
 
+            if (trackDetail.lastTime.isBlank()){
+                binding.statsCV?.visibility = View.GONE
+            }
+
 
 
             binding.mapCV.visibility = View.VISIBLE
@@ -66,7 +71,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
             binding.timerCV?.visibility = View.VISIBLE
             val timerFragment = TimerFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.apply {
+            childFragmentManager.beginTransaction().apply {
                 replace(R.id.flFragmentDetailTimer, timerFragment)
                 commit()
             }
@@ -79,12 +84,21 @@ class DetailFragment() : Fragment(R.layout.fragment_detail){
 
             binding.idTxt.text = " "
             binding.mapCV.visibility = View.GONE
+            binding.statsCV?.visibility = View.GONE
             binding.timerCV?.visibility = View.GONE
             binding.titleTxt.text = "Choose Track"
 
         }
 
 
+
+    }
+
+    override fun onTimeStop(time: String) {
+        binding.lastTime?.text = time
+        if (binding.statsCV?.isVisible == false){
+            binding.statsCV?.visibility = View.VISIBLE
+        }
 
     }
 

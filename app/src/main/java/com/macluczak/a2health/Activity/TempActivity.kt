@@ -13,12 +13,12 @@ class TempActivity : AppCompatActivity() {
         setContentView(R.layout.activity_temp)
         binding =  ActivityTempBinding.inflate(layoutInflater)
 
-        val timerFragment = TimerFragment()
-
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flTempleActivity, timerFragment)
-            commit()
-        }
+//        val timerFragment = TimerFragment()
+//
+//        supportFragmentManager.beginTransaction().apply {
+//            replace(R.id.flTempleActivity, timerFragment)
+//            commit()
+//        }
 
 
 

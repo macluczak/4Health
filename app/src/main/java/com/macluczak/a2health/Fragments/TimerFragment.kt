@@ -1,5 +1,6 @@
 package com.macluczak.a2health.Fragments
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -26,9 +27,10 @@ import kotlin.concurrent.timer
 import kotlin.properties.Delegates
 
 
-class TimerFragment : Fragment() {
+class TimerFragment() : Fragment() {
     private var _binding: FragmentTimerBinding? = null
     private val binding get() = _binding!!
+    lateinit var detailCallback: DetailCallback
 
     private lateinit var viewModel: TimerViewModel
 
@@ -136,9 +138,12 @@ class TimerFragment : Fragment() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        detailCallback = requireParentFragment() as DetailCallback
 
 
 
@@ -165,18 +170,18 @@ class TimerFragment : Fragment() {
 
                 chronometerWork()
             } else {
-//                val current = LocalDateTime.now()
-//                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
-//                val formatted = current.format(formatter)
-//
                 viewModel.timerOff()
                 viewModel.threadStop()
                 viewModel.state = binding.Timer.text.toString()
+                detailCallback.onTimeStop(viewModel.state)
                 binding.timerButton.text = "Start"
 
 
             }
         }
 
+    }
+    interface DetailCallback{
+        fun onTimeStop(time: String)
     }
 }
