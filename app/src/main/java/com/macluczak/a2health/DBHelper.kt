@@ -35,7 +35,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         private val COL_BEST_TIME = "bestTime"
         private val COL_BEST_DAY = "bestDay"
 
-        private val COL_LAST_TIME = "bestTime"
+        private val COL_LAST_TIME = "lastTime"
         private val COL_LAST_DAY = "lastDay"
 
         private val COL_WAYPOINTS = "waypoints"
@@ -50,7 +50,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
                 " $COL_TITLE TEXT, $COL_DISTANCE TEXT, $COL_DURATION TEXT," +
                 " $COL_START_LAT TEXT, $COL_START_LONG TEXT, $COL_STOP_LAT TEXT, $COL_STOP_LONG TEXT," +
                 "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT," +
-                " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT)")
+                " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY)
 
     }
@@ -84,11 +84,11 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(COL_STOP_LONG, stopLong)
         values.put(COL_WAYPOINTS, waypoints)
 
-        values.put(COL_BEST_TIME, "")
-        values.put(COL_BEST_DAY, "")
+        values.put(COL_BEST_TIME, " ")
+        values.put(COL_BEST_DAY, " ")
 
-        values.put(COL_LAST_TIME, "")
-        values.put(COL_LAST_DAY, "")
+        values.put(COL_LAST_TIME, " ")
+        values.put(COL_LAST_DAY, " ")
 
 
 

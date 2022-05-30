@@ -27,6 +27,7 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
     override fun onResume() {
         super.onResume()
         db = DBHelper(requireContext())
+//        db.dropTable()
         val tracklist = db.getAllTracks()
 
         val adapter = TracksAdapter(tracklist, this)
