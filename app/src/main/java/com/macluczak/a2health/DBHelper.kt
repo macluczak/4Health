@@ -225,8 +225,8 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
 
     fun addTrackLastTime(id: Int, time: String, day: String) {
         val db = this.writableDatabase
-        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_TIME = $time WHERE $COL_ID = '${id}'")
-        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_DAY = $day WHERE $COL_ID = '${id}'")
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_TIME = '${time}' WHERE $COL_ID = '${id}'")
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_DAY = '${day}' WHERE $COL_ID = '${id}'")
         db.close()
     }
 
@@ -254,8 +254,8 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
 
     fun updateTrackBestTime(id: Int, time: String, day: String){
         val db = this.writableDatabase
-        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_TIME = $time WHERE $COL_ID = '${id}'")
-        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_DAY = $day WHERE $COL_ID = '${id}'")
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_TIME = '${time}' WHERE $COL_ID = '${id}'")
+        db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_DAY = '${day}' WHERE $COL_ID = '${id}'")
         db.close()
     }
 

@@ -40,17 +40,6 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         binding = FragmentTracksBinding.bind(view)
         mainCallback = requireActivity() as MainCallback
 
-//        db = DBHelper(requireContext())
-//        db.dropTable()
-//        db.addTrack("Park Wildecki", "7", "Poznań")
-//        db.addTrack("Piotrowo 3", "5", "Poznań")
-//        db.addTrack("Wartostrada", "8", "Poznań")
-//        db.addTrack("Park Wilsona", "2", "Poznań")
-//        db.addTrack("Kampus UAM", "4", "Morawsko")
-
-
-
-
         val labels = ArrayList<BarEntry>()
         labels.add(BarEntry(0f, 11f))
         labels.add(BarEntry(1f, 10f))
@@ -87,7 +76,7 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
     }
 
     override fun onClick(position: Int) {
-        Toast.makeText(requireContext(), "Click ${position}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "Click ${position}", Toast.LENGTH_SHORT).show()
         mainCallback.clickCallback(position)
 
 
