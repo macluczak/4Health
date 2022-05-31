@@ -28,16 +28,17 @@
             />
 
         <EditText
-            android:layout_marginTop="20sp"
-            android:layout_below="@id/titleTxt"
             android:id="@+id/editTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="70sp"
-            android:hint="Title of track"
+            android:layout_below="@id/titleTxt"
             android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="70sp"
+            android:layout_marginTop="20sp"
+            android:hint="Title of track"
             android:textColor="@color/gray100"
-            />
+            android:maxLines="1"
+            android:inputType="textPersonName"/>
 
 
 
