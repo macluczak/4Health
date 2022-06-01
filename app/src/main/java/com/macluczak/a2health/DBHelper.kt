@@ -1,4 +1,5 @@
 package com.macluczak.a2health
+
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
@@ -10,7 +11,7 @@ import com.macluczak.a2health.Adapters.Track
 import org.json.JSONObject
 import java.time.Duration
 
-class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
+class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     null, DATABASE_VER
 ) {
 
@@ -20,6 +21,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         private val DATABASE_NAME = "2Health.db"
 
         private val TABLE_NAME = "TRACKS"
+        private val TABLE_STATS = "STATS"
 
         private val COL_ID = "id"
         private val COL_TITLE = "title"
@@ -40,17 +42,26 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
 
         private val COL_WAYPOINTS = "waypoints"
 
+        private val COL_RUNTIME = "runTime"
+        private val COL_DAY = "runDay"
+        private val COL_DATE = "runDate"
+
 
     }
 
 
-
     override fun onCreate(db: SQLiteDatabase?) {
-        val CREATE_TABLE_QUERY = ("CREATE TABLE $TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " $COL_TITLE TEXT, $COL_DISTANCE TEXT, $COL_DURATION TEXT," +
-                " $COL_START_LAT TEXT, $COL_START_LONG TEXT, $COL_STOP_LAT TEXT, $COL_STOP_LONG TEXT," +
-                "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT," +
-                " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT)")
+        val CREATE_TABLE_QUERY =
+            ("CREATE TABLE $TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    " $COL_TITLE TEXT, $COL_DISTANCE TEXT, $COL_DURATION TEXT," +
+                    " $COL_START_LAT TEXT, $COL_START_LONG TEXT, $COL_STOP_LAT TEXT, $COL_STOP_LONG TEXT," +
+                    "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT," +
+                    " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT)")
+
+        val CREATE_STATS_QUERY = ("CREATE TABLE $TABLE_STATS ($COL_ID INTEGER PRIMARY KEY," +
+                " $COL_RUNTIME TEXT,  $COL_DAY TEXT, $COL_DATE TEXT)")
+
+        db!!.execSQL(CREATE_STATS_QUERY)
         db!!.execSQL(CREATE_TABLE_QUERY)
 
     }
@@ -60,17 +71,19 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
         onCreate(db!!)
     }
 
-    fun dropTable(){
-        val db= this.writableDatabase
+    fun dropTable() {
+        val db = this.writableDatabase
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db!!)
 
     }
 
-    fun addTrack(title: String, distance: String, duration: String,
-                 startAdr: String, stopAdr: String, startLat: String, startLong:String,
-                    stopLat: String, stopLong: String, waypoints: String){
-        val db= this.writableDatabase
+    fun addTrack(
+        title: String, distance: String, duration: String,
+        startAdr: String, stopAdr: String, startLat: String, startLong: String,
+        stopLat: String, stopLong: String, waypoints: String,
+    ) {
+        val db = this.writableDatabase
         val values = ContentValues()
 
         values.put(COL_TITLE, title)
@@ -93,31 +106,65 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
 
 
 
-
         db.insert(TABLE_NAME, null, values)
         db.close()
 
     }
 
-//    fun addWaypoints(id: Int, waypoints: List<String>){
-//        val db= this.writableDatabase
-//        val values = ContentValues()
-//
-//        for (i in 0 until waypoints.size){
-//            values.put(COL_ID, id)
-//            values.put(COL_WAYPOINTS, waypoints[i])
-//            db.insert(TABLE_WAYPOINTS, null, values)
-//        }
-//
-//
-//
-//
-//
-//
-//
-//
-//        db.close()
-//    }
+    fun addStats(id: Int, runTime: String, runDay: String, runDate: String) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+
+        values.put(COL_ID, id)
+        values.put(COL_RUNTIME, runTime)
+
+        values.put(COL_DAY, runDay)
+        values.put(COL_DATE, runDate)
+
+        db.insert(TABLE_STATS, null, values)
+        db.close()
+
+    }
+
+    @SuppressLint("Range")
+    fun getTrackStats(id: Int): ArrayList<String> {
+        val selectQuery =
+            "SELECT * FROM $TABLE_STATS WHERE $COL_ID = ${id}"
+        val db = this.writableDatabase
+        val cursor: Cursor = db.rawQuery(selectQuery, null)
+        val statsList = ArrayList<String>()
+
+        statsList.add(cursor.getString(cursor.getColumnIndex(COL_RUNTIME)))
+        statsList.add(cursor.getString(cursor.getColumnIndex(COL_DAY)))
+        statsList.add(cursor.getString(cursor.getColumnIndex(COL_DATE)))
+
+        db.close()
+        return statsList
+    }
+
+    @SuppressLint("Range")
+    fun getAllStats(id: Int): ArrayList<List<String>> {
+        val selectQuery =
+            "SELECT * FROM $TABLE_STATS"
+        val db = this.writableDatabase
+        val cursor: Cursor = db.rawQuery(selectQuery, null)
+        val statsList = ArrayList<List<String>>()
+        val stats = ArrayList<String>()
+        cursor.moveToFirst()
+
+        if (cursor.moveToFirst()) {
+            do {
+                stats.add(cursor.getString(cursor.getColumnIndex(COL_RUNTIME)))
+                stats.add(cursor.getString(cursor.getColumnIndex(COL_DAY)))
+                stats.add(cursor.getString(cursor.getColumnIndex(COL_DATE)))
+                statsList.add(stats)
+            } while (cursor.moveToNext())
+        }
+
+        db.close()
+        return statsList
+    }
+
 
     @SuppressLint("Range")
     fun getTrack(id: Int): Track {
@@ -159,36 +206,15 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
 
     }
 
-//    fun isUserExists(username: String): Boolean{
-//
-//        val selectQuery = "SELECT * FROM $TABLE_NAME where $COL_USERNAME = '$username'"
-//        val db = this.writableDatabase
-//        val cursor: Cursor = db.rawQuery(selectQuery, null)
-//        if (cursor.count > 0 ){
-//                return true
-//        }
-//        return false
-//    }
-
-//    fun tryLogUser(username: String, password: String): Boolean{
-//        val selectQuery = "SELECT * FROM $TABLE_NAME where $COL_USERNAME = '$username' AND $COL_PASSWORD = '$password'"
-//        val db = this.writableDatabase
-//        val cursor: Cursor = db.rawQuery(selectQuery, null)
-//        if (cursor.count > 0 ){
-//            return true
-//        }
-//        return false
-//    }
-
     @SuppressLint("Range")
-    fun getAllTracks(): ArrayList<Track>{
+    fun getAllTracks(): ArrayList<Track> {
         val selectQuery =
             "SELECT * FROM $TABLE_NAME"
         val db = this.writableDatabase
         val cursor: Cursor = db.rawQuery(selectQuery, null)
         val trackList = ArrayList<Track>()
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 var track = Track(
                     cursor.getString(cursor.getColumnIndex(COL_ID)),
@@ -252,13 +278,12 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
 //
 //    }
 
-    fun updateTrackBestTime(id: Int, time: String, day: String){
+    fun updateTrackBestTime(id: Int, time: String, day: String) {
         val db = this.writableDatabase
         db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_TIME = '${time}' WHERE $COL_ID = '${id}'")
         db!!.execSQL("UPDATE $TABLE_NAME SET $COL_BEST_DAY = '${day}' WHERE $COL_ID = '${id}'")
         db.close()
     }
-
 
 
 }
