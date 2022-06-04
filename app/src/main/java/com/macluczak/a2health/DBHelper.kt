@@ -114,6 +114,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     }
 
+    //stats table
+
     fun addStats(id: Int, runTime: String, runDay: String, runDate: String) {
         val db = this.writableDatabase
         val values = ContentValues()
