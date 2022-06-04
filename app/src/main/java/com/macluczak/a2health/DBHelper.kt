@@ -106,6 +106,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
 
+
         db.insert(TABLE_NAME, null, values)
         db.close()
 
