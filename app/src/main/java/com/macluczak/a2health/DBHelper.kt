@@ -42,6 +42,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         private val COL_WAYPOINTS = "waypoints"
 
+        //stats table
+
         private val COL_RUNTIME = "runTime"
         private val COL_DAY = "runDay"
         private val COL_DATE = "runDate"
