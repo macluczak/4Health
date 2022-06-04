@@ -78,6 +78,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     }
 
+    //Table Track
+
     fun addTrack(
         title: String, distance: String, duration: String,
         startAdr: String, stopAdr: String, startLat: String, startLong: String,
