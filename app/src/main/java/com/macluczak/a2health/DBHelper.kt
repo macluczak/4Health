@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import com.macluczak.a2health.Adapters.Track
+import com.macluczak.a2health.Adapters.TrackStats
 import org.json.JSONObject
 import java.time.Duration
 
@@ -44,6 +45,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         //STATS TABLE
 
+        private val COL_TRACKID = "trackID"
         private val COL_RUNTIME = "runTime"
         private val COL_DAY = "runDay"
         private val COL_DATE = "runDate"
@@ -60,8 +62,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT," +
                     " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT)")
 
-        val CREATE_STATS_QUERY = ("CREATE TABLE $TABLE_STATS ($COL_ID INTEGER PRIMARY KEY," +
-                " $COL_RUNTIME TEXT,  $COL_DAY TEXT, $COL_DATE TEXT)")
+        val CREATE_STATS_QUERY = ("CREATE TABLE $TABLE_STATS ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " $COL_RUNTIME TEXT, $COL_TRACKID INTEGER,  $COL_DAY TEXT, $COL_DATE TEXT)")
 
         db!!.execSQL(CREATE_STATS_QUERY)
         db!!.execSQL(CREATE_TABLE_QUERY)
@@ -122,7 +124,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = this.writableDatabase
         val values = ContentValues()
 
-        values.put(COL_ID, id)
+        values.put(COL_TRACKID, id)
         values.put(COL_RUNTIME, runTime)
 
         values.put(COL_DAY, runDay)
@@ -134,36 +136,40 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     @SuppressLint("Range")
-    fun getTrackStats(id: Int): ArrayList<String> {
+    fun getTrackStats(id: Int): TrackStats {
         val selectQuery =
             "SELECT * FROM $TABLE_STATS WHERE $COL_ID = ${id}"
         val db = this.writableDatabase
         val cursor: Cursor = db.rawQuery(selectQuery, null)
-        val statsList = ArrayList<String>()
 
-        statsList.add(cursor.getString(cursor.getColumnIndex(COL_RUNTIME)))
-        statsList.add(cursor.getString(cursor.getColumnIndex(COL_DAY)))
-        statsList.add(cursor.getString(cursor.getColumnIndex(COL_DATE)))
+        var stats = TrackStats(
+            cursor.getString(cursor.getColumnIndex(COL_TRACKID)).toInt(),
+            cursor.getString(cursor.getColumnIndex(COL_RUNTIME)),
+            cursor.getString(cursor.getColumnIndex(COL_DAY)),
+            cursor.getString(cursor.getColumnIndex(COL_DATE))
+        )
 
         db.close()
-        return statsList
+        return stats
     }
 
     @SuppressLint("Range")
-    fun getAllStats(id: Int): ArrayList<List<String>> {
+    fun getAllStats(id: Int): ArrayList<TrackStats> {
         val selectQuery =
             "SELECT * FROM $TABLE_STATS"
         val db = this.writableDatabase
         val cursor: Cursor = db.rawQuery(selectQuery, null)
-        val statsList = ArrayList<List<String>>()
-        val stats = ArrayList<String>()
+        val statsList = ArrayList<TrackStats>()
         cursor.moveToFirst()
-
         if (cursor.moveToFirst()) {
             do {
-                stats.add(cursor.getString(cursor.getColumnIndex(COL_RUNTIME)))
-                stats.add(cursor.getString(cursor.getColumnIndex(COL_DAY)))
-                stats.add(cursor.getString(cursor.getColumnIndex(COL_DATE)))
+                var stats = TrackStats(
+                    cursor.getString(cursor.getColumnIndex(COL_TRACKID)).toInt(),
+                    cursor.getString(cursor.getColumnIndex(COL_RUNTIME)),
+                    cursor.getString(cursor.getColumnIndex(COL_DAY)),
+                    cursor.getString(cursor.getColumnIndex(COL_DATE))
+
+                )
                 statsList.add(stats)
             } while (cursor.moveToNext())
         }
