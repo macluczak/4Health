@@ -61,6 +61,8 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 //            if track select
                 trackDetail = db.getTrack(id)
 
+                Log.d("TIME_CALC", "DETAIL TRACK ID: ${trackDetail.id}" )
+
 
                 binding.idTxt.text = trackDetail.id
                 binding.titleTxt.text = trackDetail.title
@@ -144,11 +146,19 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
 
 
+
+
+
         binding.lastTime.text = time
         binding.lastDay.text = formatedDate
 
+
         dbHelper.addTrackLastTime(trackDetail.id.toInt(),time, formatedDate)
         dbHelper.addStats(trackDetail.id.toInt(), time, "Monday", formatedDate)
+
+        val trackDetail = dbHelper.getTrack(trackDetail.id.toInt())
+
+        Log.d("TIME_CALC", "TRACK STATS ID: ${trackDetail.id}" )
 
         if (trackDetail.bestTime.isBlank()){
             binding.bestTime.text = time
@@ -175,12 +185,17 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
                     calcBest.add(bestStr[e])
                 }
             }
+            Log.d("TIME_CALC", "LAST TIME: ${trackDetail.lastTime}" )
+            Log.d("TIME_CALC", "BEST TIME: ${trackDetail.bestTime}" )
 
             val totalLast = (calcLast[0].toInt() * 3600 + calcLast[1].toInt() * 60 + calcLast[2].toInt())
+            Log.d("TIME_CALC", "LAST summary: $totalLast" )
             val totalBest = (calcBest[0].toInt() * 3600 + calcBest[1].toInt() * 60 + calcBest[2].toInt())
+            Log.d("TIME_CALC", "BEST summary: $totalBest" )
 
 
-            if (totalBest > totalLast ) {
+            if (totalBest >= totalLast ) {
+                Log.d("TIME_CALC ", "TOTAL summary ${totalBest >= totalLast }")
                 binding.bestTime.text = time
                 binding.bestDay.text = formatedDate
                 dbHelper.updateTrackBestTime(trackDetail.id.toInt(),time, formatedDate)

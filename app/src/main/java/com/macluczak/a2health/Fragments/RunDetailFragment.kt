@@ -29,7 +29,7 @@ class RunDetailFragment : Fragment(R.layout.fragment_run_detail) {
 
             val trackStats = db.getTrackStats(id)
 
-            val adapter = TrackStatsAdapter(trackStats)
+            val adapter = TrackStatsAdapter(trackStats.reversed())
             binding.rvStats.adapter = adapter
             binding.rvStats.layoutManager = LinearLayoutManager(context)
 
