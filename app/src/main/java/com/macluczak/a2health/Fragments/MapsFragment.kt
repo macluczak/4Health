@@ -24,6 +24,7 @@ private const val ARG_NAME = "id"
 class MapsFragment : Fragment() {
 
 
+
     private val callback = OnMapReadyCallback { googleMap ->
 
         val id = DetailFragment.idMap.toInt()
@@ -59,9 +60,13 @@ class MapsFragment : Fragment() {
             }
             val bounds = b.build()
             val padding = 100
-            var cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
-            googleMap.animateCamera(cu)
+            googleMap.setOnMapLoadedCallback {
+                var cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+                googleMap.animateCamera(cu)
+            }
+
         }
+
 
 //        val key = BuildConfig.GoogleMap_ApiKey
 //
