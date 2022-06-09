@@ -153,8 +153,20 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
         binding.lastDay.text = formatedDate
 
 
+        var runDay = when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
+            1 -> "Sunday"
+            2 -> "Monday"
+            3 -> "Tuesday"
+            4 -> "Wednesday"
+            5 -> "Thursday"
+            6 -> "Friday"
+            7 -> "Saturday"
+            else ->"null"
+        }
+
+
         dbHelper.addTrackLastTime(trackDetail.id.toInt(),time, formatedDate)
-        dbHelper.addStats(trackDetail.id.toInt(), time, "Monday", formatedDate)
+        dbHelper.addStats(trackDetail.id.toInt(), time, runDay, formatedDate)
 
         val trackDetail = dbHelper.getTrack(trackDetail.id.toInt())
 

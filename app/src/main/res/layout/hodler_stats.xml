@@ -23,7 +23,7 @@
         android:background="#00002E02">
 
         <TextView
-            android:id="@+id/trackTitle"
+            android:id="@+id/runTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -31,6 +31,16 @@
             android:text=""
             android:textSize="26sp"
             tools:text="Street 20" />
+
+        <TextView
+            android:id="@+id/runDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="serif-monospace"
+            android:text=""
+            android:textSize="26sp"
+            tools:text="Monday" />
 
 
 
