@@ -5,41 +5,53 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.macluczak.a2health.Adapters.TrackStatsAdapter
+import com.macluczak.a2health.Adapters.TracksAdapter
+import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
+import com.macluczak.a2health.databinding.FragmentDetailBinding
+import com.macluczak.a2health.databinding.FragmentRunDetailBinding
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val TRACKID = "TRACKID"
 
-class RunDetailFragment : Fragment() {
+class RunDetailFragment : Fragment(R.layout.fragment_run_detail) {
+    private lateinit var binding: FragmentRunDetailBinding
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentRunDetailBinding.bind(view)
 
-    private var param1: String? = null
-    private var param2: String? = null
+        val id: Int? = arguments?.getInt(TRACKID)
+        val db = DBHelper(requireContext())
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        if(id != null) {
+
+            val trackStats = db.getTrackStats(id)
+
+            val adapter = TrackStatsAdapter(trackStats)
+            binding.rvStats.adapter = adapter
+            binding.rvStats.layoutManager = LinearLayoutManager(context)
+
+            binding.statsPageTitle.text = id.toString()
+
+
+
+
         }
+
+
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_run_detail, container, false)
-    }
+
 
     companion object {
-
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun trackStats(id: Int) =
             RunDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(TRACKID, id)
+
                 }
             }
     }

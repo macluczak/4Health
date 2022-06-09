@@ -29,10 +29,9 @@ import kotlin.collections.ArrayList
 
 private const val ARG_NAME = "id"
 class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.DetailCallback{
+
     private lateinit var binding: FragmentDetailBinding
     lateinit var trackDetail: Track
-
-
 
     companion object {
         lateinit var idMap: String
@@ -99,7 +98,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
                 binding.fab.setOnClickListener {
 
-                    val runDetailFragment = RunDetailFragment()
+                    val runDetailFragment = RunDetailFragment.trackStats(id)
                     viewModel.page = 1
                     activity?.supportFragmentManager?.beginTransaction()?.apply {
                         replace(R.id.flFragmentDetail, runDetailFragment)
@@ -111,7 +110,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
             }
             else if(viewModel.page == 1){
 
-                val runDetailFragment = RunDetailFragment()
+                val runDetailFragment = RunDetailFragment.trackStats(id)
                 activity?.supportFragmentManager?.beginTransaction()?.apply {
                     replace(R.id.flFragmentDetail, runDetailFragment)
                     commit()
@@ -143,10 +142,13 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
         val formatedDate = formatter.format(date)
         val dbHelper = DBHelper(requireContext())
 
+
+
         binding.lastTime.text = time
         binding.lastDay.text = formatedDate
 
         dbHelper.addTrackLastTime(trackDetail.id.toInt(),time, formatedDate)
+        dbHelper.addStats(trackDetail.id.toInt(), time, "Monday", formatedDate)
 
         if (trackDetail.bestTime.isBlank()){
             binding.bestTime.text = time

@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TrackStats
@@ -72,12 +73,14 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        db!!.execSQL("DROP TABLE IF EXISTS $TABLE_STATS")
         onCreate(db!!)
     }
 
     fun dropTable() {
         val db = this.writableDatabase
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        db!!.execSQL("DROP TABLE IF EXISTS $TABLE_STATS")
         onCreate(db!!)
 
     }
@@ -124,6 +127,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = this.writableDatabase
         val values = ContentValues()
 
+        Log.d("DBHELPER", "ID: $id, TIME: $runTime")
+
         values.put(COL_TRACKID, id)
         values.put(COL_RUNTIME, runTime)
         values.put(COL_DAY, runDay)
@@ -150,6 +155,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     cursor.getString(cursor.getColumnIndex(COL_DAY)),
                     cursor.getString(cursor.getColumnIndex(COL_DATE))
                 )
+                Log.d("DBHELPER", "TRACKID: $id,  DBID: ${cursor.getString(cursor.getColumnIndex(COL_ID))}")
                 statsList.add(stats)
             } while (cursor.moveToNext())
         }

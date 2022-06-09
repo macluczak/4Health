@@ -4,4 +4,5 @@ import androidx.lifecycle.ViewModel
 
 class DetailViewModel: ViewModel() {
     var page = 0
+    var id = 0
 }

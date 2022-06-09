@@ -17,10 +17,10 @@
 
 
     <RelativeLayout
-    android:padding="10sp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-       android:background="#00002E02">
+        android:padding="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00002E02">
 
         <TextView
             android:id="@+id/trackTitle"
@@ -34,41 +34,7 @@
 
 
 
-
-
     </RelativeLayout>
-
-
-
-
-
-
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/title"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="title"-->
-<!--        />-->
-<!--    <TextView-->
-<!--        android:id="@+id/distanse"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="distanse"-->
-<!--        />-->
-<!--    <TextView-->
-<!--        android:id="@+id/city"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="city"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        />-->
-
 
 
 
