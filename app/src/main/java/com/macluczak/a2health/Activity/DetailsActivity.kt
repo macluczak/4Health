@@ -24,7 +24,7 @@ class DetailsActivity : AppCompatActivity() {
             val detailFragment = DetailFragment.newTrack(id)
 
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, detailFragment)
+                replace(R.id.flFragmentDetail, detailFragment)
                 commit()
             }
         }

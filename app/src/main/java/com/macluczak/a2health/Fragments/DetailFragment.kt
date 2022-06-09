@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.TraceCompat.isEnabled
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -18,6 +19,8 @@ import com.github.mikephil.charting.data.BarEntry
 import com.macluczak.a2health.*
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TracksAdapter
+import com.macluczak.a2health.ViewModels.AddViewModel
+import com.macluczak.a2health.ViewModels.DetailViewModel
 import com.macluczak.a2health.databinding.FragmentDetailBinding
 import java.lang.Integer.parseInt
 import java.text.SimpleDateFormat
@@ -49,47 +52,71 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
         val id: Int? = arguments?.getInt(ARG_NAME)
         val db = DBHelper(requireContext())
+        val viewModel = ViewModelProvider(requireActivity()).get(DetailViewModel::class.java)
 
 
         if(id != null){
-            idMap = id.toString()
+            if(viewModel.page == 0) {
+                idMap = id.toString()
 
 //            if track select
-            trackDetail = db.getTrack(id)
+                trackDetail = db.getTrack(id)
 
 
-            binding.idTxt.text = trackDetail.id
-            binding.titleTxt.text = trackDetail.title
-            binding.distanceTxt.text = trackDetail.distance
-            binding.durationtxt.text = trackDetail.duration
-            binding.startAddr.text = trackDetail.startAdress
-            binding.endAddr.text = trackDetail.stopAdress
+                binding.idTxt.text = trackDetail.id
+                binding.titleTxt.text = trackDetail.title
+                binding.distanceTxt.text = trackDetail.distance
+                binding.durationtxt.text = trackDetail.duration
+                binding.startAddr.text = trackDetail.startAdress
+                binding.endAddr.text = trackDetail.stopAdress
 
-            if (trackDetail.lastTime.isBlank()){
-                binding.statsCV?.visibility = View.GONE
-            }else{
-                binding.lastTime.text = trackDetail.lastTime
-                binding.lastDay.text = trackDetail.lastDay
-                binding.bestTime.text = trackDetail.bestTime
-                binding.bestDay.text = trackDetail.bestDay
+                if (trackDetail.lastTime.isBlank()) {
+                    binding.statsCV?.visibility = View.GONE
+                } else {
+                    binding.lastTime.text = trackDetail.lastTime
+                    binding.lastDay.text = trackDetail.lastDay
+                    binding.bestTime.text = trackDetail.bestTime
+                    binding.bestDay.text = trackDetail.bestDay
+
+                }
+
+
+
+
+                binding.mapCV.visibility = View.VISIBLE
+                val mapOfTrack = MapsFragment()
+                activity?.supportFragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.flFragmentDetailMap, mapOfTrack)
+                    commit()
+                }
+
+                binding.timerCV?.visibility = View.VISIBLE
+                val timerFragment = TimerFragment()
+                childFragmentManager.beginTransaction().apply {
+                    replace(R.id.flFragmentDetailTimer, timerFragment)
+                    commit()
+                }
+
+                binding.fab.setOnClickListener {
+
+                    val runDetailFragment = RunDetailFragment()
+                    viewModel.page = 1
+                    activity?.supportFragmentManager?.beginTransaction()?.apply {
+                        replace(R.id.flFragmentDetail, runDetailFragment)
+                        commit()
+                    }
+
+                }
 
             }
+            else if(viewModel.page == 1){
 
+                val runDetailFragment = RunDetailFragment()
+                activity?.supportFragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.flFragmentDetail, runDetailFragment)
+                    commit()
+                }
 
-
-
-            binding.mapCV.visibility = View.VISIBLE
-            val mapOfTrack = MapsFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.apply {
-                replace(R.id.flFragmentDetailMap, mapOfTrack)
-                commit()
-            }
-
-            binding.timerCV?.visibility = View.VISIBLE
-            val timerFragment = TimerFragment()
-            childFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragmentDetailTimer, timerFragment)
-                commit()
             }
 
 
@@ -102,6 +129,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
             binding.statsCV.visibility = View.GONE
             binding.timerCV.visibility = View.GONE
             binding.titleTxt.text = "Choose Track"
+            binding.fab.visibility = View.GONE
 
         }
 

@@ -126,7 +126,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         values.put(COL_TRACKID, id)
         values.put(COL_RUNTIME, runTime)
-
         values.put(COL_DAY, runDay)
         values.put(COL_DATE, runDate)
 
@@ -136,21 +135,27 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     @SuppressLint("Range")
-    fun getTrackStats(id: Int): TrackStats {
+    fun getTrackStats(id: Int): ArrayList<TrackStats> {
         val selectQuery =
-            "SELECT * FROM $TABLE_STATS WHERE $COL_ID = ${id}"
+            "SELECT * FROM $TABLE_STATS WHERE $COL_TRACKID = ${id}"
         val db = this.writableDatabase
         val cursor: Cursor = db.rawQuery(selectQuery, null)
-
-        var stats = TrackStats(
-            cursor.getString(cursor.getColumnIndex(COL_TRACKID)).toInt(),
-            cursor.getString(cursor.getColumnIndex(COL_RUNTIME)),
-            cursor.getString(cursor.getColumnIndex(COL_DAY)),
-            cursor.getString(cursor.getColumnIndex(COL_DATE))
-        )
+        val statsList = ArrayList<TrackStats>()
+        cursor.moveToFirst()
+        if (cursor.moveToFirst()) {
+            do {
+                var stats = TrackStats(
+                    cursor.getString(cursor.getColumnIndex(COL_TRACKID)).toInt(),
+                    cursor.getString(cursor.getColumnIndex(COL_RUNTIME)),
+                    cursor.getString(cursor.getColumnIndex(COL_DAY)),
+                    cursor.getString(cursor.getColumnIndex(COL_DATE))
+                )
+                statsList.add(stats)
+            } while (cursor.moveToNext())
+        }
 
         db.close()
-        return stats
+        return statsList
     }
 
     @SuppressLint("Range")
