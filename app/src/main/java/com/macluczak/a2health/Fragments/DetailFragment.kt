@@ -184,7 +184,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
                             parentFragmentManager.popBackStack()
 
 
-                        } else {
+                        } else if(viewModel.page == 0){
                             this.isEnabled = false
                             activity?.onBackPressed()
                         }

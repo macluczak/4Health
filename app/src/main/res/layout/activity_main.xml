@@ -15,7 +15,24 @@
 
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/AppBarLayout"/>
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tabBackground="@color/green_active"
+            android:background="@color/green_active"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -23,7 +40,7 @@
         android:layout_height="60sp"
         app:rippleColor="@color/GR1_2_1"
         android:backgroundTint="@color/green_active"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/AppBarLayout"
         android:layout_alignParentEnd="true"
         android:layout_margin="30sp"
         android:src="@drawable/edit_ic"
