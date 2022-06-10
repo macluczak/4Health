@@ -94,6 +94,7 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/cvbg">
@@ -142,7 +143,6 @@
                     android:layout_height="match_parent" />
 
 
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -166,45 +166,37 @@
                         android:id="@+id/lastTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="last time"/>
+                        android:text="last time" />
 
                     <TextView
                         android:id="@+id/lastDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/lastTime"
-                        android:text="last day"/>
+                        android:text="last day" />
 
                     <TextView
                         android:id="@+id/bestTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/lastDay"
-                        android:text="last time"/>
+                        android:text="last time" />
 
                     <TextView
                         android:id="@+id/bestDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/bestTime"
-                        android:text="last day"/>
-
+                        android:text="last day" />
 
 
                 </RelativeLayout>
 
 
-
-
-
-
             </androidx.cardview.widget.CardView>
 
 
-
         </GridLayout>
-
-
 
 
     </androidx.core.widget.NestedScrollView>
@@ -224,6 +216,13 @@
         android:src="@drawable/ic_baseline_list_alt_24"
         app:rippleColor="@color/GR1_2_1"
         app:tint="@color/white" />
+
+
+    <FrameLayout
+        android:id="@+id/flStatsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 

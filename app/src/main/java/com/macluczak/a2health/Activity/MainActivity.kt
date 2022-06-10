@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
 
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.flFragmentDetail, detailsFragment)
+                addToBackStack("DetailFragment")
                 commit()
             }
         }else{
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
         }
 
     }
+
 
     override fun clickCallback(position: Int) {
 

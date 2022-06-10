@@ -95,6 +95,7 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/cvbg">
@@ -219,6 +220,13 @@
         android:src="@drawable/ic_baseline_list_alt_24"
         app:rippleColor="@color/GR1_2_1"
         app:tint="@color/white" />
+
+
+    <FrameLayout
+        android:id="@+id/flStatsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 

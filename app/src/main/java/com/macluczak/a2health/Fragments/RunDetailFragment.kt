@@ -1,15 +1,19 @@
 package com.macluczak.a2health.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.macluczak.a2health.Adapters.TrackStatsAdapter
 import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
+import com.macluczak.a2health.ViewModels.DetailViewModel
 import com.macluczak.a2health.databinding.FragmentDetailBinding
 import com.macluczak.a2health.databinding.FragmentRunDetailBinding
 
@@ -40,8 +44,26 @@ class RunDetailFragment : Fragment(R.layout.fragment_run_detail) {
 
         }
 
+//        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                if (id != null) {
+//                    Log.d("CALLBACK", "callback pressed 0")
+//
+//                    val viewModel: DetailViewModel by viewModels({ requireParentFragment() })
+//                    viewModel.page = 0
+//
+//                    this.isEnabled = false
+//
+//                    parentFragmentManager.popBackStackImmediate()
+//
+//                }
+//            }
+//        })
+
 
     }
+
+
 
 
 
