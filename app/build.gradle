@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
+
 }
 
 android {
@@ -14,6 +15,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +47,9 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
 
 

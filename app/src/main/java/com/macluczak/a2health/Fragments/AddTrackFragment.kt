@@ -2,24 +2,40 @@ package com.macluczak.a2health.Fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.location.Location
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.PolylineOptions
+import com.google.maps.android.PolyUtil
+import com.macluczak.a2health.BuildConfig
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import com.macluczak.a2health.ViewModels.AddViewModel
 import com.macluczak.a2health.ViewModels.TimerViewModel
 import com.macluczak.a2health.databinding.FragmentAddTrackBinding
+import org.json.JSONObject
 
 
 class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
     lateinit var binding: FragmentAddTrackBinding
     lateinit var viewModel: AddViewModel
+
+
+
 
     @SuppressLint("MissingPermission")
     fun isOnline(context: Context): Boolean {
@@ -71,6 +87,10 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
         binding.addButton.setOnClickListener {
             if (isOnline(requireContext())) {
                 if (newMapsFragment.markersList.size == 2 && binding.editTxt.text.isNotBlank()) {
+
+
+                    val ImageUrl = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"
+
                     val dbHelper = DBHelper(requireContext())
                     dbHelper.addTrack(
                         binding.editTxt.text.toString(),
@@ -86,7 +106,10 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
 
                         newMapsFragment.destination.position.latitude.toString(),
                         newMapsFragment.destination.position.longitude.toString(),
-                        newMapsFragment.waypoints.toString()
+                        newMapsFragment.waypoints.toString(),
+
+                        ImageUrl
+
 
                     )
 

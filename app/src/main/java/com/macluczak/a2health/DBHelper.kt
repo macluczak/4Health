@@ -44,6 +44,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         private val COL_WAYPOINTS = "waypoints"
 
+        private val COL_IMAGE = "image"
+
         //STATS TABLE
 
         private val COL_TRACKID = "trackID"
@@ -61,7 +63,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     " $COL_TITLE TEXT, $COL_DISTANCE TEXT, $COL_DURATION TEXT," +
                     " $COL_START_LAT TEXT, $COL_START_LONG TEXT, $COL_STOP_LAT TEXT, $COL_STOP_LONG TEXT," +
                     "$COL_START_ADRESS TEXT, $COL_STOP_ADRESS TEXT, $COL_WAYPOINTS TEXT," +
-                    " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT)")
+                    " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT, $COL_IMAGE TEXT)")
 
         val CREATE_STATS_QUERY = ("CREATE TABLE $TABLE_STATS ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " $COL_RUNTIME TEXT, $COL_TRACKID INTEGER,  $COL_DAY TEXT, $COL_DATE TEXT)")
@@ -90,7 +92,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     fun addTrack(
         title: String, distance: String, duration: String,
         startAdr: String, stopAdr: String, startLat: String, startLong: String,
-        stopLat: String, stopLong: String, waypoints: String,
+        stopLat: String, stopLong: String, waypoints: String, image:String
     ) {
         val db = this.writableDatabase
         val values = ContentValues()
@@ -105,6 +107,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(COL_STOP_LAT, stopLat)
         values.put(COL_STOP_LONG, stopLong)
         values.put(COL_WAYPOINTS, waypoints)
+        values.put(COL_IMAGE, image)
 
         values.put(COL_BEST_TIME, " ")
         values.put(COL_BEST_DAY, " ")
@@ -220,7 +223,9 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
             cursor.getString(cursor.getColumnIndex(COL_BEST_DAY)),
 
             cursor.getString(cursor.getColumnIndex(COL_LAST_TIME)),
-            cursor.getString(cursor.getColumnIndex(COL_LAST_DAY))
+            cursor.getString(cursor.getColumnIndex(COL_LAST_DAY)),
+
+            cursor.getString(cursor.getColumnIndex(COL_IMAGE))
 
         )
 
@@ -262,7 +267,9 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     cursor.getString(cursor.getColumnIndex(COL_BEST_DAY)),
 
                     cursor.getString(cursor.getColumnIndex(COL_LAST_TIME)),
-                    cursor.getString(cursor.getColumnIndex(COL_LAST_DAY))
+                    cursor.getString(cursor.getColumnIndex(COL_LAST_DAY)),
+
+                    cursor.getString(cursor.getColumnIndex(COL_IMAGE))
 
                 )
                 trackList.add(track)

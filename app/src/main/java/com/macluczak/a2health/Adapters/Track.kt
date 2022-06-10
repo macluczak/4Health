@@ -24,7 +24,9 @@ data class Track(
     val bestDay: String,
 
     val lastTime: String,
-    val lastDay: String
+    val lastDay: String,
+
+    val locationView: String
 
 ){
 
