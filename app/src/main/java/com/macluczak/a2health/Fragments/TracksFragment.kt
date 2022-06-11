@@ -157,14 +157,15 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
     }
 
     override fun onClick(position: Int) {
-//        Toast.makeText(requireContext(), "Click ${position}", Toast.LENGTH_SHORT).show()
+
         mainCallback.clickCallback(position)
 
 
     }
 
     override fun onLongClick(position: Int) {
-        Toast.makeText(requireContext(), "longClick ${position}", Toast.LENGTH_SHORT).show()
+        val track = db.getTrack(position)
+        Toast.makeText(requireContext(), "longClick ${track.title}", Toast.LENGTH_SHORT).show()
 
     }
 

@@ -35,6 +35,7 @@ class TracksAdapterMode(val tracks: List<Track>, private val trackInterface: Tra
                 .fallback(R.drawable.edit_ic)
                 .placeholder(R.drawable.checked_fav)
                 .error(R.drawable.ic_baseline_list_alt_24)
+                .centerCrop()
                 .into(trackImage)
 
             trackTitle.text = track.title

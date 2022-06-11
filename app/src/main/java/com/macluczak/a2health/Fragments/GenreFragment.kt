@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.Adapters.TracksAdapterMode
@@ -25,34 +28,67 @@ class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapterMode.Track
 
     override fun onResume() {
         super.onResume()
-        db = DBHelper(requireContext())
 
-        val tracklist = db.getAllTracks()
-        val trackEasy = ArrayList<Track>()
-        val trackMedium = ArrayList<Track>()
-        val trackHard = ArrayList<Track>()
 
-        for (i in 0 until tracklist.size) {
-            when (tracklist[i].distance
-                .filter { it.isDigit() || it == '.' }.toFloat()) {
-                in 0f..8f -> trackEasy.add(tracklist[i])
-                in 8f..25f -> trackMedium.add(tracklist[i])
-                else -> trackHard.add(tracklist[i])
+        lifecycleScope.launchWhenStarted {
+            try {
+                db = DBHelper(requireContext())
 
+                val tracklist = db.getAllTracks()
+                val trackEasy = ArrayList<Track>()
+                val trackMedium = ArrayList<Track>()
+                val trackHard = ArrayList<Track>()
+
+                for (i in 0 until tracklist.size) {
+                    when (tracklist[i].distance
+                        .filter { it.isDigit() || it == '.' }.toFloat()) {
+                        in 0f..8f -> trackEasy.add(tracklist[i])
+                        in 8f..25f -> trackMedium.add(tracklist[i])
+                        else -> trackHard.add(tracklist[i])
+
+                    }
+                }
+                if(trackEasy.isNotEmpty()){
+                    val adapterEasy = TracksAdapterMode(trackEasy, this@GenreFragment)
+                    binding.rcEasy.adapter = adapterEasy
+                    binding.rcEasy.layoutManager = GridLayoutManager(context, 2)
+                }
+                else{
+                    binding.txtEasy.visibility = View.GONE
+                    binding.rcEasy.visibility = View.GONE
+                }
+
+                if(trackMedium.isNotEmpty()){
+                    val adapterMedium = TracksAdapterMode(trackMedium, this@GenreFragment)
+                    binding.rcMedium.adapter = adapterMedium
+                    binding.rcMedium.layoutManager = GridLayoutManager(context, 2)
+                }
+
+                else{
+                    binding.txtMedium.visibility = View.GONE
+                    binding.rcMedium.visibility = View.GONE
+                }
+
+                if(trackHard.isNotEmpty()){
+                    val adapterHard = TracksAdapterMode(trackHard, this@GenreFragment)
+                    binding.rcHard.adapter = adapterHard
+                    binding.rcHard.layoutManager = GridLayoutManager(context, 2)
+                }
+                else{
+                    binding.txtHard.visibility = View.GONE
+                    binding.rcHard.visibility = View.GONE
+                }
+
+                binding.gridLayoutDiff.visibility = View.VISIBLE
+
+            } finally {
+
+                if (binding.gridLayoutDiff.isVisible) {
+                    binding.progressbar.visibility = View.GONE
+
+                }
             }
         }
-
-        val adapterEasy = TracksAdapterMode(trackEasy, this)
-        binding.rcEasy.adapter = adapterEasy
-        binding.rcEasy.layoutManager = GridLayoutManager(context, 2)
-
-        val adapterMedium = TracksAdapterMode(trackMedium, this)
-        binding.rcMedium.adapter = adapterMedium
-        binding.rcMedium.layoutManager = GridLayoutManager(context, 2)
-
-        val adapterHard = TracksAdapterMode(trackHard, this)
-        binding.rcHard.adapter = adapterHard
-        binding.rcHard.layoutManager = GridLayoutManager(context, 2)
 
 
 
@@ -68,14 +104,14 @@ class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapterMode.Track
     }
 
     override fun onClick(position: Int) {
-//        Toast.makeText(requireContext(), "Click ${position}", Toast.LENGTH_SHORT).show()
         mainCallback.clickCallback(position)
 
 
     }
 
     override fun onLongClick(position: Int) {
-        Toast.makeText(requireContext(), "longClick ${position}", Toast.LENGTH_SHORT).show()
+        val track = db.getTrack(position)
+        Toast.makeText(requireContext(), "longClick ${track.title}", Toast.LENGTH_SHORT).show()
 
     }
 

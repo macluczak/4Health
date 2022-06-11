@@ -1,14 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.GeneralStatsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.GeneralStatsFragment"
+    android:paddingHorizontal="20sp"
+    android:paddingTop="20sp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="GENERAL STATS" />
 
-</FrameLayout>
+
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <GridLayout
+                android:descendantFocusability="blocksDescendants"
+                android:id="@+id/gridLayoutDiff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="1"
+                android:rowCount="3"
+                android:visibility="invisible">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvMostViewed"
+                    android:layout_width="match_parent"
+                    android:layout_height="400sp"
+                    app:cardCornerRadius="25sp">
+
+                    <ImageView
+                        android:id="@+id/imgMostViewed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="Most Frequent Activity "
+                            android:gravity="center|top"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2">
+
+                            <TextView
+                                android:id="@+id/txtMostViewed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="street 20"
+                                android:gravity="center|top"/>
+
+                            <LinearLayout
+                                android:layout_below="@+id/txtMostViewed"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:id="@+id/bestTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Best time: 00:00:00"
+                                        />
+                                    <TextView
+                                        android:id="@+id/bestDay"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="01.01.2022"/>
+
+                                    <TextView
+                                        android:id="@+id/LastTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Last time: 00:00:00"
+                                        />
+                                    <TextView
+                                        android:id="@+id/LastDay"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="01.01.2022"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recent"
+                    android:gravity="center"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:paddingTop="20sp"
+                    android:id="@+id/rvRecent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+
+
+
+
+            </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
+
+
+
+
+
+
+
+</RelativeLayout>
