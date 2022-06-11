@@ -6,16 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity"
     android:id="@+id/mainactivityBackground"
-    android:background="@drawable/gradient_list100">
+    android:background="@color/white">
 
 
 
 
-    <FrameLayout
+<!--    <FrameLayout-->
 
-        android:id="@+id/flFragment"
+<!--        android:id="@+id/flFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_above="@+id/AppBarLayout"/>-->
+
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/vpFragment"
         android:layout_above="@+id/AppBarLayout"/>
 
 
@@ -27,10 +33,15 @@
         >
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:tabBackground="@color/green_active"
-            android:background="@color/green_active"/>
+            android:background="@color/green_active"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+
+            app:tabTextColor="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -14,13 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_above="@+id/AppBarLayout">
 
-        <FrameLayout
+        <androidx.viewpager.widget.ViewPager
             android:layout_weight="1"
-            android:id="@+id/flFragment"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:id="@+id/vpFragment"
+            />
 
         <FrameLayout
             android:layout_weight="1"
@@ -30,12 +32,33 @@
 
     </LinearLayout>
 
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tabBackground="@color/green_active"
+            android:background="@color/green_active"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/white"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="60sp"
         android:layout_height="60sp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/AppBarLayout"
         android:layout_marginStart="30sp"
         android:layout_marginTop="30sp"
         android:layout_marginEnd="30sp"
