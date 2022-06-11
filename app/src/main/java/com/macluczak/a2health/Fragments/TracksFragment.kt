@@ -1,5 +1,6 @@
 package com.macluczak.a2health.Fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,6 +16,10 @@ import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.FragmentTracksBinding
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.TrackInterface  {
 
@@ -50,20 +55,36 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun setHomeStats(){
         Log.d("DAY CALC", "IDZIE")
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd.MM.yyyy")
+        val todayDate = formatter.format(date)
 
         val statslist = db.getAllStats()
+
+
         for(element in 0 until statslist.size){
-            when(statslist[element].runDay){
-                "Monday" -> countDayStats(0, statslist[element].runTime)
-                "Tuesday" -> countDayStats(1, statslist[element].runTime)
-                "Wednesday" -> countDayStats(2, statslist[element].runTime)
-                "Thursday" -> countDayStats(3, statslist[element].runTime)
-                "Friday" -> countDayStats(4, statslist[element].runTime)
-                "Saturday" -> countDayStats(5, statslist[element].runTime)
-                "Sunday" -> countDayStats(6, statslist[element].runTime)
-                else -> null
+
+            val days = TimeUnit.DAYS.convert(
+                formatter.parse(statslist[element].runDate)!!.getTime() -
+                        formatter.parse(todayDate)!!.getTime(),
+                TimeUnit.MILLISECONDS)
+
+            Log.d("TIME_CALC", "TIME PASSED: ${days}")
+
+            if(days < 7) {
+                when (statslist[element].runDay) {
+                    "Monday" -> countDayStats(0, statslist[element].runTime)
+                    "Tuesday" -> countDayStats(1, statslist[element].runTime)
+                    "Wednesday" -> countDayStats(2, statslist[element].runTime)
+                    "Thursday" -> countDayStats(3, statslist[element].runTime)
+                    "Friday" -> countDayStats(4, statslist[element].runTime)
+                    "Saturday" -> countDayStats(5, statslist[element].runTime)
+                    "Sunday" -> countDayStats(6, statslist[element].runTime)
+                    else -> null
+                }
             }
         }
 
