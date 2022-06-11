@@ -168,7 +168,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     @SuppressLint("Range")
-    fun getAllStats(id: Int): ArrayList<TrackStats> {
+    fun getAllStats(): ArrayList<TrackStats> {
         val selectQuery =
             "SELECT * FROM $TABLE_STATS"
         val db = this.writableDatabase

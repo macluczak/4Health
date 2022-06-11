@@ -28,6 +28,7 @@ class MapsFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
 
         val id = DetailFragment.idMap.toInt()
+        googleMap.uiSettings.setAllGesturesEnabled(false)
 
 
         val db = DBHelper(requireContext())
