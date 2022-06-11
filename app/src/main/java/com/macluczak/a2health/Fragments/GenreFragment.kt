@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TracksAdapter
+import com.macluczak.a2health.Adapters.TracksAdapterMode
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.FragmentGenreBinding
 import com.macluczak.a2health.databinding.FragmentTracksBinding
 
 
-class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapter.TrackInterface  {
+class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapterMode.TrackInterface  {
     lateinit var binding: FragmentGenreBinding
     lateinit var db: DBHelper
     lateinit var mainCallback: TracksFragment.MainCallback
@@ -41,15 +42,15 @@ class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapter.TrackInte
             }
         }
 
-        val adapterEasy = TracksAdapter(trackEasy, this)
+        val adapterEasy = TracksAdapterMode(trackEasy, this)
         binding.rcEasy.adapter = adapterEasy
         binding.rcEasy.layoutManager = GridLayoutManager(context, 2)
 
-        val adapterMedium = TracksAdapter(trackMedium, this)
+        val adapterMedium = TracksAdapterMode(trackMedium, this)
         binding.rcMedium.adapter = adapterMedium
         binding.rcMedium.layoutManager = GridLayoutManager(context, 2)
 
-        val adapterHard = TracksAdapter(trackHard, this)
+        val adapterHard = TracksAdapterMode(trackHard, this)
         binding.rcHard.adapter = adapterHard
         binding.rcHard.layoutManager = GridLayoutManager(context, 2)
 
