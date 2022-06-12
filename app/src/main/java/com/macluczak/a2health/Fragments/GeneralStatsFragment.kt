@@ -59,11 +59,14 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
                     Log.d("MOST USED TRACK", "ID: $mostUsedID")
 
                     val mostUsedTrack = mostUsedID.let { db.getTrack(it) }
+
                     binding.txtMostViewed.text = mostUsedTrack.title
                     binding.bestDay.text = mostUsedTrack.bestDay
-                    binding.bestTime.text = mostUsedTrack.bestTime
+                    binding.bestTime.text = "Best Time:${mostUsedTrack.bestTime}"
                     binding.LastDay.text = mostUsedTrack.lastDay
-                    binding.LastTime.text = mostUsedTrack.lastTime
+                    binding.LastTime.text = "Last Time:${mostUsedTrack.lastTime}"
+                    binding.EstTime.text = "Est. Time: ${mostUsedTrack.duration}"
+                    binding.distance.text = mostUsedTrack.distance
 
                     Glide.with(requireContext())
                         .load("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg")

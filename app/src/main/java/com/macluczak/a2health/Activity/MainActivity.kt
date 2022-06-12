@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
         val adapter = ViewPagerAdapter(supportFragmentManager).apply {
 
-            addFragment(GenreFragment(), "Category")
+            addFragment(GenreFragment(), "Categories")
             addFragment(TracksFragment(), "Home")
             addFragment(GeneralStatsFragment(), "Recent")
 

@@ -14,14 +14,14 @@
 
 
         android:layout_marginTop="10sp"
+        android:layout_marginBottom="-20sp"
         android:fontFamily="sans-serif-black"
-        android:gravity="center"
 
+        android:gravity="center"
         android:letterSpacing="0.02"
         android:padding="5sp"
         android:paddingHorizontal="10sp"
         android:text="Categories"
-        android:layout_marginBottom="-20sp"
 
 
         android:textSize="18sp" />
@@ -47,156 +47,149 @@
         android:layout_height="match_parent">
 
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/defaultMain"
-        android:visibility="visible"
-        >
-
-
-        <GridLayout
-            android:id="@+id/gridLayoutDiff"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="1"
-            android:rowCount="6"
-            android:visibility="invisible"
-            android:paddingBottom="160sp"
-            android:paddingTop="30sp">
+            android:background="@color/defaultMain"
+            android:visibility="visible">
 
 
-            <TextView
-
-                android:id="@+id/txtEasy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:fontFamily="sans-serif-black"
-                android:gravity="left"
-                android:letterSpacing="0.02"
-                android:padding="5sp"
-                android:paddingHorizontal="10sp"
-
-
-                android:text="Easy"
-
-
-                android:textSize="24sp"
-
-
-                />
-
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Elevated"
+            <GridLayout
+                android:id="@+id/gridLayoutDiff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
-                android:layout_marginRight="10sp"
-                app:cardBackgroundColor="@color/white"
-                android:elevation="15sp"
-                app:cardCornerRadius="25sp"
-                >
+                android:columnCount="1"
+                android:paddingTop="30sp"
+                android:paddingBottom="160sp"
+                android:rowCount="6"
+                android:visibility="invisible">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcEasy"
+
+                <TextView
+
+                    android:id="@+id/txtEasy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="left"
+                    android:letterSpacing="0.02"
+                    android:padding="5sp"
+                    android:paddingHorizontal="10sp"
+
+
+                    android:text="Easy"
+
+
+                    android:textSize="24sp"
+
+
+                    />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="15sp"
-                    android:padding="15sp" />
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="15sp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="25sp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcEasy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15sp"
+                        android:padding="15sp" />
 
 
-            </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
 
-            <TextView
-                android:id="@+id/txtMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/txtMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-                android:layout_marginLeft="20sp"
-                android:fontFamily="sans-serif-black"
-                android:gravity="left"
-                android:letterSpacing="0.02"
-                android:paddingHorizontal="10sp"
-                android:paddingTop="10sp"
+                    android:layout_marginLeft="20sp"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="left"
+                    android:letterSpacing="0.02"
+                    android:paddingHorizontal="10sp"
+                    android:paddingTop="10sp"
 
-                android:text="Medium"
+                    android:text="Medium"
 
 
-                android:textSize="24sp" />
+                    android:textSize="24sp" />
 
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
-                android:layout_marginRight="10sp"
-                app:cardBackgroundColor="@color/white"
-                android:elevation="15sp"
-                app:cardCornerRadius="25sp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcMedium"
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="15sp"
-                    android:gravity="center"
-                    android:padding="15sp" />
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="15sp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="25sp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15sp"
+                        android:gravity="center"
+                        android:padding="15sp" />
 
 
-            </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
 
-            <TextView
-                android:id="@+id/txtHard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/txtHard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-                android:layout_marginLeft="20sp"
-                android:fontFamily="sans-serif-black"
-                android:gravity="left"
-                android:letterSpacing="0.02"
-                android:paddingHorizontal="10sp"
-                android:paddingTop="10sp"
+                    android:layout_marginLeft="20sp"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="left"
+                    android:letterSpacing="0.02"
+                    android:paddingHorizontal="10sp"
+                    android:paddingTop="10sp"
 
-                android:text="Hard"
-
-
-                android:textSize="24sp" />
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
-                android:layout_marginRight="10sp"
-                app:cardBackgroundColor="@color/white"
-                android:elevation="15sp"
-                app:cardCornerRadius="25sp"
-                android:layout_marginBottom="20sp">
+                    android:text="Hard"
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcHard"
+                    android:textSize="24sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="15sp" />
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="20sp"
+                    android:elevation="15sp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="25sp">
 
 
-            </com.google.android.material.card.MaterialCardView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcHard"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15sp" />
 
 
+                </com.google.android.material.card.MaterialCardView>
 
 
-
-        </GridLayout>
-
+            </GridLayout>
 
 
-
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
     <ProgressBar
