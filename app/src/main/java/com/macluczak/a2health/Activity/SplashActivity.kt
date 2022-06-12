@@ -1,28 +1,42 @@
+@file:Suppress("DEPRECATION")
+
 package com.macluczak.a2health.Activity
 
-import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.animation.LinearInterpolator
-import android.widget.ImageView
-import com.macluczak.a2health.R
+import android.view.View
+import android.view.Window
+import androidx.appcompat.app.AppCompatActivity
 import com.macluczak.a2health.databinding.ActivitySplashBinding
+
 
 class SplashActivity : AppCompatActivity() {
     lateinit var binding: ActivitySplashBinding
+
+    fun hideSystemUI(window: Window) { //pass getWindow();
+
+        val decorView: View = window.getDecorView()
+        var uiVisibility: Int = decorView.getSystemUiVisibility()
+        uiVisibility = uiVisibility or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        decorView.setSystemUiVisibility(uiVisibility)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        hideSystemUI(window)
+
+
 
 
 

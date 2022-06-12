@@ -39,6 +39,8 @@ class TracksAdapter(val tracks: List<Track>, private val trackInterface: TrackIn
                 .into(trackImage)
 
             trackTitle.text = track.title
+            trackLong.text = track.distance
+            trackStart.text = track.startAdress
 
 
 

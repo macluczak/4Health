@@ -20,8 +20,6 @@ class TempActivity : AppCompatActivity() {
         binding =  ActivityTempBinding.inflate(layoutInflater)
 
 
-        val tempText = findViewById<TextView>(R.id.textTemp)
-        var imageView = findViewById<ImageView>(R.id.imageTemp)
 
 
 //        val key = BuildConfig.GoogleMap_ApiKey

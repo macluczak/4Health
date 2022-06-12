@@ -1,6 +1,7 @@
 package com.macluczak.a2health.Activity
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.drawable.AnimationDrawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,11 +22,22 @@ import com.macluczak.a2health.ViewPagerAdapter
 import com.macluczak.a2health.databinding.ActivityMainBinding
 import javax.xml.transform.Templates
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEventListener {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var fab: FloatingActionButton
     private lateinit var sensorManager: SensorManager
+
+
+    fun hideSystemUI(window: Window) {
+
+        val decorView: View = window.getDecorView()
+        var uiVisibility: Int = decorView.getSystemUiVisibility()
+        uiVisibility = uiVisibility or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        decorView.setSystemUiVisibility(uiVisibility)
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -33,6 +47,10 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
                 it,
                 SensorManager.SENSOR_DELAY_UI,
                 SensorManager.SENSOR_DELAY_UI)
+
+            if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                hideSystemUI(window)
+            }
         }
     }
 
@@ -49,6 +67,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
             addFragment(GenreFragment(), "Category")
             addFragment(TracksFragment(), "Home")
             addFragment(GeneralStatsFragment(), "Recent")
+
 
 
         }
@@ -113,6 +132,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         else{
 
             setUpPagerViewDefault()
+
 
         }
 

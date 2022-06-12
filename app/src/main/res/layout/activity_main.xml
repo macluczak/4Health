@@ -40,6 +40,7 @@
             android:background="@color/green_active"
             app:tabGravity="fill"
             app:tabMode="fixed"
+            app:tabIndicatorColor="@color/grayIcon"
 
             app:tabTextColor="@color/white"/>
 

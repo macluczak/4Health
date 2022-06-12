@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.SplashActivity"
-    android:background="@color/green_active">
+    android:background="@color/defaultMain"
+    >
 
 
 
@@ -27,8 +28,9 @@
           android:layout_height="128sp"
           android:layout_centerVertical="true"
           android:background="@drawable/ic_baseline_directions_run_24"
-          android:translationY="25sp"
-          android:translationX="-128sp"/>
+          android:backgroundTint="@color/green_active"
+          android:translationX="-128sp"
+          android:translationY="25sp" />
 
 
 
@@ -67,11 +69,15 @@
         android:layout_height="wrap_content"
         android:text="4HEALTH"
         android:gravity="center"
-        android:translationY="-12dp"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif-black"
-        android:letterSpacing="0.06"
-        android:textSize="72sp"
+        android:translationY="-4dp"
+        android:textColor="@color/defaultMain"
+        android:fontFamily="@font/archivo_black"
+        android:letterSpacing="0.03"
+        android:textSize="64sp"
+        android:shadowDy="10"
+        android:shadowDx="10"
+        android:shadowRadius="1"
+        android:shadowColor="@color/gray100"
         />
 
 
