@@ -20,19 +20,25 @@
         android:letterSpacing="0.02"
         android:padding="5sp"
         android:paddingHorizontal="10sp"
+        android:text="Categories"
+        android:layout_marginBottom="-20sp"
 
-        android:text="Categories" />
+
+        android:textSize="18sp" />
 
 
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
 
     android:id="@+id/layoutCardView"
+    android:layout_below="@+id/pageTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardCornerRadius="50sp"
     android:backgroundTint="@color/cardview_light_background"
     android:elevation="20sp"
     android:translationY="40sp"
+    app:strokeColor="@color/white"
+    app:strokeWidth="3sp"
 
     >
 
@@ -208,7 +214,7 @@
 
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
 
 
 

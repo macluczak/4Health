@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCFFFFFF"
+    android:background="@color/defaultMain"
     app:layoutDescription="@xml/fragment_tracks_scene"
     tools:context=".Fragments.TracksFragment">
 
