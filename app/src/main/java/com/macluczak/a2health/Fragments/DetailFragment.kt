@@ -1,5 +1,9 @@
 package com.macluczak.a2health.Fragments
 
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.os.TraceCompat.isEnabled
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -18,6 +24,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.macluczak.a2health.*
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TracksAdapter
@@ -35,6 +42,9 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
     private lateinit var binding: FragmentDetailBinding
     lateinit var trackDetail: Track
+    lateinit var fab: FloatingActionButton
+
+
 
     companion object {
         lateinit var idMap: String
@@ -282,4 +292,4 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
         }
 
 
-    }
+}

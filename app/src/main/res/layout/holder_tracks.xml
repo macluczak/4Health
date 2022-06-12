@@ -13,6 +13,7 @@
     app:cardCornerRadius="15sp"
     app:cardBackgroundColor="#FFFFFF"
     android:elevation="4dp"
+    android:id="@+id/holder"
     >
 
 

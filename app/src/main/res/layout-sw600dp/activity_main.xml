@@ -53,20 +53,20 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/AppBarLayout"
-        android:layout_marginStart="30sp"
-        android:layout_marginTop="30sp"
-        android:layout_marginEnd="30sp"
-        android:layout_marginBottom="30sp"
-        android:backgroundTint="@color/green_active"
-        android:src="@drawable/edit_ic"
-        app:rippleColor="@color/GR1_2_1"
-        app:tint="@color/white" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fab"-->
+<!--        android:layout_width="60sp"-->
+<!--        android:layout_height="60sp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_above="@+id/AppBarLayout"-->
+<!--        android:layout_marginStart="30sp"-->
+<!--        android:layout_marginTop="30sp"-->
+<!--        android:layout_marginEnd="30sp"-->
+<!--        android:layout_marginBottom="30sp"-->
+<!--        android:backgroundTint="@color/green_active"-->
+<!--        android:src="@drawable/edit_ic"-->
+<!--        app:rippleColor="@color/GR1_2_1"-->
+<!--        app:tint="@color/white" />-->
 
 
 

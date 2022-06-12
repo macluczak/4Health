@@ -22,12 +22,14 @@ import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.FragmentGeneralStatsBinding
 import com.macluczak.a2health.databinding.FragmentGenreBinding
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 
 class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAdapter.TrackInterface  {
     lateinit var binding: FragmentGeneralStatsBinding
     lateinit var db: DBHelper
     lateinit var mainCallback: TracksFragment.MainCallback
+    var mostUsedID by Delegates.notNull<Int>()
 
     override fun onResume() {
         super.onResume()
@@ -49,15 +51,15 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
                 Log.d("LISTCHECK", "INIT| IS recentList EMPTY: ${recentList.isEmpty()}")
 
                 val numbersByElement = statsList.groupingBy { it.trackID }.eachCount()
-                val mostUsedID = numbersByElement.maxByOrNull { it.value }?.key
+                mostUsedID = numbersByElement.maxByOrNull { it.value }?.key!!
                 Log.d("MOST USED TRACK", "ID: $mostUsedID")
 
-                val mostUsedTrack = mostUsedID?.let { db.getTrack(it) }
-                binding.txtMostViewed.text = mostUsedTrack?.title
-                binding.bestDay.text = mostUsedTrack?.bestDay
-                binding.bestTime.text = mostUsedTrack?.bestTime
-                binding.LastDay.text = mostUsedTrack?.lastDay
-                binding.LastTime.text = mostUsedTrack?.lastTime
+                val mostUsedTrack = mostUsedID.let { db.getTrack(it) }
+                binding.txtMostViewed.text = mostUsedTrack.title
+                binding.bestDay.text = mostUsedTrack.bestDay
+                binding.bestTime.text = mostUsedTrack.bestTime
+                binding.LastDay.text = mostUsedTrack.lastDay
+                binding.LastTime.text = mostUsedTrack.lastTime
 
                 Glide.with(requireContext())
                     .load("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg")
@@ -91,6 +93,10 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
 
                 if (binding.gridLayoutDiff.isVisible) {
                     binding.progressbar.visibility = View.GONE
+
+                    binding.imgMostViewed.setOnClickListener {
+                        mainCallback.clickCallback(mostUsedID)
+                    }
 
                 }
             }

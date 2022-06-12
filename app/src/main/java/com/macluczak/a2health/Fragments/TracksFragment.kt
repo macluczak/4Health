@@ -1,6 +1,8 @@
 package com.macluczak.a2health.Fragments
 
 import android.annotation.SuppressLint
+import android.hardware.Sensor
+import android.hardware.SensorEvent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,6 +29,7 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
     lateinit var mainCallback:MainCallback
     lateinit var db: DBHelper
     lateinit var weekStats: ArrayList<Int>
+
 
     fun countDayStats(index: Int, value: String){
         var current = weekStats[index]

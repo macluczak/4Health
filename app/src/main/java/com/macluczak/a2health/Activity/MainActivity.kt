@@ -2,8 +2,13 @@ package com.macluczak.a2health.Activity
 
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -14,10 +19,28 @@ import com.macluczak.a2health.ViewPagerAdapter
 import com.macluczak.a2health.databinding.ActivityMainBinding
 import javax.xml.transform.Templates
 
-class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
+class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEventListener {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var fab: FloatingActionButton
+    private lateinit var sensorManager: SensorManager
+
+    override fun onResume() {
+        super.onResume()
+
+        sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.also {
+            sensorManager.registerListener(this,
+                it,
+                SensorManager.SENSOR_DELAY_UI,
+                SensorManager.SENSOR_DELAY_UI)
+        }
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(this)
+    }
 
     fun setUpPagerViewDefault(){
 
@@ -71,17 +94,9 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fab = binding.fab
-//
-//        val intent = Intent(this, TempActivity::class.java)
-//        this.startActivity(intent)
 
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
-
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.flFragment, tracksFragment)
-//            commit()
-//        }
 
 
         if(binding.flFragmentDetail != null){
@@ -98,34 +113,20 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
         else{
 
             setUpPagerViewDefault()
-//            val animationDrawable = binding.mainactivityBackground.background as AnimationDrawable
-//            animationDrawable.apply{
-//
-//                setExitFadeDuration(2000)
-//
-//            }.start()
+
         }
 
 
-        fab.setOnClickListener {
-//            if(binding.flFragmentDetail != null){
-//                val addTrackFragment = AddTrackFragment()
-//
-//                supportFragmentManager.beginTransaction().apply {
-//                    replace(R.id.flFragmentDetail, addTrackFragment)
-//                    commit()
-//                }
-//            }
-//            else{
-//                val intent = Intent(this, AddTrackActivity::class.java)
-//                this.startActivity(intent)
-//            }
+        binding.fab?.setOnClickListener {
+
             val intent = Intent(this, AddTrackActivity::class.java)
             this.startActivity(intent)
 
         }
 
     }
+
+
 
 
     override fun clickCallback(position: Int) {
@@ -142,6 +143,32 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback {
             intent.putExtra("id", position)
             this.startActivity(intent)
         }
+
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+                if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
+            val x = event.values[0]
+            val y = event.values[1]
+            val z = event.values[2]
+
+            binding.fab?.apply {
+
+                rotationX = (-y+5) * 4f
+                rotationY = -x * 4f
+
+                rotation = -x
+
+//                translationX = -x * -5
+//                translationY = -y * 5
+                Log.d("SENSOR", "($x, $y)")
+            }
+
+        }
+
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
 
     }
 
