@@ -101,54 +101,61 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         val tracklist = db.getAllTracks()
         weekStats = arrayListOf(0,0,0,0,0,0,0)
 
-        setHomeStats()
+        if(tracklist.isNotEmpty()) {
 
 
-        val labels = ArrayList<BarEntry>()
-        labels.add(BarEntry(0f, weekStats[0].toFloat()))
-        labels.add(BarEntry(1f, weekStats[1].toFloat()))
-        labels.add(BarEntry(2f, weekStats[2].toFloat()))
-        labels.add(BarEntry(3f, weekStats[3].toFloat()))
-        labels.add(BarEntry(4f, weekStats[4].toFloat()))
-        labels.add(BarEntry(5f, weekStats[5].toFloat()))
-        labels.add(BarEntry(6f, weekStats[6].toFloat()))
+            setHomeStats()
 
 
+            val labels = ArrayList<BarEntry>()
+            labels.add(BarEntry(0f, weekStats[0].toFloat()))
+            labels.add(BarEntry(1f, weekStats[1].toFloat()))
+            labels.add(BarEntry(2f, weekStats[2].toFloat()))
+            labels.add(BarEntry(3f, weekStats[3].toFloat()))
+            labels.add(BarEntry(4f, weekStats[4].toFloat()))
+            labels.add(BarEntry(5f, weekStats[5].toFloat()))
+            labels.add(BarEntry(6f, weekStats[6].toFloat()))
 
-        val barLabelSet = BarDataSet(labels, "Labels")
-        val xlabel = arrayOf("Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun")
 
-        val data = BarData(barLabelSet)
-        binding.chartDetail?.apply {
-            axisRight.setDrawGridLines(false)
-            axisLeft.setDrawGridLines(false)
-            xAxis.setDrawGridLines(false)
-            axisRight.setDrawAxisLine(false)
-            axisLeft.setDrawAxisLine(false)
-            xAxis.setDrawAxisLine(false)
-            isClickable = false
-            isDoubleTapToZoomEnabled = false
-            isDoubleTapToZoomEnabled = false
-            legend.isEnabled = false
-            axisLeft.setDrawLabels(false)
-            axisRight.setDrawLabels(false)
+            val barLabelSet = BarDataSet(labels, "Labels")
+            val xlabel = arrayOf("Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun")
+
+            val data = BarData(barLabelSet)
+            binding.chartDetail?.apply {
+                axisRight.setDrawGridLines(false)
+                axisLeft.setDrawGridLines(false)
+                xAxis.setDrawGridLines(false)
+                axisRight.setDrawAxisLine(false)
+                axisLeft.setDrawAxisLine(false)
+                xAxis.setDrawAxisLine(false)
+                isClickable = false
+                isDoubleTapToZoomEnabled = false
+                isDoubleTapToZoomEnabled = false
+                legend.isEnabled = false
+                axisLeft.setDrawLabels(false)
+                axisRight.setDrawLabels(false)
 //            xAxis.setDrawLabels(false)
-            xAxis.position = XAxis.XAxisPosition.BOTTOM
-            xAxis.valueFormatter = IndexAxisValueFormatter(xlabel)
-            description.isEnabled = false
-            xAxis.valueFormatter
+                xAxis.position = XAxis.XAxisPosition.BOTTOM
+                xAxis.valueFormatter = IndexAxisValueFormatter(xlabel)
+                description.isEnabled = false
+                xAxis.valueFormatter
 
-            binding.chartDetail!!.data = data
+                binding.chartDetail!!.data = data
+            }
+
+
+            binding.chartDetail?.animateY(1800)
+            binding.chartDetail?.setTouchEnabled(false)
+
+
+            val adapter = TracksAdapter(tracklist, this)
+            binding.rvTracks.adapter = adapter
+            binding.rvTracks.layoutManager = LinearLayoutManager(context)
         }
-
-
-        binding.chartDetail?.animateY(1800)
-        binding.chartDetail?.setTouchEnabled(false)
-
-
-        val adapter = TracksAdapter(tracklist, this)
-        binding.rvTracks.adapter = adapter
-        binding.rvTracks.layoutManager = LinearLayoutManager(context)
+        else{
+            binding.chartDetail?.visibility = View.GONE
+            binding.chartDetail?.setNoDataText("Add Tracks!")
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.macluczak.a2health.Adapters.Track
+import com.macluczak.a2health.Adapters.TrackStats
 import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.Adapters.TracksAdapterMode
 import com.macluczak.a2health.DBHelper
@@ -30,6 +31,7 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
     lateinit var db: DBHelper
     lateinit var mainCallback: TracksFragment.MainCallback
     var mostUsedID by Delegates.notNull<Int>()
+    lateinit var statsList: ArrayList<TrackStats>
 
     override fun onResume() {
         super.onResume()
@@ -42,7 +44,7 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
             try {
                 db = DBHelper(requireContext())
 
-                val statsList = db.getAllStats()
+                statsList = db.getAllStats()
                 val recentOrderList = statsList.reversed()
                 val fdList = ArrayList<Int>()
                 val recentList = ArrayList<Track>()
@@ -50,49 +52,53 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
                 Log.d("LISTCHECK", "INIT| IS FDLIST EMPTY: ${fdList.isEmpty()}")
                 Log.d("LISTCHECK", "INIT| IS recentList EMPTY: ${recentList.isEmpty()}")
 
-                val numbersByElement = statsList.groupingBy { it.trackID }.eachCount()
-                mostUsedID = numbersByElement.maxByOrNull { it.value }?.key!!
-                Log.d("MOST USED TRACK", "ID: $mostUsedID")
+                if(statsList.isNotEmpty()) {
 
-                val mostUsedTrack = mostUsedID.let { db.getTrack(it) }
-                binding.txtMostViewed.text = mostUsedTrack.title
-                binding.bestDay.text = mostUsedTrack.bestDay
-                binding.bestTime.text = mostUsedTrack.bestTime
-                binding.LastDay.text = mostUsedTrack.lastDay
-                binding.LastTime.text = mostUsedTrack.lastTime
+                    val numbersByElement = statsList.groupingBy { it.trackID }.eachCount()
+                    mostUsedID = numbersByElement.maxByOrNull { it.value }?.key!!
+                    Log.d("MOST USED TRACK", "ID: $mostUsedID")
 
-                Glide.with(requireContext())
-                    .load("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg")
+                    val mostUsedTrack = mostUsedID.let { db.getTrack(it) }
+                    binding.txtMostViewed.text = mostUsedTrack.title
+                    binding.bestDay.text = mostUsedTrack.bestDay
+                    binding.bestTime.text = mostUsedTrack.bestTime
+                    binding.LastDay.text = mostUsedTrack.lastDay
+                    binding.LastTime.text = mostUsedTrack.lastTime
+
+                    Glide.with(requireContext())
+                        .load("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg")
 //            .load("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76&key=${key}")
-                    .fallback(R.drawable.edit_ic)
-                    .placeholder(R.drawable.checked_fav)
-                    .error(R.drawable.ic_baseline_list_alt_24)
-                    .centerCrop()
-                    .into(binding.imgMostViewed)
+                        .fallback(R.drawable.edit_ic)
+                        .placeholder(R.drawable.checked_fav)
+                        .error(R.drawable.ic_baseline_list_alt_24)
+                        .centerCrop()
+                        .into(binding.imgMostViewed)
 
-                for(i in recentOrderList.indices){
+                    for (i in recentOrderList.indices) {
 
-                    if(recentList.size < 10){
-                        if(!fdList.contains(recentOrderList[i].trackID)){
+                        if (recentList.size < 10) {
+                            if (!fdList.contains(recentOrderList[i].trackID)) {
 
-                            recentList.add(db.getTrack(recentOrderList[i].trackID))
-                            fdList.add(recentOrderList[i].trackID)
+                                recentList.add(db.getTrack(recentOrderList[i].trackID))
+                                fdList.add(recentOrderList[i].trackID)
 
+                            }
                         }
+
                     }
 
+                    val adapter = TracksAdapter(recentList, this@GeneralStatsFragment)
+                    binding.rvRecent.adapter = adapter
+                    binding.rvRecent.layoutManager = LinearLayoutManager(context)
+
+                    binding.gridLayoutDiff.visibility = View.VISIBLE
                 }
-
-                val adapter = TracksAdapter(recentList, this@GeneralStatsFragment)
-                binding.rvRecent.adapter = adapter
-                binding.rvRecent.layoutManager = LinearLayoutManager(context)
-
-                binding.gridLayoutDiff.visibility = View.VISIBLE
 
             } finally {
 
-                if (binding.gridLayoutDiff.isVisible) {
-                    binding.progressbar.visibility = View.GONE
+                binding.progressbar.visibility = View.GONE
+                if (statsList.isNotEmpty()) {
+
 
                     binding.imgMostViewed.setOnClickListener {
                         mainCallback.clickCallback(mostUsedID)

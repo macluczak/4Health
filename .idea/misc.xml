@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.202" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/4health_ic_foreground.xml" value="0.149" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/checked_fav.xml" value="0.199" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/edit_ic.xml" value="0.149" />
@@ -10,9 +11,11 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradient102.xml" value="0.1675" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradient103.xml" value="0.1675" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradient104.xml" value="0.1115" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradientDefault.xml" value="0.202" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradient_list100.xml" value="0.103" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.128" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_baseline_bar_chart_24.xml" value="0.128" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_baseline_directions_run_24.xml" value="0.202" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.128" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_baseline_list_alt_24.xml" value="0.1625" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/ic_baseline_view_stream_24.xml" value="0.128" />
@@ -28,6 +31,7 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout-w720dp/activity_main.xml" value="0.22085889570552147" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_add_track.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_splash.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_temp.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_track_details.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_add_track.xml" value="0.32135416666666666" />

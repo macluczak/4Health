@@ -11,53 +11,50 @@
     android:clickable="true"
     app:rippleColor="@color/green_active"
     app:cardCornerRadius="15sp"
-    app:cardBackgroundColor="#FFFFFF"
+    app:cardBackgroundColor="@color/grayIcon"
     android:elevation="4dp"
     >
-
-
-
     <RelativeLayout
-        android:padding="10sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00002E02">
+        android:layout_height="match_parent">
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvImage"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            app:cardCornerRadius="25sp"
-            android:layout_above="@id/trackTitle"
-            android:elevation="5sp">
+            android:background="#00002E02"
+            android:foreground="@drawable/gradient_default">
 
             <ImageView
                 android:id="@+id/trackImage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
-
-        </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
         <TextView
+            android:padding="10sp"
             android:id="@+id/trackTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            android:fontFamily="serif-monospace"
-            android:text=""
-            android:textSize="26sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.05"
+            android:text="Street 20"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:lines="1"
+            android:textColor="@color/white"
             tools:text="Street 20" />
 
 
 
-
-
     </RelativeLayout>
+
+
+
+
 
 
 </com.google.android.material.card.MaterialCardView>
