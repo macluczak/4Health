@@ -53,7 +53,8 @@
         android:backgroundTint="@color/green_active"
         android:layout_above="@+id/AppBarLayout"
         android:layout_alignParentEnd="true"
-        android:layout_margin="30sp"
+        android:layout_marginHorizontal="30sp"
+        android:layout_marginVertical="15sp"
         android:src="@drawable/edit_ic"
         app:tint="@color/white"
         />

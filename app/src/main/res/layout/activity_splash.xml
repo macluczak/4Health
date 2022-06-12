@@ -26,8 +26,9 @@
           android:layout_width="128sp"
           android:layout_height="128sp"
           android:layout_centerVertical="true"
+          android:background="@drawable/ic_baseline_directions_run_24"
           android:translationY="25sp"
-          android:background="@drawable/ic_baseline_directions_run_24" />
+          android:translationX="-128sp"/>
 
 
 

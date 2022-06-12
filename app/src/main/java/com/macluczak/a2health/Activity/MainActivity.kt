@@ -46,9 +46,9 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
         val adapter = ViewPagerAdapter(supportFragmentManager).apply {
 
-            addFragment(GenreFragment(), "Genre")
+            addFragment(GenreFragment(), "Category")
             addFragment(TracksFragment(), "Home")
-            addFragment(GeneralStatsFragment(), "Statistics")
+            addFragment(GeneralStatsFragment(), "Recent")
 
 
         }
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
-        binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_bar_chart_24)
+        binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
 
     }
 
@@ -69,9 +69,9 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
         val adapter = ViewPagerAdapter(supportFragmentManager).apply {
 
-            addFragment(GenreFragment(), "Genre")
+            addFragment(GenreFragment(), "Category")
             addFragment(TracksFragment(), "Home")
-            addFragment(GeneralStatsFragment(), "Statistics")
+            addFragment(GeneralStatsFragment(), "Recent")
             addFragment(AddTrackFragment(), "Add")
 
 
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
-        binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_bar_chart_24)
+        binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
         binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_add_24)
 
     }
