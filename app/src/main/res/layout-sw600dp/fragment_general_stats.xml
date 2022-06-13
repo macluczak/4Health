@@ -58,7 +58,7 @@
                 android:columnCount="1"
                 android:descendantFocusability="blocksDescendants"
                 android:rowCount="3"
-                android:visibility="visible">
+                android:visibility="invisible">
 
 
                 <com.google.android.material.card.MaterialCardView
