@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.TimerFragment">
 
     <TextView
@@ -12,14 +13,18 @@
         android:text="00:00:00"
         android:textSize="40sp"
         android:layout_centerHorizontal="true"/>
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/timerButton"
-        android:layout_below="@id/Timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/Timer"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/grayIcon"
+        app:rippleColor="@color/green_active"
+        android:textColor="@color/green_400"
         android:text="Start">
 
-    </Button>
+    </com.google.android.material.button.MaterialButton>
 
 </RelativeLayout>

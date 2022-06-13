@@ -74,10 +74,7 @@
         android:fontFamily="@font/archivo_black"
         android:letterSpacing="0.03"
         android:textSize="64sp"
-        android:shadowDy="10"
-        android:shadowDx="10"
-        android:shadowRadius="1"
-        android:shadowColor="@color/gray100"
+
         />
 
 

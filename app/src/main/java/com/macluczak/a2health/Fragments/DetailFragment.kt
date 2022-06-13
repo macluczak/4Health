@@ -19,6 +19,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -91,20 +92,36 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
             Log.d("TIME_CALC", "DETAIL TRACK ID: ${trackDetail.id}")
 
 
-            binding.idTxt.text = trackDetail.id
-            binding.titleTxt.text = trackDetail.title
-            binding.distanceTxt.text = trackDetail.distance
-            binding.durationtxt.text = trackDetail.duration
-            binding.startAddr.text = trackDetail.startAdress
-            binding.endAddr.text = trackDetail.stopAdress
+
+            binding.titleTxt?.text = trackDetail.title
+            binding.distanceTxt?.text = trackDetail.distance
+            binding.EstTime?.text = "Est. Time ${trackDetail.duration}"
+            binding.startAddr?.text = "Start: ${trackDetail.startAdress}"
+            binding.endAddr?.text ="Finish: ${trackDetail.stopAdress}"
+
+            binding.trackImage?.let {
+                Glide.with(requireContext())
+                    .load(trackDetail.locationView)
+
+                    .fallback(R.drawable.ic_baseline_image_24)
+                    .placeholder(R.drawable.ic_baseline_image_24)
+                    .error(R.drawable.ic_baseline_hide_image_24)
+                    .centerCrop()
+                    .into(it)
+            }
 
             if (trackDetail.lastTime.isBlank()) {
-                binding.statsCV?.visibility = View.GONE
+
+                binding.lastTime.text = "Last Time: N/A"
+                binding.lastDay.text = ""
+                binding.bestTime.text = "Best Time: N/A"
+                binding.bestDay.text = ""
+
             } else {
-                binding.lastTime.text = trackDetail.lastTime
-                binding.lastDay.text = trackDetail.lastDay
-                binding.bestTime.text = trackDetail.bestTime
-                binding.bestDay.text = trackDetail.bestDay
+                binding.lastTime.text = "Last Time: ${trackDetail.lastTime}"
+                binding.lastDay.text = "${trackDetail.lastDay}"
+                binding.bestTime.text = "Best Time: ${trackDetail.bestTime}"
+                binding.bestDay.text = "${trackDetail.bestDay}"
 
             }
 
@@ -152,30 +169,17 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
                 }
 
-//            }
-//            else if(viewModel.page == 1){
-//                binding.flStatsLayout?.visibility = View.VISIBLE
-//                binding.cvbg.visibility = View.GONE
-//                binding.nsvCard?.visibility = View.GONE
-//                binding.fab.visibility = View.GONE
-//                val runDetailFragment = RunDetailFragment.trackStats(id)
-//                childFragmentManager.beginTransaction().apply {
-//                    replace(R.id.flStatsLayout, runDetailFragment)
-//                    commit()
-//                }
-//
-//            }
 
 
             } else {
 //            if track not selected
 
-                binding.idTxt.text = " "
+
                 binding.mapCV.visibility = View.GONE
-                binding.statsCV.visibility = View.GONE
                 binding.timerCV.visibility = View.GONE
-                binding.titleTxt.text = "Choose Track"
+                binding.titleTxt?.text = "Choose Track"
                 binding.fab.visibility = View.GONE
+
 
             }
 
@@ -240,7 +244,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
             Log.d("TIME_CALC", "TRACK STATS ID: ${trackDetail.id}")
 
-            if (trackDetail.bestTime.isBlank()) {
+            if (trackDetail.bestDay.isBlank()) {
                 binding.bestTime.text = time
                 binding.bestDay.text = formatedDate
                 dbHelper.updateTrackBestTime(trackDetail.id.toInt(), time, formatedDate)
@@ -283,10 +287,6 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
                 }
 
 
-            }
-
-            if (binding.statsCV.isVisible == false) {
-                binding.statsCV.visibility = View.VISIBLE
             }
 
         }

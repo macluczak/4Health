@@ -144,7 +144,6 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
             }
 
 
-            binding.chartDetail?.animateY(1800)
             binding.chartDetail?.setTouchEnabled(false)
 
 
@@ -162,6 +161,7 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTracksBinding.bind(view)
         mainCallback = requireActivity() as MainCallback
+        binding.chartDetail?.animateY(1800)
 
 
     }
