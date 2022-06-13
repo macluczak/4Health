@@ -17,30 +17,50 @@
 
 
     <RelativeLayout
-        android:padding="10sp"
+        android:padding="15sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#00002E02">
 
         <TextView
             android:id="@+id/runTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:fontFamily="serif-monospace"
-            android:text=""
-            android:textSize="26sp"
-            tools:text="Street 20" />
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.05"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="00:00:00"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/runDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:fontFamily="serif-monospace"
-            android:text=""
-            android:textSize="26sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.05"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="Street 20"
+            android:textColor="@color/green_active"
+            android:textSize="18sp"
             tools:text="Monday" />
+
+        <TextView
+            android:id="@+id/runDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/runDay"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.05"
+            android:lines="1"
+            android:maxLines="1"
+            android:textSize="18sp"
+            tools:text="01.01.2022" />
 
 
 

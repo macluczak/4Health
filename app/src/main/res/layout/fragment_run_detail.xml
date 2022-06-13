@@ -3,23 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.RunDetailFragment">
-    <TextView
-        android:id="@+id/statsPageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stats Page"
-        android:layout_marginBottom="20sp"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.RunDetailFragment"
+    android:background="@color/defaultMain">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/statsPageTitle"
-        android:id="@+id/rvStats"
+    <TextView
+        android:layout_marginTop="30sp"
+        android:id="@+id/titleTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
+
+        android:layout_marginBottom="-20sp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:letterSpacing="0.02"
+        android:padding="5sp"
+        android:paddingHorizontal="10sp"
+        android:text="Track History"
 
 
-        android:paddingBottom="200dp"
-         />
+        android:textSize="18sp"
+
+        />
+
+
+    <com.google.android.material.card.MaterialCardView
+        app:strokeWidth="3dp"
+        app:strokeColor="@color/white"
+        android:backgroundTint="@color/defaultMain"
+        app:cardCornerRadius="50sp"
+        android:layout_below="@id/titleTxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationY="40sp"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/rvStats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="10sp"
+            android:padding="20sp"
+            android:layout_marginBottom="40dp"
+            />
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
 
 </RelativeLayout>

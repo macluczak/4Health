@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#CCFFFFFF"
     app:layoutDescription="@xml/fragment_tracks_scene"
-    tools:context=".Fragments.TracksFragment">
+    tools:context=".Fragments.TracksFragment"
+    android:backgroundTint="@color/defaultMain">
 
 
 
@@ -28,25 +29,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:fontFamily="@font/abril"
+        android:fontFamily="sans-serif-black"
+
 
         android:text="Your\n\n\n"
-        android:textSize="60sp"
+        android:textSize="54sp"
         android:textStyle="bold"
-        android:paddingTop="40sp"
+        android:paddingTop="10sp"
+        android:paddingLeft="5sp"
 
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TextView
         android:id="@+id/helloText1"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/abril"
-        android:text="Daily\n\n\n"
-        android:paddingTop="40sp"
-        android:textSize="60sp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Daily\n\n\n\n"
+        android:paddingTop="18sp"
+        android:textSize="54sp"
         android:textStyle="bold"
-        android:textColor="@color/gray100"
+        android:textColor="@color/grayIcon"
         app:layout_constraintTop_toTopOf="@id/helloText0"
         app:layout_constraintLeft_toRightOf="@id/helloText0" />
 
@@ -54,22 +58,32 @@
         android:id="@+id/helloText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/abril"
-        android:text="\nTrack\n\n"
-        android:paddingTop="35sp"
-        android:textSize="60sp"
+        android:fontFamily="sans-serif-thin"
+        android:text="\n\nTracks...\n\n\n\n"
+        android:paddingTop="8sp"
+        android:paddingLeft="15sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/helloText0" />
+        app:layout_constraintTop_toBottomOf="@id/helloText0"
+        />
 
     <TextView
         android:id="@+id/helloText3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/abril"
-        android:paddingTop="9sp"
-        android:text="\n\n4Health.\n\n"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+        android:letterSpacing="0.03"
+        android:paddingTop="100sp"
+        android:shadowColor="@color/white"
+        android:shadowDx="15"
+        android:shadowDy="15"
+        android:shadowRadius="1"
+
+
+        android:text="4Health.\n\n"
         android:textColor="@color/green_active"
-        android:textSize="68sp"
+        android:textSize="60sp"
         android:textStyle="bold"
 
 
@@ -77,12 +91,14 @@
 
 
 
-<!--    </RelativeLayout>-->
+    <!--    </RelativeLayout>-->
+
     <com.github.mikephil.charting.charts.BarChart
+        android:translationY="-20sp"
         android:layout_below="@id/cvbg"
         android:id="@+id/chartDetail"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
+        android:layout_height="80sp"
         android:clickable="false"
         android:padding="20sp"
         android:layout_marginBottom="10sp"
@@ -91,8 +107,8 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
 
-
     <androidx.recyclerview.widget.RecyclerView
+        android:translationY="-20sp"
         android:id="@+id/rvTracks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

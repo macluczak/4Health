@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
     fun setUpPagerViewTablet(){
 
-        fab.visibility = View.INVISIBLE
+//        fab.visibility = View.INVISIBLE
 
         val adapter = ViewPagerAdapter(supportFragmentManager).apply {
 

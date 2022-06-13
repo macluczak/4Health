@@ -1,9 +1,11 @@
 package com.macluczak.a2health.Activity
 
 import android.app.PendingIntent.getActivity
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import com.macluczak.a2health.Fragments.DetailFragment
@@ -16,6 +18,21 @@ import java.security.AccessController.getContext
 class DetailsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityTrackDetailsBinding
+
+    fun hideSystemUI(window: Window) {
+
+        val decorView: View = window.getDecorView()
+        var uiVisibility: Int = decorView.getSystemUiVisibility()
+        uiVisibility = uiVisibility or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        decorView.setSystemUiVisibility(uiVisibility)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            hideSystemUI(window)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

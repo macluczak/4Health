@@ -213,6 +213,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:paddingHorizontal="15sp"
                             android:id="@+id/startAddr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -251,6 +252,7 @@
 
 
                         <TextView
+                            android:paddingHorizontal="15sp"
                             android:id="@+id/endAddr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

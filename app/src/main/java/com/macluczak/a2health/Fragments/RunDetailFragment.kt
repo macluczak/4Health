@@ -37,28 +37,10 @@ class RunDetailFragment : Fragment(R.layout.fragment_run_detail) {
             binding.rvStats.adapter = adapter
             binding.rvStats.layoutManager = LinearLayoutManager(context)
 
-            binding.statsPageTitle.text = id.toString()
-
-
 
 
         }
 
-//        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                if (id != null) {
-//                    Log.d("CALLBACK", "callback pressed 0")
-//
-//                    val viewModel: DetailViewModel by viewModels({ requireParentFragment() })
-//                    viewModel.page = 0
-//
-//                    this.isEnabled = false
-//
-//                    parentFragmentManager.popBackStackImmediate()
-//
-//                }
-//            }
-//        })
 
 
     }

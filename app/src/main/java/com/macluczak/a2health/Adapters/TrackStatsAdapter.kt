@@ -20,6 +20,7 @@ class TrackStatsAdapter(val stats: List<TrackStats>): RecyclerView.Adapter<Track
 
             runTime.text = trackstats.runTime
             runDay.text = trackstats.runDay
+            runDate.text = trackstats.runDate
 
 
         }

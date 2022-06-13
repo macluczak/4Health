@@ -30,8 +30,7 @@ class TracksAdapterMode(val tracks: List<Track>, private val trackInterface: Tra
 
         holder.binding.apply {
             Glide.with(holder.itemView)
-                .load("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg")
-//            .load("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=46.414382,10.013988&heading=151.78&pitch=-0.76&key=${key}")
+                .load(track.locationView)
                 .fallback(R.drawable.ic_baseline_image_24)
                 .placeholder(R.drawable.ic_baseline_image_24)
                 .error(R.drawable.ic_baseline_hide_image_24)

@@ -80,9 +80,9 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 //            if(viewModel.page == 0) {
 
             binding.flStatsLayout?.visibility = View.GONE
-            binding.cvbg.visibility = View.VISIBLE
+            binding.cvbg?.visibility = View.VISIBLE
             binding.nsvCard?.visibility = View.VISIBLE
-            binding.fab.visibility = View.VISIBLE
+            binding.fab?.visibility = View.VISIBLE
 
             idMap = id.toString()
 
@@ -112,23 +112,23 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
             if (trackDetail.lastTime.isBlank()) {
 
-                binding.lastTime.text = "Last Time: N/A"
-                binding.lastDay.text = ""
-                binding.bestTime.text = "Best Time: N/A"
-                binding.bestDay.text = ""
+                binding.lastTime?.text = "Last Time: N/A"
+                binding.lastDay?.text = ""
+                binding.bestTime?.text = "Best Time: N/A"
+                binding.bestDay?.text = ""
 
             } else {
-                binding.lastTime.text = "Last Time: ${trackDetail.lastTime}"
-                binding.lastDay.text = "${trackDetail.lastDay}"
-                binding.bestTime.text = "Best Time: ${trackDetail.bestTime}"
-                binding.bestDay.text = "${trackDetail.bestDay}"
+                binding.lastTime?.text = "Last Time: ${trackDetail.lastTime}"
+                binding.lastDay?.text = "${trackDetail.lastDay}"
+                binding.bestTime?.text = "Best Time: ${trackDetail.bestTime}"
+                binding.bestDay?.text = "${trackDetail.bestDay}"
 
             }
 
 
 
 
-            binding.mapCV.visibility = View.VISIBLE
+            binding.mapCV?.visibility = View.VISIBLE
             val mapOfTrack = MapsFragment()
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 replace(R.id.flFragmentDetailMap, mapOfTrack)
@@ -144,9 +144,9 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
             if (viewModel.page == 1) {
                 binding.flStatsLayout?.visibility = View.VISIBLE
-                binding.cvbg.visibility = View.GONE
+                binding.cvbg?.visibility = View.GONE
                 binding.nsvCard?.visibility = View.GONE
-                binding.fab.visibility = View.GONE
+                binding.fab?.visibility = View.GONE
                 val runDetailFragment = RunDetailFragment.trackStats(id)
                 parentFragmentManager.beginTransaction().apply {
                     replace(R.id.flStatsLayout, runDetailFragment)
@@ -154,11 +154,11 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
                 }
             }
 
-                binding.fab.setOnClickListener {
+                binding.fab?.setOnClickListener {
                     binding.flStatsLayout?.visibility = View.VISIBLE
-                    binding.cvbg.visibility = View.GONE
+                    binding.cvbg?.visibility = View.GONE
                     binding.nsvCard?.visibility = View.GONE
-                    binding.fab.visibility = View.GONE
+                    binding.fab?.visibility = View.GONE
                     val runDetailFragment = RunDetailFragment.trackStats(id)
                     viewModel.page = 1
                     parentFragmentManager.beginTransaction().apply {
@@ -175,10 +175,13 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 //            if track not selected
 
 
-                binding.mapCV.visibility = View.GONE
-                binding.timerCV.visibility = View.GONE
-                binding.titleTxt?.text = "Choose Track"
-                binding.fab.visibility = View.GONE
+                binding.mapCV?.visibility = View.GONE
+                binding.timerCV?.visibility = View.GONE
+                binding.fab?.visibility = View.GONE
+                binding.cvbg.visibility = View.GONE
+                binding.emptyView?.visibility = View.VISIBLE
+            binding.mapDetailcv?.visibility = View.GONE
+
 
 
             }
@@ -190,10 +193,10 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
                             Log.d("CALLBACK", "callback pressed 0")
 
                             viewModel.page = 0
-                            binding.flStatsLayout.visibility = View.GONE
-                            binding.cvbg.visibility = View.VISIBLE
-                            binding.nsvCard.visibility = View.VISIBLE
-                            binding.fab.visibility = View.VISIBLE
+                            binding.flStatsLayout?.visibility = View.GONE
+                            binding.cvbg?.visibility = View.VISIBLE
+                            binding.nsvCard?.visibility = View.VISIBLE
+                            binding.fab?.visibility = View.VISIBLE
 
                             parentFragmentManager.popBackStack()
 
@@ -221,8 +224,8 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
 
 
-            binding.lastTime.text = time
-            binding.lastDay.text = formatedDate
+            binding.lastTime?.text = "Last Time: ${time}"
+            binding.lastDay?.text = "${formatedDate}"
 
 
             var runDay = when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
@@ -245,8 +248,8 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
             Log.d("TIME_CALC", "TRACK STATS ID: ${trackDetail.id}")
 
             if (trackDetail.bestDay.isBlank()) {
-                binding.bestTime.text = time
-                binding.bestDay.text = formatedDate
+                binding.bestTime?.text = "Best Time: ${time}"
+                binding.bestDay?.text = "${formatedDate}"
                 dbHelper.updateTrackBestTime(trackDetail.id.toInt(), time, formatedDate)
 
 
@@ -281,8 +284,8 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
                 if (totalBest >= totalLast) {
                     Log.d("TIME_CALC ", "TOTAL summary ${totalBest >= totalLast}")
-                    binding.bestTime.text = time
-                    binding.bestDay.text = formatedDate
+                    binding.bestTime?.text = "Best Time: ${time}"
+                    binding.bestDay?.text = "${formatedDate}"
                     dbHelper.updateTrackBestTime(trackDetail.id.toInt(), time, formatedDate)
                 }
 
