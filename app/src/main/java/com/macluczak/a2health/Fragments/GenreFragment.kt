@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -79,11 +80,16 @@ class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapterMode.Track
                     binding.rcHard.visibility = View.GONE
                 }
 
+
                 binding.gridLayoutDiff.visibility = View.VISIBLE
 
             } finally {
 
                 if (binding.gridLayoutDiff.isVisible) {
+
+                    val fade_in = AnimationUtils.loadAnimation(requireContext(), R.anim.up_float_quick)
+                    binding.gridLayoutDiff.startAnimation(fade_in)
+
                     binding.progressbar.visibility = View.GONE
 
                 }

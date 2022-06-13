@@ -6,6 +6,7 @@ import android.hardware.SensorEvent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -162,6 +163,15 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         binding = FragmentTracksBinding.bind(view)
         mainCallback = requireActivity() as MainCallback
         binding.chartDetail?.animateY(1800)
+        val upfloat = AnimationUtils.loadAnimation(requireContext(), R.anim.up_float_quick)
+        val fadein = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+
+
+        binding.helloText3?.startAnimation(fadein)
+
+        binding.helloText0?.startAnimation(fadein)
+        binding.helloText1?.startAnimation(fadein)
+        binding.helloText2?.startAnimation(fadein)
 
 
     }
