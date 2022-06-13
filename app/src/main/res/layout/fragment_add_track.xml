@@ -1,90 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.AddTrackFragment"
     android:orientation="vertical"
+    android:background="@color/defaultMain"
     android:weightSum="5">
 
 
-
-    <RelativeLayout
+    <TextView
+        android:id="@+id/titleTxt"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/archivo_black"
+        android:text="Add New Track"
+        android:textColor="@color/green_active"
+        android:textSize="20sp"
+        android:layout_marginTop="20sp"
+        android:gravity="center|bottom"
+        android:letterSpacing="0.03"
+        android:layout_marginBottom="-22sp"
 
-        <TextView
-            android:id="@+id/titleTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add New Track!"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/abril"
-            android:textSize="30sp"
-            android:textColor="@color/green_active"
-
-            />
-
-        <EditText
-            android:id="@+id/editTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/titleTxt"
-            android:layout_centerHorizontal="true"
-            android:layout_marginHorizontal="70sp"
-            android:layout_marginTop="20sp"
-            android:hint="Title of track"
-            android:textColor="@color/gray100"
-            android:maxLines="1"
-            android:inputType="textPersonName"/>
+        />
 
 
+    <com.google.android.material.card.MaterialCardView
+        app:strokeWidth="3dp"
+        app:strokeColor="@color/white"
+        android:backgroundTint="@color/defaultMain"
+        app:cardCornerRadius="50sp"
+        android:layout_below="@id/titleTxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationY="40sp"
+        >
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/mapCV"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20sp"
-            android:layout_below="@id/editTxt"
-            app:cardCornerRadius="50sp"
-            >
+            android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/flAddTrackMap"
-                android:layout_below="@+id/titleTxt"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="0dp"
+                android:layout_weight="4">
 
-        </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:id="@+id/editTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="50sp"
+                    android:layout_marginTop="20sp"
+                    android:hint="Title of track"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textColor="@color/gray100" />
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mapCV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20sp"
+                    android:layout_below="@id/editTxt"
+                    app:cardCornerRadius="50sp"
+                    >
+
+                    <FrameLayout
+                        android:id="@+id/flAddTrackMap"
+                        android:layout_below="@+id/titleTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/grayIcon"
+                    app:rippleColor="@color/green_active"
+                    android:textColor="@color/green_400"
+                    android:text="Add"/>
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
 
 
 
     </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="add"/>
-
-
-
-    </RelativeLayout>
-
-
-
-
-
-
-    </LinearLayout>
