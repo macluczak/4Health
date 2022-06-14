@@ -27,6 +27,11 @@ class GenreFragment : Fragment(R.layout.fragment_genre), TracksAdapterMode.Track
     lateinit var db: DBHelper
     lateinit var mainCallback: TracksFragment.MainCallback
 
+    override fun onPause() {
+        super.onPause()
+        binding.gridLayoutDiff.visibility = View.INVISIBLE
+    }
+
     override fun onResume() {
         super.onResume()
 

@@ -14,12 +14,15 @@ import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.macluczak.a2health.Fragments.*
 import com.macluczak.a2health.R
 import com.macluczak.a2health.ViewPagerAdapter
 import com.macluczak.a2health.databinding.ActivityMainBinding
+import java.util.*
 import javax.xml.transform.Templates
 
 @Suppress("DEPRECATION")
@@ -64,6 +67,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
         val adapter = ViewPagerAdapter(supportFragmentManager).apply {
 
+
             addFragment(GenreFragment(), "Categories")
             addFragment(TracksFragment(), "Home")
             addFragment(GeneralStatsFragment(), "Recent")
@@ -78,6 +82,30 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
         binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
+
+//       binding.vpFragment.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+//           override fun onPageScrolled(
+//               position: Int,
+//               positionOffset: Float,
+//               positionOffsetPixels: Int,
+//           ) {
+//           }
+//
+//           override fun onPageSelected(position: Int) {
+//               if(binding.vpFragment.currentItem == 0){
+//
+//               }
+//               if(binding.vpFragment.currentItem == 2){
+//                   Toast.makeText(this@MainActivity, "2", Toast.LENGTH_SHORT).show()
+//               }
+//           }
+//
+//           override fun onPageScrollStateChanged(state: Int) {
+//           }
+//
+//       })
+
+
 
     }
 

@@ -34,12 +34,13 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
     var mostUsedID by Delegates.notNull<Int>()
     lateinit var statsList: ArrayList<TrackStats>
 
+    override fun onPause() {
+        super.onPause()
+        binding.gridLayoutDiff.visibility = View.INVISIBLE
+    }
+
     override fun onResume() {
         super.onResume()
-
-
-
-
 
         lifecycleScope.launchWhenStarted {
             try {
