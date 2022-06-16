@@ -325,13 +325,6 @@
 
 
 
-            <FrameLayout
-                android:id="@+id/flStatsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone" />
-
-
         </RelativeLayout>
 
 
@@ -383,6 +376,13 @@
         android:src="@drawable/ic_baseline_list_alt_24"
         app:rippleColor="@color/GR1_2_1"
         app:tint="@color/white" />
+
+
+    <FrameLayout
+        android:id="@+id/flStatsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 
