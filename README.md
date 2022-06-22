@@ -27,6 +27,8 @@ The application uses a number of libraries to improve performance, visually impr
 
 <ul>
   <li><b>Android Jetpack View Binding</b></li>
+  
+  <li><b> Kotlin coroutines</b></li> 
 
  <li><b>MPAndroidChart</b> – data visualization </li>
 
