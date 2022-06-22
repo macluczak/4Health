@@ -26,19 +26,19 @@ The "4Health" application for Android systems (in the mobile version and for tab
 The application uses a number of libraries to improve performance, visually improve the UI and provide data using external APIs, which include:
 
 <ul>
-<li>Android Jetpack View Binding </li>
+  <li><b>Android Jetpack View Binding</b></li>
 
- <li>MPAndroidChart – data visualization </li>
+ <li><b>MPAndroidChart</b> – data visualization </li>
 
- <li>Maps SDK for Android - Access to Google Maps. </li>
+ <li><b>Maps SDK for Android</b> - Access to Google Maps. </li>
 
- <li>Directions API – Google API, request in the form of JSON provides component points between the beginning and end of the route, estimates the time of the route, determines the distance and returns postal addresses of specific points. </li>
+ <li><b>Directions API</b> – Google API, request in the form of JSON provides component points between the beginning and end of the route, estimates the time of the route, determines the distance and returns postal addresses of specific points. </li>
 
-<li>Street View Static API- Google API, request with an argument containing a specific location on the map returns its static view from Google Street View in the form of an image. </li>
+<li><b>Street View Static API</b> - Google API, request with an argument containing a specific location on the map returns its static view from Google Street View in the form of an image. </li>
 
-<li>Glide – a library that loads images from a link in imageView, additionally creates an image token for a given url, thus it does not require the Internet to reload / repeatedly the image.  </li>
+<li><b>Glide</b> – a library that loads images from a link in imageView, additionally creates an image token for a given url, thus it does not require the Internet to reload / repeatedly the image.  </li>
 
-<li>Volley – Making requests/ queries to external APIs / https pages  </li>
+<li><b>Volley</b> – Making requests/ queries to external APIs / https pages  </li>
   
 </ul>
 
@@ -53,6 +53,8 @@ The application uses a number of libraries to improve performance, visually impr
     
   </tr> 
 </table>
+
+<i>1-2: Route detail card, presents the title of the route, its length, estimated travel time, postal addresses of the beginning and end of the route, also contains a fragment of the map with the route and a fragment of the timer 3: A fragment of the user's activity history on a given route, time of overcoming, date of setting the record and day of the week</i>
 
 ## Preview screenshots of the finished mobile application – Track Details Screen
 
