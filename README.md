@@ -78,9 +78,9 @@ The application implements a full range of animations using ObjectAnimator in Sp
 
 <table >
   <tr>
-    <td> <b> Start Screen + Splash Screen </b> </td>
+    <td> <b> Start Screen</br> + </br>Splash Screen </b> </td>
     <td> <img src="https://user-images.githubusercontent.com/77066408/175133342-0b2caaae-a5ed-4578-b12c-57469fd3f343.gif"  alt="1"></td>
-    <td> <b> Track Details + Track History </b> </td>
+    <td> <b> Track Details</br> + </br>Track History </b> </td>
     <td> <img src="https://user-images.githubusercontent.com/77066408/175134130-d9d9daff-34d6-4a13-b33b-490e591b3d49.gif"  alt="2"></td>
  
     
