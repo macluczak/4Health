@@ -21,7 +21,7 @@ The "4Health" application for Android systems (in the mobile version and for tab
 </ul>
 
 ----------------
-## Implemented libraries / APIs
+## Implemented external libraries / APIs
 
 The application uses a number of libraries to improve performance, visually improve the UI and provide data using external APIs, which include:
 
