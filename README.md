@@ -69,6 +69,32 @@ The application uses a number of libraries to improve performance, visually impr
 
 <i>1-2: The route detail card, presents the title of the route, its length, estimated travel time, postal addresses of the beginning and end of the route, also contains a fragment of the map with the route and a fragment of the timer 3: A fragment of the user's activity history on a given route, the time of overcoming, the date of setting the record and the day of the week. </i>
 
+-------------
+## UI + Animation preview
 
-![4healthgithub_1_AdobeExpress](https://user-images.githubusercontent.com/77066408/175133342-0b2caaae-a5ed-4578-b12c-57469fd3f343.gif)
+The application implements a full range of animations using ObjectAnimator in SplashActivity, the possibilities of animation components of the application with animations written in xml files and using MotionLayout on the main page or ...
+
+<table >
+  <tr>
+    <td> <b> Start Screen + Splash Screen </b> </td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175133342-0b2caaae-a5ed-4578-b12c-57469fd3f343.gif"  alt="1"></td>
+    <td> <b> Track Details + Track History </b> </td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175134130-d9d9daff-34d6-4a13-b33b-490e591b3d49.gif"  alt="2"></td>
+ 
+    
+  </tr> 
+</table>
+
+additionally animations reacting to the change in values returned from the accelerometer sensor.
+
+<table>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175136396-60359aa3-b2c3-4654-a5ad-7f73e3a81e87.png"  alt="1"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175136557-b92b5c45-c6ba-4170-80b8-e58c6ae5e382.png"  alt="2"></td>
+  </tr> 
+</table>
+
+
+
+
 
