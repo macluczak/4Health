@@ -122,7 +122,7 @@ Presented fragment of the stopwatch implemented inside the fragment of details. 
 
 The application does not require an Internet connection in order to use previously created routes. The returned request results have been thoughtfully saved in the internal database to ensure offline use (waypoints returned from the directions API and site views from the Static Street View API).
 
-For privacy and security reasons, the API key for Google's interfaces is stored in the local.properties file (excluded in the .gitignore file) and returns by reference via BuildConfig.<name> 
+<i> For privacy and security reasons, the API key for Google's interfaces is stored in the local.properties file (excluded in the .gitignore file) and returns by reference via BuildConfig.  &lt; name  &gt; </i>
 
 
 
