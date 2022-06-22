@@ -116,5 +116,13 @@ Presented fragment of the stopwatch implemented inside the fragment of details. 
 ![Screenshot_20220616-185102](https://user-images.githubusercontent.com/77066408/175141901-a8d51156-7566-438f-8c6c-d3ad52625af2.png)
 
 
+-----------------------
+## Additional information
+
+
+The application does not require an Internet connection in order to use previously created routes. The returned request results have been thoughtfully saved in the internal database to ensure offline use (waypoints returned from the directions API and site views from the Static Street View API).
+
+For privacy and security reasons, the API key for Google's interfaces is stored in the local.properties file (excluded in the .gitignore file) and returns by reference via BuildConfig.<name> 
+
 
 
