@@ -67,5 +67,7 @@ The application uses a number of libraries to improve performance, visually impr
   </tr> 
 </table>
 
+<i>1-2: The route detail card, presents the title of the route, its length, estimated travel time, postal addresses of the beginning and end of the route, also contains a fragment of the map with the route and a fragment of the timer 3: A fragment of the user's activity history on a given route, the time of overcoming, the date of setting the record and the day of the week (the screenshot shows data for a different route than in Figures 4-5). </i>
+
 
 
