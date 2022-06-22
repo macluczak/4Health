@@ -97,6 +97,22 @@ additionally animations reacting to the change in values returned from the accel
 </table>
 
 
+---------------
+## Nesting a fragment of a dynamic stopwatch in a fragment of detail
+
+Presented fragment of the stopwatch implemented inside the fragment of details. In order to ensure the correct operation of the application when changing the orientation of the position, the ViewModel class was used, which is part of the Android Jetpack. Due to the longer lifecycle behavior, the class does not reconstruct itself when changing the orientation of the device. 
+
+<table>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175140036-d8976d98-d13b-4670-abb4-d48b58342c6d.png"  alt="1"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175140268-0c6f063d-b672-4cff-8d56-b434dd26cdea.png"  alt="2"></td>
+  </tr> 
+</table>
+
+---------------
+## Presentation of the tablet version
+![Screenshot_20220616-185102](https://user-images.githubusercontent.com/77066408/175141901-a8d51156-7566-438f-8c6c-d3ad52625af2.png)
+
 
 
 
