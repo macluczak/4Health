@@ -21,7 +21,7 @@ The "4Health" application for Android systems (in the mobile version and for tab
 </ul>
 
 ----------------
-## Implemented external libraries / APIs
+## Implemented libraries / APIs
 
 The application uses a number of libraries to improve performance, visually improve the UI and provide data using external APIs, which include:
 
@@ -29,6 +29,8 @@ The application uses a number of libraries to improve performance, visually impr
 • `Android Jetpack View Binding`
   
 • `Kotlin coroutines`
+
+• `SQLite Database`
 
 • `MPAndroidChart` – data visualization
 
