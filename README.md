@@ -32,7 +32,7 @@ The application uses a number of libraries to improve performance, visually impr
 
 • `MPAndroidChart` – data visualization
 
-• `Maps SDK for Android`> - Access to Google Maps. 
+• `Maps SDK for Android` - Access to Google Maps. 
 
 • `Directions API` – Google API, request in the form of JSON provides component points between the beginning and end of the route, estimates the time of the route, determines the distance and returns postal addresses of specific points. 
 
