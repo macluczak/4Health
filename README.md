@@ -70,4 +70,5 @@ The application uses a number of libraries to improve performance, visually impr
 <i>1-2: The route detail card, presents the title of the route, its length, estimated travel time, postal addresses of the beginning and end of the route, also contains a fragment of the map with the route and a fragment of the timer 3: A fragment of the user's activity history on a given route, the time of overcoming, the date of setting the record and the day of the week. </i>
 
 
+![4healthgithub_1_AdobeExpress](https://user-images.githubusercontent.com/77066408/175133342-0b2caaae-a5ed-4578-b12c-57469fd3f343.gif)
 
