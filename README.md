@@ -45,4 +45,25 @@ The application uses a number of libraries to improve performance, visually impr
 ----------------------
 ## Preview screenshots of the finished mobile app - Start screen
 
-![image](https://user-images.githubusercontent.com/77066408/175124040-c4424a54-0f55-4eb1-9419-4799bcae53ff.png)
+<table>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175125697-a63666be-a5f8-416a-953b-b535c0458a77.png"  alt="1"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175125066-80e2d2e7-477c-41d0-b754-5b9647980eec.png"  alt="2"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175125935-6762536d-83cd-42a6-a886-bdd7cb4977a7.png"  alt="3"></td>
+    
+  </tr> 
+</table>
+
+## Preview screenshots of the finished mobile application – Track Details Screen
+
+<table>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175127428-b86b4f1f-4faa-41b8-a062-da2317900d1a.png"  alt="1"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175127571-091ca9e5-9e45-4359-a20f-fca23479434a.png"  alt="2"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/175127825-0a0d710c-b243-4019-b421-d5b8d6053f8e.png"  alt="3"></td>
+    
+  </tr> 
+</table>
+
+
+
