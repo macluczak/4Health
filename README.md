@@ -1,6 +1,6 @@
 # 4Health
 
----------------------
+--------------
 ## Brief description of the application
 
 The "4Health" application for Android systems (in the mobile version and for tablets) has been implemented fully using the Kotlin language, it is designed to support the physical activity of people practicing jogging, hiking, Nordic walking, cycling...  The tasks carried out by the application include, m.in: 
