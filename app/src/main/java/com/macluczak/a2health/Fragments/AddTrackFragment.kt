@@ -33,6 +33,7 @@ import org.json.JSONObject
 class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
     lateinit var binding: FragmentAddTrackBinding
     lateinit var viewModel: AddViewModel
+    lateinit var newMapsFragment: NewMapFragment
 
 
 
@@ -70,7 +71,7 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
         binding = FragmentAddTrackBinding.bind(view)
         viewModel = ViewModelProvider(requireActivity()).get(AddViewModel::class.java)
 
-        val newMapsFragment = NewMapFragment()
+        newMapsFragment = NewMapFragment()
         activity?.supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.flAddTrackMap, newMapsFragment)
             commit()
@@ -88,8 +89,18 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
             if (isOnline(requireContext())) {
                 if (newMapsFragment.markersList.size == 2 && binding.editTxt.text.isNotBlank()) {
 
-                    val key = BuildConfig.GoogleMap_ApiKey
-                    val ImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=600x400&location=${newMapsFragment.origin.position.latitude},${newMapsFragment.origin.position.longitude}&heading=151.78&pitch=-0.76&key=${key}"
+
+//                  W pełni świadomie umieszczam klucz API wewnątrz kodu
+//                  aby ułatwić ocenę kodu bez dodatkowych komplikacji.
+
+//                    val key = BuildConfig.GoogleMap_ApiKey
+                    val key ="AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
+
+//                  Klucze API domyślnie są pzechowywane w pliku "local.properties",
+//                  tym samym za pomocą pliku ".gitignore" nie są wysyłane do zdalnego repozytorium
+//                  w celu zapewnienia bezpieczeństwa przed kradzieżą klucza
+
+                    val ImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=600x400&radius=5000&location=${newMapsFragment.origin.position.latitude},${newMapsFragment.origin.position.longitude}&key=${key}"
 
                     val dbHelper = DBHelper(requireContext())
                     dbHelper.addTrack(
@@ -112,6 +123,14 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
 
 
                     )
+
+                    viewModel.title = ""
+                    binding.editTxt.text.clear()
+                    newMapsFragment = NewMapFragment()
+                    activity?.supportFragmentManager?.beginTransaction()?.apply {
+                        replace(R.id.flAddTrackMap, newMapsFragment)
+                        commit()
+                    }
 
                     Toast.makeText(requireContext(), "Track Created!", Toast.LENGTH_SHORT).show()
                 } else {

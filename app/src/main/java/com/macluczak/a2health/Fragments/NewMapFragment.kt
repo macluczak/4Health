@@ -26,6 +26,8 @@ import kotlin.properties.Delegates
 class NewMapFragment : Fragment() {
     lateinit var origin: Marker
     lateinit var destination: Marker
+    lateinit var imglat: String
+    lateinit var imglong: String
     var counter by Delegates.notNull<Int>()
     lateinit var markersList: ArrayList<String>
     lateinit var distance: String
@@ -38,7 +40,16 @@ class NewMapFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
         counter = 0
         markersList = arrayListOf()
-        val key = BuildConfig.GoogleMap_ApiKey
+
+//                  W pełni świadomie umieszczam klucz API wewnątrz kodu
+//                  aby ułatwić ocenę kodu bez dodatkowych komplikacji.
+
+//                    val key = BuildConfig.GoogleMap_ApiKey
+        val key = "AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
+
+//                  Klucze API domyślnie są pzechowywane w pliku "local.properties",
+//                  tym samym za pomocą pliku ".gitignore" nie są wysyłane do zdalnego repozytorium
+//                  w celu zapewnienia bezpieczeństwa przed kradzieżą klucza
 
 
         googleMap.setOnMapClickListener { click ->
@@ -47,7 +58,7 @@ class NewMapFragment : Fragment() {
 //            val centerLatLang: LatLng =
 //                googleMap.projection.visibleRegion.latLngBounds.center
 
-            if(markersList.size < 2 && !markersList.contains("origin")) {
+            if (markersList.size < 2 && !markersList.contains("origin")) {
 
                 origin = googleMap.addMarker(MarkerOptions().position(click)
                     .title("origin").draggable(true)
@@ -55,7 +66,7 @@ class NewMapFragment : Fragment() {
                 markersList.add(0, "origin")
                 counter = counter.inc()
 
-                if (markersList.size == 2){
+                if (markersList.size == 2) {
 
                     googleMap.run {
 
@@ -66,17 +77,19 @@ class NewMapFragment : Fragment() {
                             urlDirections,
                             Response.Listener<String> { response ->
                                 val jsonResponse = JSONObject(response)
-                                if (jsonResponse.has("status") && jsonResponse.getString("status").equals("OK")) {
+                                if (jsonResponse.has("status") && jsonResponse.getString("status")
+                                        .equals("OK")
+                                ) {
                                     val routes = jsonResponse.getJSONArray("routes")
                                     val legs = routes.getJSONObject(0).getJSONArray("legs")
                                     val steps = legs.getJSONObject(0).getJSONArray("steps")
                                     waypoints = legs.getJSONObject(0)
-                                    distance =  legs.getJSONObject(0).getJSONObject("distance")
+                                    distance = legs.getJSONObject(0).getJSONObject("distance")
                                         .getString("text")
-                                    duration =  legs.getJSONObject(0).getJSONObject("duration")
+                                    duration = legs.getJSONObject(0).getJSONObject("duration")
                                         .getString("text")
-                                    startAdress =  legs.getJSONObject(0).getString("start_address")
-                                    endAdress =  legs.getJSONObject(0).getString("end_address")
+                                    startAdress = legs.getJSONObject(0).getString("start_address")
+                                    endAdress = legs.getJSONObject(0).getString("end_address")
 
                                     if (routes.length() > 0 && legs.length() > 0 && steps.length() > 0) {
                                         for (i in 0 until steps.length()) {
@@ -89,12 +102,14 @@ class NewMapFragment : Fragment() {
                                             googleMap.addPolyline(PolylineOptions().addAll(path[i])
                                                 .color(Color.RED))
                                         }
+                                        imglat = path[1][1].latitude.toString()
+                                        imglong = path[1][1].longitude.toString()
                                     }
-                                }
-                                else{
+                                } else {
                                     origin.remove()
                                     markersList.remove(origin.title)
-                                    Toast.makeText(activity, "Road not found!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(activity, "Road not found!", Toast.LENGTH_SHORT)
+                                        .show()
 
                                 }
                             },
@@ -115,8 +130,7 @@ class NewMapFragment : Fragment() {
                     googleMap.animateCamera(cu)
                 }
 
-            }
-            else if(markersList.size < 2 && !markersList.contains("destination")) {
+            } else if (markersList.size < 2 && !markersList.contains("destination")) {
 
 
                 destination = googleMap.addMarker(MarkerOptions().position(click)
@@ -129,7 +143,7 @@ class NewMapFragment : Fragment() {
 
 
 
-                if (markersList.size == 2){
+                if (markersList.size == 2) {
 
                     googleMap.run {
 
@@ -140,17 +154,19 @@ class NewMapFragment : Fragment() {
                             urlDirections,
                             Response.Listener<String> { response ->
                                 val jsonResponse = JSONObject(response)
-                                if (jsonResponse.has("status") && jsonResponse.getString("status").equals("OK")) {
+                                if (jsonResponse.has("status") && jsonResponse.getString("status")
+                                        .equals("OK")
+                                ) {
                                     val routes = jsonResponse.getJSONArray("routes")
                                     val legs = routes.getJSONObject(0).getJSONArray("legs")
                                     val steps = legs.getJSONObject(0).getJSONArray("steps")
                                     waypoints = legs.getJSONObject(0)
-                                    distance =  legs.getJSONObject(0).getJSONObject("distance")
+                                    distance = legs.getJSONObject(0).getJSONObject("distance")
                                         .getString("text")
-                                    duration =  legs.getJSONObject(0).getJSONObject("duration")
+                                    duration = legs.getJSONObject(0).getJSONObject("duration")
                                         .getString("text")
-                                    startAdress =  legs.getJSONObject(0).getString("start_address")
-                                    endAdress =  legs.getJSONObject(0).getString("end_address")
+                                    startAdress = legs.getJSONObject(0).getString("start_address")
+                                    endAdress = legs.getJSONObject(0).getString("end_address")
                                     if (routes.length() > 0 && legs.length() > 0 && steps.length() > 0) {
                                         for (i in 0 until steps.length()) {
                                             val points =
@@ -162,12 +178,15 @@ class NewMapFragment : Fragment() {
                                             googleMap.addPolyline(PolylineOptions().addAll(path[i])
                                                 .color(Color.RED))
                                         }
+                                        imglat = path[1][1].latitude.toString()
+                                        imglong = path[1][1].longitude.toString()
+
                                     }
-                                }
-                                else{
+                                } else {
                                     destination.remove()
                                     markersList.remove(destination.title)
-                                    Toast.makeText(activity, "Road not found!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(activity, "Road not found!", Toast.LENGTH_SHORT)
+                                        .show()
 
                                 }
                             },
@@ -191,18 +210,16 @@ class NewMapFragment : Fragment() {
             }
 
 
-
         }
         googleMap.setOnMarkerClickListener { marker ->
             marker.remove()
             markersList.remove(marker.title)
             googleMap.clear()
-            if(markersList.contains("origin")){
+            if (markersList.contains("origin")) {
                 googleMap.addMarker(MarkerOptions().position(origin.position)
                     .title("origin").draggable(true)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))!!
-            }
-            else if(markersList.contains("destination")){
+            } else if (markersList.contains("destination")) {
                 googleMap.addMarker(MarkerOptions().position(destination.position)
                     .title("destination").draggable(true)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))!!
@@ -212,10 +229,6 @@ class NewMapFragment : Fragment() {
             true
 
         }
-
-
-
-
 
 
     }
