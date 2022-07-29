@@ -3,10 +3,6 @@
 ------------------
 ## Brief description of the application
 
-###  🟥 Warning: Do poprawnego działania aplikacji wymagane jest dodanie klucza API od Google w pliku local.properties implementujący interferjsy API: Maps SDK, Directions API,  Street View Static Api
-#### (dla bezpieczeństwa klucz nie został zaimportowany do publicznego repozytorium)
----------------
-
 The "4Health" application for Android systems (in the mobile version and for tablets) has been implemented fully using the Kotlin language, it is designed to support the physical activity of people practicing jogging, hiking, Nordic walking, cycling...  The tasks carried out by the application include, m.in: 
 
 <ul>
