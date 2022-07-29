@@ -89,8 +89,6 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
                 if (newMapsFragment.markersList.size == 2 && binding.editTxt.text.isNotBlank()) {
 
                     val key = BuildConfig.GoogleMap_ApiKey
-
-
                     val ImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=600x400&location=${newMapsFragment.origin.position.latitude},${newMapsFragment.origin.position.longitude}&heading=151.78&pitch=-0.76&key=${key}"
 
                     val dbHelper = DBHelper(requireContext())

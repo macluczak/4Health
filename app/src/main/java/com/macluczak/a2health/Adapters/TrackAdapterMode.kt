@@ -38,9 +38,6 @@ class TracksAdapterMode(val tracks: List<Track>, private val trackInterface: Tra
                 .into(trackImage)
 
             trackTitle.text = track.title
-
-
-
         }
     }
 
