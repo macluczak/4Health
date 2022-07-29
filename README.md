@@ -3,7 +3,7 @@
 ------------------
 ## Brief description of the application
 
-###  🟥 Warning: Do poprawnego działania aplikacji wymagany jest dodanie klucza API od Google w pliku local.properties implementujący interferjsy API: Maps SDK, Directions API,  Street View Static Api
+###  🟥 Warning: Do poprawnego działania aplikacji wymagane jest dodanie klucza API od Google w pliku local.properties implementujący interferjsy API: Maps SDK, Directions API,  Street View Static Api
 #### (dla bezpieczeństwa klucz nie został zaimportowany do publicznego repozytorium)
 ---------------
 
