@@ -35,18 +35,9 @@
 
 
 
-<!--        W pełni świadomie umieszczam klucz API wewnątrz kodu aby ułatwić ocenę kodu bez dodatkowych komplikacji.-->
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw" />
-
-<!--        Klucze API domyślnie są przechowywane w pliku "local.properties",-->
-<!--        tym samym za pomocą pliku ".gitignore" nie są wysyłane do zdalnego repozytorium-->
-<!--        w celu zapewnienia bezpieczeństwa przed kradzieżą klucza-->
-
-        <!--        <meta-data-->
-        <!--            android:name="com.google.android.maps.v2.API_KEY"-->
-        <!--            android:value="${GoogleMap_ApiKey}" />-->
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY"
+                    android:value="${GoogleMap_ApiKey}" />
 
         <meta-data
             android:name="preloaded_fonts"

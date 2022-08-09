@@ -90,15 +90,8 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
                 if (newMapsFragment.markersList.size == 2 && binding.editTxt.text.isNotBlank()) {
 
 
-//                  W pełni świadomie umieszczam klucz API wewnątrz kodu
-//                  aby ułatwić ocenę kodu bez dodatkowych komplikacji.
 
-//                    val key = BuildConfig.GoogleMap_ApiKey
-                    val key ="AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
-
-//                  Klucze API domyślnie są pzechowywane w pliku "local.properties",
-//                  tym samym za pomocą pliku ".gitignore" nie są wysyłane do zdalnego repozytorium
-//                  w celu zapewnienia bezpieczeństwa przed kradzieżą klucza
+                    val key = BuildConfig.GoogleMap_ApiKey
 
                     val ImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=600x400&radius=5000&location=${newMapsFragment.origin.position.latitude},${newMapsFragment.origin.position.longitude}&key=${key}"
 

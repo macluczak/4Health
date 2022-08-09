@@ -41,16 +41,7 @@ class NewMapFragment : Fragment() {
         counter = 0
         markersList = arrayListOf()
 
-//                  W pełni świadomie umieszczam klucz API wewnątrz kodu
-//                  aby ułatwić ocenę kodu bez dodatkowych komplikacji.
-
-//                    val key = BuildConfig.GoogleMap_ApiKey
-        val key = "AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
-
-//                  Klucze API domyślnie są pzechowywane w pliku "local.properties",
-//                  tym samym za pomocą pliku ".gitignore" nie są wysyłane do zdalnego repozytorium
-//                  w celu zapewnienia bezpieczeństwa przed kradzieżą klucza
-
+        val key = BuildConfig.GoogleMap_ApiKey
 
         googleMap.setOnMapClickListener { click ->
 
