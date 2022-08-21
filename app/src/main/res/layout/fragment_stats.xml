@@ -1,14 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.StatsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.StatsFragment"
+    android:background="@color/defaultMain">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
+
     <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="-20sp"
+        android:fontFamily="sans-serif-black"
+
+        android:gravity="center"
+        android:letterSpacing="0.02"
+        android:padding="5sp"
+        android:paddingHorizontal="10sp"
+        android:text="Statistics"
+
+        android:textSize="18sp" />
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:id="@+id/layoutCardView"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_below="@+id/pageTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:cardCornerRadius="50sp"
+        android:backgroundTint="@color/defaultMain"
+        android:elevation="20sp"
+        android:translationY="40sp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3sp"
 
-</FrameLayout>
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="20sp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvUsers"
+                android:layout_marginHorizontal="20sp"
+                style="@style/Widget.Material3.CardView.Filled"
+                android:backgroundTint="@color/defaultMain"
+                app:strokeColor="@color/white"
+                app:strokeWidth="3dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="40dp"
+
+                android:layout_alignParentTop="true">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20sp"
+                    android:paddingBottom="20sp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="your stats"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:letterSpacing="0.02"
+                        android:padding="5sp"
+                        android:layout_marginBottom="10sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+
+                                android:id="@+id/runCountTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="28sp"
+                                android:text="3"/>
+                            <TextView
+                                android:id="@+id/runCountLabelTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Runs"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                android:id="@+id/timeCountTxt"
+                                android:layout_width="wrap_content"
+                                android:textSize="28sp"
+                                android:layout_height="wrap_content"
+                                android:text="3"/>
+                            <TextView
+                                android:id="@+id/timeCountLabelTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Time"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                android:id="@+id/distanceCountTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="28sp"
+                                android:text="3.5"/>
+                            <TextView
+                                android:id="@+id/distanceCountLabelTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Distance"/>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+            <com.github.mikephil.charting.charts.BarChart
+
+                android:id="@+id/chartDetail"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:clickable="false"
+                android:padding="20sp"
+                android:layout_marginBottom="10sp"
+                android:layout_below="@id/cvUsers"
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+</RelativeLayout>
