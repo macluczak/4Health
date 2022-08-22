@@ -45,6 +45,10 @@ class RegisterFragment : Fragment() {
         viewModel.usernameAvailable.observe(viewLifecycleOwner){
             Log.d("USERNAME_AVAILABLE", "$it")
         }
+
+        viewModel.userCreated.observe(viewLifecycleOwner){
+            Log.d("USER_CREATED", "$it")
+        }
     }
 
 }

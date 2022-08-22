@@ -10,10 +10,11 @@ import kotlinx.coroutines.launch
 class LoginViewModel: ViewModel() {
     val repo = LoginRepo()
     val usernameAvailable = repo.usernameAvailable
+    val userCreated = repo.userCreated
 
 
 
     fun createAccount(username: String, password: String) {
-        repo.isUsernameAvailable(username)
+        repo.isUsernameAvailable(username, password)
     }
 }

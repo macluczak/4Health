@@ -14,27 +14,21 @@ class LoginRepo {
     val usernameAvailable = MutableLiveData<Boolean>()
 
     fun createAccount(username: String, password: String) {
-        val docData = hashMapOf(
-            username to "username",
-            password to "password"
-        )
-//        if (isUsernameAvailable(username)) {
-//            database.collection("users").document(username).set(UserModel(username, password))
-//                .addOnSuccessListener { Log.d("%%%%$$$$####", "createAccount: OK")}
-//                .addOnFailureListener{ Log.d("%%%%$$$$####", "createAccount: NON")}
-//            userCreated.postValue(true)
-//        } else {
-//            userCreated.postValue(false)
-//        }
-        database.collection("users").get()           .addOnSuccessListener { Log.d("%%%%$$$$####", "createAccount: OK")}
-            .addOnFailureListener{ Log.d("%%%%$$$$####", "createAccount: NON")}
-        userCreated.postValue(true)
+        database.collection("users").add(UserModel(username, password))
+            .addOnSuccessListener{
+                userCreated.postValue(true)
+            }
+            .addOnFailureListener{
+                userCreated.postValue(false)
+            }
     }
 
-    fun isUsernameAvailable(username: String){
-        val query = database.collection("users").whereEqualTo("username", username).get().addOnSuccessListener{
+
+    fun isUsernameAvailable(username: String, password: String){
+        database.collection("users").whereEqualTo("username", username).get().addOnSuccessListener{
             if (it.isEmpty){
                 usernameAvailable.postValue(true)
+                createAccount(username, password)
             } else {
                 usernameAvailable.postValue(false)
             }
