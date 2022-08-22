@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.macluczak.a2health" >
+    package="com.macluczak.a2health">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,17 +14,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.2Health" >
+        android:theme="@style/Theme.2Health">
+        <activity
+            android:name=".LoginAcvivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
         <activity
             android:name=".Activity.TempActivity"
@@ -33,12 +34,9 @@
             android:name=".Activity.AddTrackActivity"
             android:exported="false" />
 
-
-
-                <meta-data
-                    android:name="com.google.android.maps.v2.API_KEY"
-                    android:value="${GoogleMap_ApiKey}" />
-
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="${GoogleMap_ApiKey}" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -49,7 +47,6 @@
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
