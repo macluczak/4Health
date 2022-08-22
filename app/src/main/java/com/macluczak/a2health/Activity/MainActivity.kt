@@ -68,7 +68,8 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         val adapter = ViewPagerAdapter(supportFragmentManager).apply {
             addFragment(GenreFragment(), "Categories")
             addFragment(TracksFragment(), "Home")
-            addFragment(GeneralStatsFragment(), "Recent")        }
+            addFragment(GeneralStatsFragment(), "Recent")
+            addFragment(StatsFragment(), "Statistics")   }
         binding.vpFragment.adapter = adapter
         binding.vpFragment.currentItem = 1
         binding.tab.setupWithViewPager(binding.vpFragment)
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
         binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
+        binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_bar_chart_24)
 
 //       binding.vpFragment.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
 //           override fun onPageScrolled(
