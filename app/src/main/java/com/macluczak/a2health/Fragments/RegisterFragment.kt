@@ -43,7 +43,7 @@ class RegisterFragment : Fragment() {
         }
 
         viewModel.usernameAvailable.observe(viewLifecycleOwner){
-            print(it)
+            Log.d("USERNAME_AVAILABLE", "$it")
         }
     }
 
