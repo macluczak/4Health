@@ -41,6 +41,10 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+
+        viewModel.usernameAvailable.observe(viewLifecycleOwner){
+            print(it)
+        }
     }
 
 }

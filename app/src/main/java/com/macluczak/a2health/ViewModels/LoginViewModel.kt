@@ -8,19 +8,12 @@ import com.macluczak.a2health.Repositories.LoginRepo
 import kotlinx.coroutines.launch
 
 class LoginViewModel: ViewModel() {
-    var usernameAvailable = MutableLiveData<Boolean>()
     val repo = LoginRepo()
+    val usernameAvailable = repo.usernameAvailable
+
+
 
     fun createAccount(username: String, password: String) {
-        viewModelScope.launch {
-            kotlin.runCatching { repo.isUsernameAvailable(username) }
-                .onSuccess {
-                    Log.d("jvbisubyurbvjsbyvjyrv", "createAccount:fkjsdnfukrg ")
-                    if (it) {
-                        repo.createAccount(username, password)
-                    }
-                }
-                .onFailure { Log.d("Failure", "createAccount: Failure") }
-        }
+        repo.isUsernameAvailable(username)
     }
 }

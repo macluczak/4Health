@@ -11,6 +11,7 @@ class LoginRepo {
     val database = Firebase.firestore
 
     val userCreated = MutableLiveData<Boolean>()
+    val usernameAvailable = MutableLiveData<Boolean>()
 
     fun createAccount(username: String, password: String) {
         val docData = hashMapOf(
@@ -30,8 +31,15 @@ class LoginRepo {
         userCreated.postValue(true)
     }
 
-    fun isUsernameAvailable(username: String): Boolean {
-        val query = database.collection("users").whereEqualTo("username", username).get()
-        return query.result.isEmpty
+    fun isUsernameAvailable(username: String){
+        val query = database.collection("users").whereEqualTo("username", username).get().addOnSuccessListener{
+            if (it.isEmpty){
+                usernameAvailable.postValue(true)
+            } else {
+                usernameAvailable.postValue(false)
+            }
+        } .addOnFailureListener{
+            Log.d("FAILURE", "isUsernameAvailable: ")
+        }
     }
 }
