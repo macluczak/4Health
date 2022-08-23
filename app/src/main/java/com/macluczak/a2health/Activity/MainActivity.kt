@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
             addFragment(GenreFragment(), "Categories")
             addFragment(TracksFragment(), "Home")
             addFragment(GeneralStatsFragment(), "Recent")
-            addFragment(RegisterFragment(), "Login")}
+            addFragment(LoginFragment(), "Login")}
         binding.vpFragment.adapter = adapter
         binding.vpFragment.currentItem = 1
         binding.tab.setupWithViewPager(binding.vpFragment)
