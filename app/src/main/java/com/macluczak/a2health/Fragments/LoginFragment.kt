@@ -33,32 +33,33 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
-
+        binding.loginErrorView.text = ""
         user = arguments?.getParcelable("user") as? UserModel?
         if (user != null) {
             binding.loginUsernameInput.setText(user!!.username.toString())
         }
         binding.loginButton.setOnClickListener {
+            binding.loginErrorView.text = ""
             val username = binding.loginUsernameInput.text.toString()
             val password = binding.loginPasswordInput.text.toString()
             if (username.isNotBlank() && password.isNotBlank()) {
                 viewModel.loginToAccount(username, password)
             } else {
-                Toast.makeText(requireContext(), "Provide all data", Toast.LENGTH_LONG).show()
+                binding.loginErrorView.text = "Provide all data"
             }
         }
 
         viewModel.ifLogged.observe(viewLifecycleOwner) {
             if (it) {
-                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+                binding.loginErrorView.text = "Success"
             } else {
-                Toast.makeText(requireContext(), "Username or password is incorrect", Toast.LENGTH_LONG).show()
+                binding.loginErrorView.text = "Username or password is incorrect"
             }
         }
 
         viewModel.userAccount.observe(viewLifecycleOwner) {
             //TUTAJ MASZ USERMODEL CO DALEJ Z TYM ZROBISZ TO NIE WIEM XD
-            Toast.makeText(requireContext(), "${it.username}", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this.context, "${it.username}", Toast.LENGTH_SHORT).show()
         }
 
         binding.createAccount.setOnClickListener {
