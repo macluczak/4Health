@@ -1,5 +1,9 @@
 package com.macluczak.a2health
 
+import android.util.Log
+import com.macluczak.a2health.Repositories.LoginRepo
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*

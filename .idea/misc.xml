@@ -57,6 +57,12 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/holder_mode.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/holder_tracks.xml" value="0.4836223506743738" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/4Health/app/src/main/res/layout/holder_tracks.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/activity_login_acvivity.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_run_detail.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_tracks.xml" value="0.1" />
       </map>
     </option>
   </component>

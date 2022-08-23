@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "751093628851",
+    "project_id": "health-5c4c5",
+    "storage_bucket": "health-5c4c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751093628851:android:40c8e3983726323a14d5c6",
+        "android_client_info": {
+          "package_name": "com.macluczak.a2health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751093628851-sstuvrtiknjkslv2rtdcvlkiubm2kcfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAotKlIUSk2iPXKE24DqDZOIBXXFY9x7kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751093628851-sstuvrtiknjkslv2rtdcvlkiubm2kcfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751093628851:android:d509b08167b0e49114d5c6",
+        "android_client_info": {
+          "package_name": "com.mluczak.a2health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751093628851-sstuvrtiknjkslv2rtdcvlkiubm2kcfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAotKlIUSk2iPXKE24DqDZOIBXXFY9x7kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751093628851-sstuvrtiknjkslv2rtdcvlkiubm2kcfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
