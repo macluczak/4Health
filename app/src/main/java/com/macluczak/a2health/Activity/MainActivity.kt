@@ -69,7 +69,9 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
             addFragment(GenreFragment(), "Categories")
             addFragment(TracksFragment(), "Home")
             addFragment(GeneralStatsFragment(), "Recent")
-            addFragment(LoginFragment(), "Login")}
+            
+              addFragment(LoginFragment(), "Login")}
+
         binding.vpFragment.adapter = adapter
         binding.vpFragment.currentItem = 1
         binding.tab.setupWithViewPager(binding.vpFragment)
@@ -78,6 +80,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
         binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
         binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_account_circle_24)
+
 
 
 //       binding.vpFragment.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
