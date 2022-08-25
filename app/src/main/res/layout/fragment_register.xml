@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/registerLayout"
-    android:background="@color/white"
+    android:background="@color/defaultMain"
     tools:context=".Fragments.RegisterFragment">
 
     <TextView

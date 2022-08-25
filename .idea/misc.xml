@@ -7,6 +7,7 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.202" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/4health_ic_foreground.xml" value="0.149" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/checked_fav.xml" value="0.199" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/custombutton.xml" value="0.1845" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/edit_ic.xml" value="0.149" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradient101.xml" value="0.165" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/drawable/gradient102.xml" value="0.1675" />
@@ -48,12 +49,14 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_general_stats.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_genre.xml" value="0.335" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_maps.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_new_map.xml" value="0.32135416666666666" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_register.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_run_detail.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_stats.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_timer.xml" value="0.32135416666666666" />
-        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_tracks.xml" value="0.1" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_tracks.xml" value="0.32407407407407407" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/hodler_stats.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/holder_mode.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/holder_tracks.xml" value="0.4836223506743738" />

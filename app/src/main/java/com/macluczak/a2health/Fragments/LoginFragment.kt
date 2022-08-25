@@ -8,25 +8,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.macluczak.a2health.Interface.UserLogInterface
 import com.macluczak.a2health.Models.UserModel
 import com.macluczak.a2health.R
 import com.macluczak.a2health.ViewModels.LoginViewModel
 import com.macluczak.a2health.databinding.FragmentLoginBinding
 
-class LoginFragment : Fragment() {
+class LoginFragment() : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private var user: UserModel? = null
     private val viewModel: LoginViewModel by viewModels()
 
+    private val userInterface: UserLogInterface
+        get() = requireActivity() as UserLogInterface
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -38,28 +41,29 @@ class LoginFragment : Fragment() {
         if (user != null) {
             binding.loginUsernameInput.setText(user!!.username.toString())
         }
+
         binding.loginButton.setOnClickListener {
+
             binding.loginErrorView.text = ""
+
             val username = binding.loginUsernameInput.text.toString()
             val password = binding.loginPasswordInput.text.toString()
+
             if (username.isNotBlank() && password.isNotBlank()) {
-                viewModel.loginToAccount(username, password)
-            } else {
+                binding.progressbarlogin.visibility = View.VISIBLE
+
+                viewModel.loginToAccount(username, password) {
+
+                    if (it != null) it.username?.let { name -> userInterface.logIn(name) }
+                    else binding.loginErrorView.text = "invalid data"
+
+                    binding.progressbarlogin.visibility = View.GONE
+                }
+            }
+            else {
                 binding.loginErrorView.text = "Provide all data"
             }
-        }
 
-        viewModel.ifLogged.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.loginErrorView.text = "Success"
-            } else {
-                binding.loginErrorView.text = "Username or password is incorrect"
-            }
-        }
-
-        viewModel.userAccount.observe(viewLifecycleOwner) {
-            //TUTAJ MASZ USERMODEL CO DALEJ Z TYM ZROBISZ TO NIE WIEM XD
-//            Toast.makeText(this.context, "${it.username}", Toast.LENGTH_SHORT).show()
         }
 
         binding.createAccount.setOnClickListener {
@@ -80,5 +84,6 @@ class LoginFragment : Fragment() {
                 }
             }
     }
+
 
 }

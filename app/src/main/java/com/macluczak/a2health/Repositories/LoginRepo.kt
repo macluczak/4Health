@@ -6,6 +6,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.gson.Gson
 import com.macluczak.a2health.Models.UserModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 class LoginRepo {
 
@@ -14,7 +18,7 @@ class LoginRepo {
     val userCreated = MutableLiveData<Boolean>()
     val usernameAvailable = MutableLiveData<Boolean>()
     val createdUser = MutableLiveData<UserModel>()
-    val ifLoggedin = MutableLiveData<Boolean>()
+//    val ifLoggedin = MutableLiveData<Boolean>()
     val loggedUser = MutableLiveData<UserModel>()
 
     fun createAccount(username: String, password: String) {
@@ -42,22 +46,40 @@ class LoginRepo {
         }
     }
 
-    fun loginToAccount(username: String, password: String) {
+    fun loginToAccount(username: String, password: String, callback: (user: UserModel?) -> Unit) {
+
         database.collection("users").whereEqualTo("username", username).get().addOnSuccessListener{
             if (!it.isEmpty && it.documents[0].exists()) {
                 val model = if (!it.isEmpty) {
                     Gson().fromJson(Gson().toJson(it.documents[0].data), UserModel::class.java)
                 } else null
                 if (model!!.password!! == password) {
-                    ifLoggedin.postValue(true)
-                    loggedUser.postValue(model!!)
+                    loggedUser.postValue(model)
+                    callback(model)
                 } else {
-                    ifLoggedin.postValue(false)
+                    callback(null)
                 }
 
             } else {
-                ifLoggedin.postValue(false)
+                callback(null)
             }
+
+//        database.collection("users").whereEqualTo("username", username).get().addOnSuccessListener{
+//            if (!it.isEmpty && it.documents[0].exists()) {
+//                val model = if (!it.isEmpty) {
+//                    Gson().fromJson(Gson().toJson(it.documents[0].data), UserModel::class.java)
+//                } else null
+//                if (model!!.password!! == password) {
+//                    ifLoggedin.postValue(true)
+//                    loggedUser.postValue(model!!)
+//                } else {
+//                    ifLoggedin.postValue(false)
+//                }
+//
+//            } else {
+//                ifLoggedin.postValue(false)
+//
+//            }
         }
     }
 
