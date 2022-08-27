@@ -3,32 +3,31 @@ package com.macluczak.a2health.Fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.FragmentStatsBinding
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.collections.ArrayList
 
 
 class StatsFragment : Fragment(R.layout.fragment_stats) {
     lateinit var binding: FragmentStatsBinding
-
-
+    lateinit var user: String
     lateinit var db: DBHelper
     lateinit var weekStats: ArrayList<Int>
+
+    private fun getLoggedUser(): String {
+        val sharedScore = requireActivity().getSharedPreferences("com.example.myapplication.shared",0)
+        return sharedScore.getString("user", " ").toString()
+    }
 
 
     fun countDayStats(index: Int, value: String){
@@ -98,7 +97,13 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
     }
 
+
+
+
     override fun onResume() {
+        user = getLoggedUser()
+        binding.usernameTV.text = user
+
         super.onResume()
         db = DBHelper(requireContext())
 //        db.dropTable()

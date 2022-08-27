@@ -50,6 +50,13 @@
             android:layout_height="match_parent"
             android:paddingTop="20sp">
 
+            <TextView
+                android:id="@+id/usernameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="name" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvUsers"
                 android:layout_marginHorizontal="20sp"
@@ -168,19 +175,15 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-
-
-
             <com.github.mikephil.charting.charts.BarChart
 
                 android:id="@+id/chartDetail"
                 android:layout_width="match_parent"
                 android:layout_height="100sp"
-                android:clickable="false"
-                android:padding="20sp"
-                android:layout_marginBottom="10sp"
                 android:layout_below="@id/cvUsers"
-                />
+                android:layout_marginBottom="10sp"
+                android:clickable="false"
+                android:padding="20sp" />
 
 
 

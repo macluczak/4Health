@@ -32,5 +32,6 @@
 
     <color name="GR1_3_1">#d65bca</color>
     <color name="GR1_3_2">#21d190</color>
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>

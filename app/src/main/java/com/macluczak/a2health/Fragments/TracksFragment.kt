@@ -172,6 +172,7 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         binding.helloText0?.startAnimation(fadein)
         binding.helloText1?.startAnimation(fadein)
         binding.helloText2?.startAnimation(fadein)
+        binding.rvTracks.startAnimation(fadein)
 
 
     }

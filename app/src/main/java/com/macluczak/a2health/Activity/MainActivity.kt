@@ -1,31 +1,26 @@
 package com.macluczak.a2health.Activity
 
+
+import ZoomOutPageTransformer
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.drawable.AnimationDrawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.doOnAttach
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.tabs.TabLayout
-import com.google.firebase.firestore.auth.User
+import com.google.android.material.tabs.TabLayoutMediator
 import com.macluczak.a2health.Fragments.*
 import com.macluczak.a2health.Interface.UserLogInterface
 import com.macluczak.a2health.R
 import com.macluczak.a2health.ViewPagerAdapter
 import com.macluczak.a2health.databinding.ActivityMainBinding
-import java.util.*
-import javax.xml.transform.Templates
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEventListener,
@@ -35,6 +30,16 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
     lateinit var fab: FloatingActionButton
     private lateinit var sensorManager: SensorManager
     lateinit var userNick: String
+
+
+    private fun logUserIn(user: String) {
+        val sharedScore = this.getSharedPreferences("com.example.myapplication.shared", 0)
+        val edit = sharedScore.edit()
+        edit.putString("user", user)
+        edit.apply()
+
+
+    }
 
 
     fun hideSystemUI(window: Window) {
@@ -69,7 +74,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
     fun setUpPagerViewDefault(){
 
-        val adapter = ViewPagerAdapter(supportFragmentManager).apply {
+        val adapter = ViewPagerAdapter(this).apply {
             addFragment(GenreFragment(), "Categories")
             addFragment(GeneralStatsFragment(), "Recent")
             addFragment(TracksFragment(), "Home")
@@ -78,8 +83,14 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         }
 
         binding.vpFragment.adapter = adapter
-        binding.vpFragment.currentItem = 2
-        binding.tab.setupWithViewPager(binding.vpFragment)
+        binding.vpFragment.doOnAttach {
+            binding.vpFragment.setCurrentItem(2, false)
+        }
+        binding.vpFragment.setPageTransformer(ZoomOutPageTransformer())
+
+        TabLayoutMediator( binding.tab, binding.vpFragment ) { tab, position ->
+            tab.text = adapter.mFragmentTitleList[position]
+        }.attach()
 
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_history_24)
@@ -87,59 +98,45 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_bar_chart_24)
         binding.tab.getTabAt(4)?.setIcon(R.drawable.ic_baseline_account_circle_24)
 
-
-
-//       binding.vpFragment.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-//           override fun onPageScrolled(
-//               position: Int,
-//               positionOffset: Float,
-//               positionOffsetPixels: Int,
-//           ) {
-//           }
-//
-//           override fun onPageSelected(position: Int) {
-//               if(binding.vpFragment.currentItem == 0){
-//
-//               }
-//               if(binding.vpFragment.currentItem == 2){
-//                   Toast.makeText(this@MainActivity, "2", Toast.LENGTH_SHORT).show()
-//               }
-//           }
-//
-//           override fun onPageScrollStateChanged(state: Int) {
-//           }
-//
-//       })
-
-
-
     }
 
 
     fun setUpPagerViewTablet(){
 
-//        fab.visibility = View.INVISIBLE
+        fab.visibility = View.INVISIBLE
 
-        val adapter = ViewPagerAdapter(supportFragmentManager).apply {
-            addFragment(GenreFragment(), "Category")
-            addFragment(TracksFragment(), "Home")
+        val adapter = ViewPagerAdapter(this).apply {
+            addFragment(GenreFragment(), "Categories")
             addFragment(GeneralStatsFragment(), "Recent")
+            addFragment(TracksFragment(), "Home")
+            addFragment(StatsFragment(), "Statistics")
             addFragment(AddTrackFragment(), "Add")
+            addFragment(LoginFragment(), "Login")
         }
         binding.vpFragment.adapter = adapter
-        binding.vpFragment.currentItem = 1
-        binding.tab.setupWithViewPager(binding.vpFragment)
+        binding.vpFragment.doOnAttach {
+            binding.vpFragment.setCurrentItem(2, false)
+        }
+        binding.vpFragment.setPageTransformer(ZoomOutPageTransformer())
+
+        TabLayoutMediator( binding.tab, binding.vpFragment ) { tab, position ->
+            tab.text = adapter.mFragmentTitleList[position]
+        }.attach()
 
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
         binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
-        binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_add_24)
+        binding.tab.getTabAt(4)?.setIcon(R.drawable.ic_baseline_add_24)
+        binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_bar_chart_24)
+        binding.tab.getTabAt(5)?.setIcon(R.drawable.ic_baseline_account_circle_24)
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+       getLoggedUser().let { if(it.isNotBlank())
+           Toast.makeText(this, "Welcome, $it!", Toast.LENGTH_SHORT).show() }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -203,7 +200,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
                 if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
             val x = event.values[0]
             val y = event.values[1]
-            val z = event.values[2]
+//            val z = event.values[2]
 
             binding.fab?.apply {
 
@@ -227,9 +224,19 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
     override fun logIn(user: String) {
        this.userNick = user
+        logUserIn(userNick)
         binding.vpFragment.currentItem = 2
 
         Toast.makeText(this, "Welcome, $user!", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun logOut() {
+       logUserIn(" ")
+    }
+
+    override fun getLoggedUser(): String {
+        val sharedScore = this.getSharedPreferences("com.example.myapplication.shared",0)
+        return sharedScore.getString("user", " ").toString()
     }
 
 
