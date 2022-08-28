@@ -19,7 +19,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     companion object {
 
-        private val DATABASE_VER = 3
+        private val DATABASE_VER = 4
         private val DATABASE_NAME = "2Health.db"
 
         private val TABLE_NAME = "TRACKS"

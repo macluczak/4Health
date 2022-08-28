@@ -91,7 +91,8 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
 
 
 
-                    val key = BuildConfig.GoogleMap_ApiKey
+//                    val key = BuildConfig.GoogleMap_ApiKey
+                    val key = "AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
 
                     val ImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=600x400&radius=5000&location=${newMapsFragment.origin.position.latitude},${newMapsFragment.origin.position.longitude}&key=${key}"
 

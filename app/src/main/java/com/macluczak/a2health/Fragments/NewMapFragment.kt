@@ -41,7 +41,8 @@ class NewMapFragment : Fragment() {
         counter = 0
         markersList = arrayListOf()
 
-        val key = BuildConfig.GoogleMap_ApiKey
+//        val key = BuildConfig.GoogleMap_ApiKey
+        val key = "AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
 
         googleMap.setOnMapClickListener { click ->
 

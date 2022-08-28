@@ -110,7 +110,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
         val statslist = db.getAllStats().filter { it.user == user }
 
-        binding.dailyprogress.max = 15 * 60
+        binding.dailyprogress.max = (15 * 60)
 
 
 
@@ -129,7 +129,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
                 var track = db.getTrack(statslist[element].trackID).distance.split(" ")
 
                 distance += when(track[1]) {
-                    "km" -> track[0].toFloat()
+                    "km" -> if(track[0].contains(",")) track[0].replace(",", "").toFloat() else track[0].toFloat()
                     else -> (track[0].toFloat() *  0.001f)
 
                 }
