@@ -40,9 +40,10 @@
             android:background="@color/green_active"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabIndicatorColor="@color/grayIcon"
-
-            app:tabTextColor="@color/white"/>
+            app:tabIconTint="@color/tab_item_text"
+            app:tabSelectedTextColor="@color/defaultMain"
+            app:tabIndicatorColor="@color/defaultMain"
+            app:tabTextColor="@color/green_400"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

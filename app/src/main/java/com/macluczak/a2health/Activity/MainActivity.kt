@@ -76,10 +76,10 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
     fun setUpPagerViewDefault(){
 
         val adapter = ViewPagerAdapter(this).apply {
-            addFragment(GenreFragment(), "Categories")
+            addFragment(GenreFragment(), "Genre")
             addFragment(GeneralStatsFragment(), "Recent")
             addFragment(TracksFragment(), "Home")
-            addFragment(StatsFragment(), "Statistics")
+            addFragment(StatsFragment(), "Chart")
             addFragment(LoginFragment(), "Login")
         }
 
@@ -107,10 +107,10 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         fab.visibility = View.INVISIBLE
 
         val adapter = ViewPagerAdapter(this).apply {
-            addFragment(GenreFragment(), "Categories")
+            addFragment(GenreFragment(), "Genre")
             addFragment(GeneralStatsFragment(), "Recent")
             addFragment(TracksFragment(), "Home")
-            addFragment(StatsFragment(), "Statistics")
+            addFragment(StatsFragment(), "Chart")
             addFragment(LoginFragment(), "Login")
             addFragment(AddTrackFragment(), "Add")
         }
@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         TabLayoutMediator( binding.tab, binding.vpFragment ) { tab, position ->
             tab.text = adapter.mFragmentTitleList[position]
         }.attach()
+
 
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
