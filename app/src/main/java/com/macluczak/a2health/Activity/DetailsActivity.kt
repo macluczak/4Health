@@ -9,13 +9,14 @@ import android.view.Window
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import com.macluczak.a2health.Fragments.DetailFragment
+import com.macluczak.a2health.Interface.UserLogInterface
 import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.ActivityTrackDetailsBinding
 import java.security.AccessController.getContext
 
 
 @Suppress("DEPRECATION")
-class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity(), UserLogInterface{
 
     lateinit var binding: ActivityTrackDetailsBinding
 
@@ -58,6 +59,11 @@ class DetailsActivity : AppCompatActivity() {
                 commit()
             }
         }
+    }
+
+    override fun getLoggedUser(): String {
+        val sharedScore = this.getSharedPreferences("com.example.myapplication.shared",0)
+        return sharedScore.getString("user", " ").toString()
     }
 
 }

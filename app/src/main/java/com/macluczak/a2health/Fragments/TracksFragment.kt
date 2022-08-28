@@ -19,6 +19,7 @@ import com.macluczak.a2health.Adapters.TracksAdapter
 import com.macluczak.a2health.DBHelper
 import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.FragmentTracksBinding
+import java.lang.Math.abs
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -72,8 +73,8 @@ class TracksFragment() : Fragment(R.layout.fragment_tracks), TracksAdapter.Track
         for(element in 0 until statslist.size){
 
             val days = TimeUnit.DAYS.convert(
-                formatter.parse(statslist[element].runDate)!!.getTime() -
-                        formatter.parse(todayDate)!!.getTime(),
+                kotlin.math.abs(formatter.parse(todayDate)!!.time -
+                        formatter.parse(statslist[element].runDate)!!.time),
                 TimeUnit.MILLISECONDS)
 
             Log.d("TIME_CALC", "TIME PASSED: ${days}")

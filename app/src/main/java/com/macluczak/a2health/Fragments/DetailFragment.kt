@@ -30,6 +30,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.macluczak.a2health.*
 import com.macluczak.a2health.Adapters.Track
 import com.macluczak.a2health.Adapters.TracksAdapter
+import com.macluczak.a2health.Interface.UserLogInterface
 import com.macluczak.a2health.ViewModels.AddViewModel
 import com.macluczak.a2health.ViewModels.DetailViewModel
 import com.macluczak.a2health.databinding.FragmentDetailBinding
@@ -45,8 +46,10 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
     private lateinit var binding: FragmentDetailBinding
     lateinit var trackDetail: Track
     lateinit var fab: FloatingActionButton
+    lateinit var user: String
 
-
+    private val userInterface: UserLogInterface
+        get() = requireActivity() as UserLogInterface
 
     companion object {
         lateinit var idMap: String
@@ -69,16 +72,11 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
         val id: Int? = arguments?.getInt(ARG_NAME)
         val db = DBHelper(requireContext())
         val viewModel = ViewModelProvider(requireActivity()).get(DetailViewModel::class.java)
-//        val viewModel by viewModels<DetailViewModel>()
+
         Log.d("FRAGMENT MANAGER", "DETAIL TRACK")
 
-//        viewModel.page.observe(viewLifecycleOwner, Observer<Int> { hasFinished ->
-//
-//        })
-
-
         if (id != null) {
-//            if(viewModel.page == 0) {
+            user = userInterface.getLoggedUser()
 
             binding.flStatsLayout?.visibility = View.GONE
             binding.cvbg?.visibility = View.VISIBLE
@@ -87,7 +85,6 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
             idMap = id.toString()
 
-//            if track select
             trackDetail = db.getTrack(id)
 
             Log.d("TIME_CALC", "DETAIL TRACK ID: ${trackDetail.id}")
@@ -242,7 +239,7 @@ class DetailFragment() : Fragment(R.layout.fragment_detail), TimerFragment.Detai
 
 
             dbHelper.addTrackLastTime(trackDetail.id.toInt(), time, formatedDate)
-            dbHelper.addStats(trackDetail.id.toInt(), time, runDay, formatedDate)
+            dbHelper.addStats(trackDetail.id.toInt(), time, runDay, formatedDate, user)
 
             val trackDetail = dbHelper.getTrack(trackDetail.id.toInt())
 

@@ -4,6 +4,7 @@ class TrackStats(
     val trackID: Int,
     val runTime: String,
     val runDay: String,
-    val runDate: String
+    val runDate: String,
+    val user: String
 ) {
 }

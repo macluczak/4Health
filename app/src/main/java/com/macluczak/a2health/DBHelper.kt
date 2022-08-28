@@ -19,7 +19,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     companion object {
 
-        private val DATABASE_VER = 2
+        private val DATABASE_VER = 3
         private val DATABASE_NAME = "2Health.db"
 
         private val TABLE_NAME = "TRACKS"
@@ -53,6 +53,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         private val COL_DAY = "runDay"
         private val COL_DATE = "runDate"
 
+        private val COL_USER = "logUser"
+
 
     }
 
@@ -66,7 +68,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     " $COL_BEST_TIME TEXT,  $COL_LAST_TIME TEXT, $COL_BEST_DAY TEXT,  $COL_LAST_DAY TEXT, $COL_IMAGE TEXT)")
 
         val CREATE_STATS_QUERY = ("CREATE TABLE $TABLE_STATS ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " $COL_RUNTIME TEXT, $COL_TRACKID INTEGER,  $COL_DAY TEXT, $COL_DATE TEXT)")
+                " $COL_RUNTIME TEXT,$COL_USER TEXT, $COL_TRACKID INTEGER,  $COL_DAY TEXT, $COL_DATE TEXT)")
 
         db!!.execSQL(CREATE_STATS_QUERY)
         db!!.execSQL(CREATE_TABLE_QUERY)
@@ -126,7 +128,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     //stats table
 
-    fun addStats(id: Int, runTime: String, runDay: String, runDate: String) {
+    fun addStats(id: Int, runTime: String, runDay: String, runDate: String, logUser: String) {
         val db = this.writableDatabase
         val values = ContentValues()
 
@@ -136,6 +138,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(COL_RUNTIME, runTime)
         values.put(COL_DAY, runDay)
         values.put(COL_DATE, runDate)
+        values.put(COL_USER, logUser)
 
         db.insert(TABLE_STATS, null, values)
         db.close()
@@ -156,7 +159,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     cursor.getString(cursor.getColumnIndex(COL_TRACKID)).toInt(),
                     cursor.getString(cursor.getColumnIndex(COL_RUNTIME)),
                     cursor.getString(cursor.getColumnIndex(COL_DAY)),
-                    cursor.getString(cursor.getColumnIndex(COL_DATE))
+                    cursor.getString(cursor.getColumnIndex(COL_DATE)),
+                    cursor.getString(cursor.getColumnIndex(COL_USER))
                 )
                 Log.d("DBHELPER", "TRACKID: $id,  DBID: ${cursor.getString(cursor.getColumnIndex(COL_ID))}")
                 statsList.add(stats)
@@ -181,7 +185,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     cursor.getString(cursor.getColumnIndex(COL_TRACKID)).toInt(),
                     cursor.getString(cursor.getColumnIndex(COL_RUNTIME)),
                     cursor.getString(cursor.getColumnIndex(COL_DAY)),
-                    cursor.getString(cursor.getColumnIndex(COL_DATE))
+                    cursor.getString(cursor.getColumnIndex(COL_DATE)),
+                    cursor.getString(cursor.getColumnIndex(COL_USER))
 
                 )
                 statsList.add(stats)

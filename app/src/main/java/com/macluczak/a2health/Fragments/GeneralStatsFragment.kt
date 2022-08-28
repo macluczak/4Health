@@ -105,6 +105,7 @@ class GeneralStatsFragment : Fragment(R.layout.fragment_general_stats), TracksAd
                     val upfloat = AnimationUtils.loadAnimation(requireContext(), R.anim.up_float_quick)
                     val fadein = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
                     binding.cvMostViewed.startAnimation(upfloat)
+                    binding.recentusedtxt.startAnimation(fadein)
                     binding.layoutCardView.startAnimation(fadein)
 
 
