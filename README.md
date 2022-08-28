@@ -17,6 +17,15 @@ The "4Health" application for Android systems (in the mobile version and for tab
  <li>Create activity time measurements  </li>
 
  <li>Visualize your route with Google Maps </li>
+ 
+<li> Connect to an external user authentication database (Firebase) </li>
+
+<li> Data cache </li>
+
+<li> Registration/ User Login </li>
+
+<li> Keeping individual user statistics </li>
+ 
   
 </ul>
 
@@ -43,6 +52,10 @@ The application uses a number of libraries to improve performance, visually impr
 • `Glide` – a library that loads images from a link in imageView, additionally creates an image token for a given url, thus it does not require the Internet to reload / repeatedly the image. 
 
 • `Volley` – Making requests/ queries to external APIs / https pages 
+
+• `Google Firebase Firestorm` - External database for user authentication
+
+• `GSON` – parsing JSON objects
   
 
 
