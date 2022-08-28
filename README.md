@@ -58,7 +58,7 @@ The application uses a number of libraries to improve performance, visually impr
 • `GSON` – parsing JSON objects
 
 --------------
-# App update (2.0)
+# App update 
 ## preview of the new features! 
   
   <table>
@@ -71,7 +71,7 @@ The application uses a number of libraries to improve performance, visually impr
 </table>
 
 ----------------------
-# Previous version (1.0)
+# Previous version 
 ## Preview screenshots of the finished mobile app - Start screen
 
 <table>
