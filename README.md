@@ -58,8 +58,8 @@ The application uses a number of libraries to improve performance, visually impr
 • `GSON` – parsing JSON objects
 
 --------------
-## App update!
-# preview of the new features! 
+# App update!
+## preview of the new features! 
   
   <table>
   <tr>
