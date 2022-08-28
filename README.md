@@ -56,8 +56,19 @@ The application uses a number of libraries to improve performance, visually impr
 • `Google Firebase Firestorm` - External database for user authentication
 
 • `GSON` – parsing JSON objects
-  
 
+--------------
+## App update!
+# preview of the new version 
+  
+  <table>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/187094284-c38a5ed1-f30d-44c6-9140-485a004ccbf0.png"  alt="1"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/187094298-3e001774-08ba-4f77-ae86-69009a7d6699.png"  alt="2"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/187094318-23499753-e44a-4792-93cc-06a6733b0ced.png"  alt="3"></td>
+    
+  </tr> 
+</table>
 
 ----------------------
 ## Preview screenshots of the finished mobile app - Start screen
