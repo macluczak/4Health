@@ -60,7 +60,7 @@ The application uses a number of libraries to improve performance, visually impr
 --------------
 ## App update, preview of the new features! 
 
-the improvement includes features such as:
+The improvement includes features such as:
 
 • `Creating profiles` - Creating online users kept in a remote database
 
