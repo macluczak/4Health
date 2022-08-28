@@ -8,8 +8,6 @@
     android:background="@color/defaultMain">
 
 
-
-
     <TextView
         android:id="@+id/pageTitle"
         android:layout_width="match_parent"
@@ -43,126 +41,248 @@
         app:strokeWidth="3sp"
 
         >
-
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="20sp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/usernameTV"
+            <LinearLayout
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/blancView"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="name" />
+                android:orientation="vertical"
+                >
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvUsers"
-                android:layout_marginHorizontal="20sp"
-                style="@style/Widget.Material3.CardView.Filled"
-                android:backgroundTint="@color/defaultMain"
-                app:strokeColor="@color/white"
-                app:strokeWidth="3dp"
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_round_person_pin_24"
+                    app:tint="@color/gray100" />
 
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:letterSpacing="0.02"
+                    android:padding="5sp"
+                    android:textColor="@color/green_active"
+                    android:paddingHorizontal="10sp"
+                    android:text="Log in first to see the statistics"/>
+
+
+            </LinearLayout>
+            <ScrollView
+                android:visibility="gone"
+                android:id="@+id/userView"
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="40dp"
-
-                android:layout_alignParentTop="true">
+                android:layout_height="match_parent">
 
 
                 <LinearLayout
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:paddingTop="20sp"
                     android:paddingHorizontal="20sp"
-                    android:paddingBottom="20sp">
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/usernameTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="your stats"
+
+                        android:paddingTop="20sp"
                         android:fontFamily="sans-serif-black"
-                        android:gravity="center"
+
                         android:letterSpacing="0.02"
-                        android:padding="5sp"
-                        android:layout_marginBottom="10sp"/>
 
-                    <LinearLayout
+                        android:textSize="26sp"
+
+                        android:text="Welcome, name!" />
+
+                    <ProgressBar
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        >
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30sp"
+                        android:layout_marginBottom="5sp"
+
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:scaleY="4"/>
+
+                    <TextView
+                        android:id="@+id/progresstxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+
+                        android:textSize="18sp"
+
+                        android:text="daily activity: 20%"
+                        android:layout_marginBottom="20sp"/>
+
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvUsers"
+
+                        style="@style/Widget.Material3.CardView.Filled"
+                        android:backgroundTint="@color/defaultMain"
+                        app:strokeColor="@color/white"
+                        app:strokeWidth="3dp"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="40dp"
+
+                        android:layout_alignParentTop="true">
+
 
                         <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_width="0sp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:gravity="center_horizontal">
+                            android:paddingHorizontal="20sp"
+                            android:paddingBottom="20sp">
 
                             <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="your stats"
+                                android:fontFamily="sans-serif-black"
+                                android:gravity="center"
+                                android:letterSpacing="0.02"
+                                android:padding="5sp"
+                                android:layout_marginBottom="10sp"
+                                android:textSize="18sp"/>
 
-                                android:id="@+id/runCountTxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="28sp"
-                                android:text="3"/>
-                            <TextView
-                                android:id="@+id/runCountLabelTxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Runs"/>
+                            <com.github.mikephil.charting.charts.LineChart
+
+                                android:id="@+id/chartDetail"
+                                android:layout_width="match_parent"
+                                android:layout_height="60sp"
+                                android:layout_marginBottom="15sp"
+                                android:clickable="false"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                >
+
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0sp"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginBottom="15sp">
+
+                                    <TextView
+                                        android:id="@+id/runCountLabelTxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+
+                                        android:text="Runs"/>
+
+                                    <TextView
+
+                                        android:id="@+id/runCountTxt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="38sp"
+                                        android:textStyle="italic"
+                                        android:textColor="@color/green_active"
+                                        android:fontFamily="sans-serif-black"
+                                        android:text="13"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0sp"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginBottom="15sp">
+
+                                    <TextView
+                                        android:id="@+id/timeCountLabelTxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+                                        android:text="Time"/>
+
+                                    <TextView
+                                        android:id="@+id/timeCountTxt"
+                                        android:layout_width="wrap_content"
+                                        android:textSize="38sp"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="italic"
+                                        android:textColor="@color/green_active"
+                                        android:fontFamily="sans-serif-black"
+                                        android:text="10:30:00"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal">
+
+                                    <TextView
+                                        android:id="@+id/distanceCountLabelTxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+                                        android:text="Distance"/>
+
+                                    <TextView
+                                        android:id="@+id/distanceCountTxt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="38sp"
+                                        android:textStyle="italic"
+                                        android:textColor="@color/green_active"
+                                        android:fontFamily="sans-serif-black"
+                                        android:text="300.5"/>
+
+
+                                </LinearLayout>
+
+
+
+                            </LinearLayout>
+
+
+
+
+
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center_horizontal">
-
-                            <TextView
-                                android:id="@+id/timeCountTxt"
-                                android:layout_width="wrap_content"
-                                android:textSize="28sp"
-                                android:layout_height="wrap_content"
-                                android:text="3"/>
-                            <TextView
-                                android:id="@+id/timeCountLabelTxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Time"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center_horizontal">
-
-                            <TextView
-                                android:id="@+id/distanceCountTxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="28sp"
-                                android:text="3.5"/>
-                            <TextView
-                                android:id="@+id/distanceCountLabelTxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Distance"/>
-
-                        </LinearLayout>
 
 
 
-                    </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"/>
 
 
 
@@ -171,23 +291,12 @@
 
 
 
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-            <com.github.mikephil.charting.charts.BarChart
-
-                android:id="@+id/chartDetail"
-                android:layout_width="match_parent"
-                android:layout_height="100sp"
-                android:layout_below="@id/cvUsers"
-                android:layout_marginBottom="10sp"
-                android:clickable="false"
-                android:padding="20sp" />
-
+            </ScrollView>
 
 
         </RelativeLayout>
+
+
 
 
 

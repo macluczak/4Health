@@ -17,6 +17,7 @@ import androidx.core.view.doOnAttach
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayoutMediator
 import com.macluczak.a2health.Fragments.*
+import com.macluczak.a2health.Interface.StatsInterface
 import com.macluczak.a2health.Interface.UserLogInterface
 import com.macluczak.a2health.R
 import com.macluczak.a2health.ViewPagerAdapter
@@ -24,9 +25,9 @@ import com.macluczak.a2health.databinding.ActivityMainBinding
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEventListener,
-    UserLogInterface {
+    UserLogInterface, StatsInterface{
 
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     lateinit var fab: FloatingActionButton
     private lateinit var sensorManager: SensorManager
     lateinit var userNick: String
@@ -110,8 +111,8 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
             addFragment(GeneralStatsFragment(), "Recent")
             addFragment(TracksFragment(), "Home")
             addFragment(StatsFragment(), "Statistics")
-            addFragment(AddTrackFragment(), "Add")
             addFragment(LoginFragment(), "Login")
+            addFragment(AddTrackFragment(), "Add")
         }
         binding.vpFragment.adapter = adapter
         binding.vpFragment.doOnAttach {
@@ -126,9 +127,9 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
         binding.tab.getTabAt(0)?.setIcon(R.drawable.ic_baseline_view_stream_24)
         binding.tab.getTabAt(1)?.setIcon(R.drawable.ic_baseline_home_24)
         binding.tab.getTabAt(2)?.setIcon(R.drawable.ic_baseline_history_24)
-        binding.tab.getTabAt(4)?.setIcon(R.drawable.ic_baseline_add_24)
+        binding.tab.getTabAt(5)?.setIcon(R.drawable.ic_baseline_add_24)
         binding.tab.getTabAt(3)?.setIcon(R.drawable.ic_baseline_bar_chart_24)
-        binding.tab.getTabAt(5)?.setIcon(R.drawable.ic_baseline_account_circle_24)
+        binding.tab.getTabAt(4)?.setIcon(R.drawable.ic_baseline_account_circle_24)
     }
 
 
@@ -200,7 +201,6 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
                 if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
             val x = event.values[0]
             val y = event.values[1]
-//            val z = event.values[2]
 
             binding.fab?.apply {
 
@@ -209,9 +209,6 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
 
                 rotation = -x
 
-//                translationX = -x * -5
-//                translationY = -y * 5
-                //Log.d("SENSOR", "($x, $y)")
             }
 
         }
@@ -237,6 +234,10 @@ class MainActivity : AppCompatActivity(), TracksFragment.MainCallback, SensorEve
     override fun getLoggedUser(): String {
         val sharedScore = this.getSharedPreferences("com.example.myapplication.shared",0)
         return sharedScore.getString("user", " ").toString()
+    }
+
+    override fun moveToLogin() {
+        binding.vpFragment.currentItem = 4
     }
 
 

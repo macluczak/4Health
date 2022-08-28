@@ -33,6 +33,7 @@ class LoginFragment() : Fragment(R.layout.fragment_login) {
         userName = userInterface.getLoggedUser()
         isLogged = checkIsUserLogged()
         binding.loginErrorView.text = ""
+
         user = arguments?.getParcelable("user") as? UserModel?
         if (user != null) {
             binding.loginUsernameInput.setText(user!!.username.toString())
@@ -50,7 +51,10 @@ class LoginFragment() : Fragment(R.layout.fragment_login) {
 
                     viewModel.loginToAccount(username, password) {
 
-                        if (it != null) it.username?.let { name -> userInterface.logIn(name) }
+                        if (it != null) it.username?.let { name -> userInterface.logIn(name)
+                            userName = it.username
+                            isLogged = checkIsUserLogged()
+                        }
                         else binding.loginErrorView.text = "invalid data"
 
                         binding.progressbarlogin.visibility = View.GONE

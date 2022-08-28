@@ -19,7 +19,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     companion object {
 
-        private val DATABASE_VER = 1
+        private val DATABASE_VER = 2
         private val DATABASE_NAME = "2Health.db"
 
         private val TABLE_NAME = "TRACKS"
@@ -279,35 +279,12 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return trackList
     }
 
-
     fun addTrackLastTime(id: Int, time: String, day: String) {
         val db = this.writableDatabase
         db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_TIME = '${time}' WHERE $COL_ID = '${id}'")
         db!!.execSQL("UPDATE $TABLE_NAME SET $COL_LAST_DAY = '${day}' WHERE $COL_ID = '${id}'")
         db.close()
     }
-
-//
-//    @SuppressLint("Range")
-//    fun isTimeGreater(time:String, id: Int):Boolean{
-//        val db = this.writableDatabase
-//        val selectQuery = "SELECT $COL_BEST_TIME FROM $TABLE_NAME WHERE $COL_ID = '${id}'"
-//        val cursor: Cursor = db.rawQuery(selectQuery, null)
-//        cursor.moveToFirst()
-//        val bestScore = cursor.getString(cursor.getColumnIndex(COL_BEST_TIME))
-//        if(bestScore == null || bestScore.isBlank() || bestScore =="null"){
-//            return true
-//        }
-//        else{
-//
-//            return true
-//        }
-//
-////        return time.toInt() > bestScore.toInt()
-//
-//
-//
-//    }
 
     fun updateTrackBestTime(id: Int, time: String, day: String) {
         val db = this.writableDatabase

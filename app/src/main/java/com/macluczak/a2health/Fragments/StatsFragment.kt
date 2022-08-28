@@ -6,11 +6,11 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.macluczak.a2health.DBHelper
+import com.macluczak.a2health.Interface.StatsInterface
+import com.macluczak.a2health.Interface.UserLogInterface
 import com.macluczak.a2health.R
 import com.macluczak.a2health.databinding.FragmentStatsBinding
 import java.text.SimpleDateFormat
@@ -23,6 +23,8 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
     lateinit var user: String
     lateinit var db: DBHelper
     lateinit var weekStats: ArrayList<Int>
+    private val statsInterface: StatsInterface
+        get() = requireActivity() as StatsInterface
 
     private fun getLoggedUser(): String {
         val sharedScore = requireActivity().getSharedPreferences("com.example.myapplication.shared",0)
@@ -94,79 +96,88 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
 
 
 
     override fun onResume() {
-        user = getLoggedUser()
-        binding.usernameTV.text = user
-
         super.onResume()
-        db = DBHelper(requireContext())
-//        db.dropTable()
-        val tracklist = db.getAllTracks()
-        weekStats = arrayListOf(0,0,0,0,0,0,0)
+        user = getLoggedUser()
+        if(user.isNotBlank()) {
 
-        if(tracklist.isNotEmpty()) {
+            binding.blancView.visibility = View.GONE
+            binding.userView.visibility = View.VISIBLE
 
+            binding.usernameTV.text = "Welcome, $user!"
 
-            setHomeStats()
+            db = DBHelper(requireContext())
+            val tracklist = db.getAllTracks()
+            weekStats = arrayListOf(0, 0, 0, 0, 0, 0, 0)
 
-
-            val labels = ArrayList<BarEntry>()
-            labels.add(BarEntry(0f, weekStats[0].toFloat()))
-            labels.add(BarEntry(1f, weekStats[1].toFloat()))
-            labels.add(BarEntry(2f, weekStats[2].toFloat()))
-            labels.add(BarEntry(3f, weekStats[3].toFloat()))
-            labels.add(BarEntry(4f, weekStats[4].toFloat()))
-            labels.add(BarEntry(5f, weekStats[5].toFloat()))
-            labels.add(BarEntry(6f, weekStats[6].toFloat()))
+            if (tracklist.isNotEmpty()) {
 
 
-            val barLabelSet = BarDataSet(labels, "Labels")
-            val xlabel = arrayOf("Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun")
+                setHomeStats()
 
-            val data = BarData(barLabelSet)
-            binding.chartDetail?.apply {
-                axisRight.setDrawGridLines(false)
-                axisLeft.setDrawGridLines(false)
-                xAxis.setDrawGridLines(false)
-                axisRight.setDrawAxisLine(false)
-                axisLeft.setDrawAxisLine(false)
-                xAxis.setDrawAxisLine(false)
-                isClickable = false
-                isDoubleTapToZoomEnabled = false
-                isDoubleTapToZoomEnabled = false
-                legend.isEnabled = false
-                axisLeft.setDrawLabels(false)
-                axisRight.setDrawLabels(false)
+
+                val labels = ArrayList<Entry>()
+                labels.add(Entry(0f, weekStats[0].toFloat()))
+                labels.add(Entry(1f, weekStats[1].toFloat()))
+                labels.add(Entry(2f, weekStats[2].toFloat()))
+                labels.add(Entry(3f, weekStats[3].toFloat()))
+                labels.add(Entry(4f, weekStats[4].toFloat()))
+                labels.add(Entry(5f, weekStats[5].toFloat()))
+                labels.add(Entry(6f, weekStats[6].toFloat()))
+
+
+                val barLabelSet = LineDataSet(labels, "Labels")
+                val xlabel = arrayOf("Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun")
+
+                val data = LineData(barLabelSet)
+                binding.chartDetail?.apply {
+                    axisRight.setDrawGridLines(false)
+                    axisLeft.setDrawGridLines(false)
+                    xAxis.setDrawGridLines(false)
+                    axisRight.setDrawAxisLine(false)
+                    axisLeft.setDrawAxisLine(false)
+                    xAxis.setDrawAxisLine(false)
+                    isClickable = false
+                    isDoubleTapToZoomEnabled = false
+                    isDoubleTapToZoomEnabled = false
+                    legend.isEnabled = false
+                    axisLeft.setDrawLabels(false)
+                    axisRight.setDrawLabels(false)
 //            xAxis.setDrawLabels(false)
-                xAxis.position = XAxis.XAxisPosition.BOTTOM
-                xAxis.valueFormatter = IndexAxisValueFormatter(xlabel)
-                description.isEnabled = false
-                xAxis.valueFormatter
+                    xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    xAxis.valueFormatter = IndexAxisValueFormatter(xlabel)
+                    description.isEnabled = false
+                    xAxis.valueFormatter
 
-                binding.chartDetail!!.data = data
+                    binding.chartDetail!!.data = data
+                }
+
+
+                binding.chartDetail?.setTouchEnabled(false)
+
+            } else {
+                binding.chartDetail?.visibility = View.GONE
+                binding.chartDetail?.setNoDataText("Add Tracks!")
             }
-
-
-            binding.chartDetail?.setTouchEnabled(false)
-
         }
         else{
-            binding.chartDetail?.visibility = View.GONE
-            binding.chartDetail?.setNoDataText("Add Tracks!")
+            binding.userView.visibility = View.GONE
+            binding.blancView.visibility = View.VISIBLE
         }
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentStatsBinding.bind(view)
         binding.chartDetail?.animateY(1800)
+        binding.blancView.setOnClickListener{
+            statsInterface.moveToLogin()
+        }
     }
 
 

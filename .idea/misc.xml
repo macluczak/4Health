@@ -40,6 +40,7 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout-w600dp-port/activity_main.xml" value="0.241015625" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout-w720dp/activity_main.xml" value="0.22085889570552147" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_add_track.xml" value="0.32135416666666666" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_login_acvivity.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_splash.xml" value="0.375" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/activity_temp.xml" value="0.32135416666666666" />
@@ -54,7 +55,7 @@
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_new_map.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_register.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_run_detail.xml" value="0.25" />
-        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_stats.xml" value="0.2037037037037037" />
+        <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_stats.xml" value="0.25" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_timer.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/fragment_tracks.xml" value="0.32407407407407407" />
         <entry key="..\:/Users/macie/AndroidStudioProjects/2Health/app/src/main/res/layout/hodler_stats.xml" value="0.25" />
