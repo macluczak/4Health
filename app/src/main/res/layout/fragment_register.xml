@@ -66,7 +66,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:paddingVertical="40sp"
         app:layout_constraintTop_toBottomOf="@id/registerConfirmPasswordInput"
         app:layout_constraintLeft_toLeftOf="parent"
