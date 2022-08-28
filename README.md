@@ -58,8 +58,17 @@ The application uses a number of libraries to improve performance, visually impr
 • `GSON` – parsing JSON objects
 
 --------------
-# App update 
-## preview of the new features! 
+## App update, preview of the new features! 
+
+the improvement includes features such as:
+
+• `Creating profiles` - Creating online users kept in a remote database
+
+• `Google Firebase Firestorm` - External database for user authentication
+
+• `Chart Page` - Page dedicated to logged in users, keeping them weekly total activity, and a daily training challenge
+
+• `UI Improvements` - new animations for a more natural user experience (custom transition animations using viewpager2), improved bottom menu and home page style
   
   <table>
   <tr>
