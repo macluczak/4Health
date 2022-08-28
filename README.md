@@ -59,7 +59,7 @@ The application uses a number of libraries to improve performance, visually impr
 
 --------------
 ## App update!
-# preview of the new version 
+# preview of the new features! 
   
   <table>
   <tr>
