@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 class RegisterViewModel: ViewModel() {
     val repo = LoginRepo()
     val usernameAvailable = repo.usernameAvailable
-    val userCreated = repo.userCreated
     val createdUser = repo.createdUser
 
 

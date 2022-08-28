@@ -40,33 +40,27 @@ class RegisterFragment : Fragment() {
                     viewModel.createAccount(username, password)
                 } else {
                     binding.errorView.text = "Passwords don't match"
-//                    Toast.makeText(requireContext(), "Passwords don't match", Toast.LENGTH_LONG).show()
                 }
             } else {
                 binding.errorView.text = "Provide all data"
-//                Toast.makeText(requireContext(), "Provide all data", Toast.LENGTH_LONG).show()
             }
         }
         viewModel.usernameAvailable.observe(viewLifecycleOwner) {
             if (!it) {
                 binding.errorView.text = "Username is taken"
-                //Toast.makeText(requireContext(), "Username is taken", Toast.LENGTH_LONG).show()
             }
         }
 
-        viewModel.userCreated.observe(viewLifecycleOwner){
-            if (it) {
-
-                //Toast.makeText(requireContext(), "Account created!", Toast.LENGTH_SHORT).show()
-
-            } else {
-                binding.errorView.text = "Username is taken"
-            }
-        }
         viewModel.createdUser.observe(viewLifecycleOwner) {
             if (it != null) {
                 goToLoginPage(viewModel.createdUser.value)
+            } else {
+                binding.errorView.text = "Something went wrong"
             }
+        }
+
+        binding.haveAccountButton.setOnClickListener{
+            goToLoginPage(null)
         }
     }
 
