@@ -152,7 +152,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         }
         binding.runCountTxt.text = runCounter.toString()
         binding.timeCountTxt.text = timeCounter.toHoursMinuteSeconds()
-        binding.distanceCountTxt.text = "$distance km"
+        binding.distanceCountTxt.text = "${"%.1f".format(distance)} km"
         ObjectAnimator.ofInt(binding.dailyprogress, "progress", dailyTimer)
             .setDuration(1500)
             .start()
