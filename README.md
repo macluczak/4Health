@@ -17,6 +17,15 @@ The "4Health" application for Android systems (in the mobile version and for tab
  <li>Create activity time measurements  </li>
 
  <li>Visualize your route with Google Maps </li>
+ 
+<li> Connect to an external user authentication database (Firebase) </li>
+
+<li> Data cache </li>
+
+<li> Registration/ User Login </li>
+
+<li> Keeping individual user statistics </li>
+ 
   
 </ul>
 
@@ -43,10 +52,36 @@ The application uses a number of libraries to improve performance, visually impr
 • `Glide` – a library that loads images from a link in imageView, additionally creates an image token for a given url, thus it does not require the Internet to reload / repeatedly the image. 
 
 • `Volley` – Making requests/ queries to external APIs / https pages 
+
+• `Google Firebase Firestorm` - External database for user authentication
+
+• `GSON` – parsing JSON objects
+
+--------------
+## App update, preview of the new features! 
+
+The improvement includes features such as:
+
+• `Creating profiles` - Creating online users kept in a remote database
+
+• `Google Firebase Firestorm` - External database for user authentication
+
+• `Chart Page` - Page dedicated to logged in users, keeping them weekly total activity, and a daily training challenge
+
+• `UI Improvements` - new animations for a more natural user experience (custom transition animations using viewpager2), improved bottom menu and home page style
   
+  <table>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/187095683-a8ed6124-a2e7-41d5-b44f-2547320da52f.png"  alt="1"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/187096165-d1028194-b19f-4e84-b213-0d2a8ae0b39a.png"  alt="2"></td>
+    <td> <img src="https://user-images.githubusercontent.com/77066408/187094318-23499753-e44a-4792-93cc-06a6733b0ced.png"  alt="3"></td>
+    
+  </tr> 
+</table>
 
 
 ----------------------
+# Previous version 
 ## Preview screenshots of the finished mobile app - Start screen
 
 <table>
