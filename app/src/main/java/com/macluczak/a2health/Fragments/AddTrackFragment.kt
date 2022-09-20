@@ -81,18 +81,13 @@ class AddTrackFragment : Fragment(R.layout.fragment_add_track) {
             binding.editTxt.setText(viewModel.title)
         }
 
-
-
-
-
         binding.addButton.setOnClickListener {
             if (isOnline(requireContext())) {
                 if (newMapsFragment.markersList.size == 2 && binding.editTxt.text.isNotBlank()) {
 
 
 
-//                    val key = BuildConfig.GoogleMap_ApiKey
-                    val key = "AIzaSyAoBB1iGSVERv8KEkADCH1YQdVe5pEBGIw"
+                    val key = BuildConfig.GoogleMap_ApiKey
 
                     val ImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=600x400&radius=5000&location=${newMapsFragment.origin.position.latitude},${newMapsFragment.origin.position.longitude}&key=${key}"
 
